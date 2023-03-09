@@ -9,11 +9,11 @@ export class SidebarService {
   
   menus = [
     {
-      title: 'general',
+      title: 'General',
       type: 'header'
     },
     {
-      title: 'Dashboard',
+      title: 'Compras',
       icon: 'fa fa-tachometer-alt',
       active: false,
       type: 'dropdown',
