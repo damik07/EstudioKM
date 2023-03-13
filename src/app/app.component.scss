@@ -51,4 +51,16 @@
     letter-spacing: 1px;
   }
 }
+.toolbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: #5e5f6148;
+  color: white;
+  font-weight: 600;
+}
 
