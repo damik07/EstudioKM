@@ -74,7 +74,7 @@ export class CargaFacturasCompraComponent implements OnInit {
       const ws = wb.Sheets[wsname];
 
       /* guarda la info - quitada las primeras 4 filas por formato de exportación de archivo de la CFI */
-      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codigo","descripcion","importe"],range: 4, rawNumbers:false }));
+      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","documento","p_venta","n_desde","n_hasta","cod_autoriz","doc_emisor","n_emisor","denominacion","tc","moneda","neto_gravado","neto_no_gravado","op_exentas","iva","total"],range: 2, rawNumbers:false }));
       console.log(this.data);
       
     };

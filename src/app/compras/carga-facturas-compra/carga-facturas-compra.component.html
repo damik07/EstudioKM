@@ -39,9 +39,22 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of data">
-        <td>{{ item.codigo }}</td>
-        <td>{{ item.descripcion }}</td>
-        <td>{{ item.importe }}</td>
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.documento }}</td>
+        <td>{{ item.p_venta }}</td>
+        <td>{{ item.n_desde }}</td>
+        <td>{{ item.n_hasta }}</td>
+        <td>{{ item.cod_autoriz }}</td>
+        <td>{{ item.doc_emisor }}</td>
+        <td>{{ item.n_emisor }}</td>
+        <td>{{ item.denominacion }}</td>
+        <td>{{ item.tc }}</td>
+        <td>{{ item.moneda }}</td>
+        <td>{{ item.neto_gravado }}</td>
+        <td>{{ item.neto_no_gravado }}</td>
+        <td>{{ item.op_exentas }}</td>
+        <td>{{ item.iva }}</td>
+        <td>{{ item.total }}</td>
       </tr>
     </tbody>
   </table>
