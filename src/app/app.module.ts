@@ -7,6 +7,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
 
 
 
@@ -15,7 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent, CargaFacturasCompraComponent
   ],
   imports: [
     BrowserModule,
