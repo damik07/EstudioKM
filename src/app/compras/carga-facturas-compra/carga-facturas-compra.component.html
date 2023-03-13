@@ -1,3 +1,41 @@
-<p>
-carga-facturas-compra works!
-</p>
+<div class="center">
+<ngx-file-drop
+  dropZoneLabel="Suelte archivos aquí"
+  (onFileDrop)="dropped($event)"
+  (onFileOver)="fileOver($event)"
+  (onFileLeave)="fileLeave($event)"
+>
+  <ng-template
+    ngx-file-drop-content-tmp
+    let-openFileSelector="openFileSelector"
+  >
+    Contenido personalizado opcional que reemplaza todo el contenido
+    predeterminado.
+    <button type="button" (click)="openFileSelector()">Buscar Archivo</button>
+  </ng-template>
+</ngx-file-drop>
+<hr />
+<div class="upload-table" *ngIf="files">
+  <table class="table table-striped table-hover" id="bdinteg">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Descripción</th>
+        <th>Importe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.codigo }}</td>
+        <td>{{ item.descripcion }}</td>
+        <td>{{ item.importe }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+</div>
+<hr>
+
+<button (click)="guardarBD()" class="btn btn-primary mb-3" *ngIf="files">Guardar</button>
+</div>
