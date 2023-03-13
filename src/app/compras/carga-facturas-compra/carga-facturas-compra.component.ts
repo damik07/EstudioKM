@@ -8,6 +8,7 @@ import * as XLSX from 'xlsx';
   styleUrls: ['./carga-facturas-compra.component.css']
 })
 export class CargaFacturasCompraComponent implements OnInit {
+  
   public files: NgxFileDropEntry[] = [];
   data?:any[];
 
