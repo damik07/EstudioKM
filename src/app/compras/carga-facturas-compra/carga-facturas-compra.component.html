@@ -15,7 +15,7 @@
   </ng-template>
 </ngx-file-drop>
 <hr />
-<div class="upload-table" *ngIf="files">
+<div class="upload-table" *ngIf="data">
   <table class="table table-striped table-hover" id="bdinteg">
     <thead>
       <tr>
@@ -62,7 +62,7 @@
 
   
 </div>
-<hr>
+<hr *ngIf="data">
 
-<button (click)="guardarBD()" class="btn btn-primary mb-3" *ngIf="files">Guardar</button>
+<button (click)="guardarBD()" class="btn btn-primary mb-3" *ngIf="data">Guardar</button>
 </div>
