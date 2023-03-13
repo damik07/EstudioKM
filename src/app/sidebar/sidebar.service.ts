@@ -23,7 +23,7 @@ export class SidebarService {
       },
       submenus: [
         {
-          title: 'Dashboard 1',
+          title: 'Carga de Facturas',
           url: 'cargaFacComp',
           badge: {
             text: 'Pro ',
