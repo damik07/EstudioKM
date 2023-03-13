@@ -11,6 +11,7 @@ export class CargaFacturasCompraComponent implements OnInit {
   
   public files: NgxFileDropEntry[] = [];
   data?:any[];
+  cuenta?:any[];
 
   constructor() { }
 
