@@ -24,6 +24,7 @@ export class SidebarService {
       submenus: [
         {
           title: 'Dashboard 1',
+          url: 'cargaFacComp',
           badge: {
             text: 'Pro ',
             class: 'badge-success'
