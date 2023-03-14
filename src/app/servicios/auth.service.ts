@@ -10,7 +10,7 @@ import { NuevoUsuario } from './models/nuevo-usuario';
 })
 export class AuthService {
 
-  api = "https://nameless-springs-70391.herokuapp.com/auth/"; //hay que cambiar l dirección cuando arme el backend
+  api = "#"; //hay que cambiar l dirección cuando arme el backend "https://nameless-springs-70391.herokuapp.com/auth/"
 
   constructor(private http:HttpClient) { }
 
