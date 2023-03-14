@@ -31,7 +31,7 @@ import { SubRubroComponent } from './plan-cuentas/sub-rubro/sub-rubro.component'
     BsDropdownModule.forRoot(),
     NgxFileDropModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
