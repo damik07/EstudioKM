@@ -8,6 +8,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
+import { interceptorProvider } from './servicios/interceptor.service';
 
 
 
@@ -25,7 +26,7 @@ import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/ca
     BsDropdownModule.forRoot(),
     NgxFileDropModule
   ],
-  providers: [ ],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

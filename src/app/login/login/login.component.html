@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="m-5">
+      <h1>Iniciar Sesión</h1>
+      <form [formGroup]="form" class="m-5" (ngSubmit)="onEnviar($event)">
+          <div class="mb-3">
+              <label for="userName">Usuario: </label>
+              <input type="nombreUsuario" formControlName="nombreUsuario" required class="form-control"
+                  [ngClass]="{'is invalid': Usuario?.errors  && Usuario?.touched, 'is valid': !Usuario?.errors  && Usuario?.touched}">
+          </div>
+
+          <div *ngIf="Usuario?.errors  && Usuario?.touched">
+              <p *ngIf="Usuario?.hasError('required')" class="text-error">
+                  El usuario es requerido.
+              </p>
+              <p *ngIf="Usuario?.hasError('usuario')" class="text-error">
+                  El formato del usuario debe ser válido.
+              </p>
+          </div>
+
+          <br />
+          <div class="mb-3">
+              <label for="email">Email: </label>
+              <input type="email" formControlName="email" required class="form-control"
+                  [ngClass]="{'is invalid': Mail?.errors  && Mail?.touched, 'is valid': !Mail?.errors  && Mail?.touched}">
+          </div>
+
+          <div *ngIf="Mail?.errors  && Mail?.touched">
+              <p *ngIf="Mail?.hasError('required')" class="text-error">
+                  El email es requerido.
+              </p>
+              <p *ngIf="Mail?.hasError('email')" class="text-error">
+                  El formato del email debe ser válido.
+              </p>
+          </div>
+
+          <br />
+          <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password: </label>
+              <input type="password" formControlName="password" required class="form-control"
+                  [ngClass]="{'is invalid': Password?.errors  && Password?.touched, 'is valid': !Password?.errors  && Password?.touched}">
+          </div>
+          <div *ngIf="Password?.errors  && Password?.touched">
+              <p *ngIf="Password?.hasError('required')" class="text-error">
+                  El password es requerido.
+              </p>
+
+          </div>
+          <br />
+          <div>
+              <button type="submit">Iniciar Sesión</button>
+          </div>
+      </form>
+      <div *ngIf="isLoginFail" class="alert alert-danger mt-3">Error en el Login: {{errMje}}</div>
+  </div>
+</div>
