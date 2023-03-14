@@ -9,8 +9,7 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
 import { interceptorProvider } from './servicios/interceptor.service';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,6 +19,8 @@ import { interceptorProvider } from './servicios/interceptor.service';
     SidebarComponent, CargaFacturasCompraComponent
   ],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
