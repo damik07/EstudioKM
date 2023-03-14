@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'rubro', component:RubroComponent},
   {path:'subRubro', component:SubRubroComponent},
   {path:'cuentaContable', component:CuentaContableComponent},
-  //{path:'login', component:LoginComponent, //canActivate:[GuardGuard]  },
+  {path:'login', component:LoginComponent, //canActivate:[GuardGuard]
+  },
     
 ];
 
