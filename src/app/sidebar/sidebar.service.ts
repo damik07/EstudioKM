@@ -117,18 +117,32 @@ export class SidebarService {
       ]
     },
     {
-      title: 'Extra',
+      title: 'Configuraciones',
       type: 'header'
     },
     {
-      title: 'Documentation',
+      title: 'Plan de Cuentas',
       icon: 'fa fa-book',
       active: false,
-      type: 'simple',
+      type: 'dropdown',
       badge: {
         text: 'Beta',
         class: 'badge-primary'
       },
+      submenus: [
+        {
+          title: 'Rubro',
+          url: 'rubro'
+        },
+        {
+          title: 'SubRubro',
+          url: 'subRubro'
+        },        
+        {
+          title: 'Cuenta Contable',
+          url: 'cuentaContable'
+        }
+      ]
     },
     {
       title: 'Calendar',
