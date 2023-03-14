@@ -28,7 +28,7 @@ import { LoginComponent } from './login/login/login.component';
     BsDropdownModule.forRoot(),
     NgxFileDropModule
   ],
-  providers: [interceptorProvider],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
