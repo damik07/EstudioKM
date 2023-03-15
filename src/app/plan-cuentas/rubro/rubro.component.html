@@ -1,6 +1,6 @@
 <div class="container">
 	<h2>Formulario de Rubros</h2>
-	<form [formGroup]="rubrosForm">
+	<form [formGroup]="rubrosForm" (ngSubmit)="onSubmit()">
 		<div class="form-group row">
 			<label for="codigoRubro" class="col-sm-3 col-form-label">Código de Rubro:</label>
 			<div class="col-sm-9">
