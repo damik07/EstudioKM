@@ -63,11 +63,8 @@ export class RubroComponent implements OnInit {
   
 
   onSubmit() {
-    console.log(this.rubrosForm.value)
     const nuevoRubro = this.rubrosForm.value;
-    console.log(nuevoRubro)
     this.rubrosContablesService.agregarRubroContable(nuevoRubro);
-    console.log(this.rubrosContablesService.rubrosContables);
     this.rubrosForm.reset();
   }
   ngOnInit() {

@@ -28,11 +28,8 @@
       <!-- Identificador del error -->
     <div *ngIf="NombreRubro?.errors  && NombreRubro?.touched">
       <p *ngIf="NombreRubro?.hasError('required')" class="text-error">
-          El Código de Rubro es requerido.
-      </p>
-      <p *ngIf="NombreRubro?.hasError('nombreRubro')" class="text-error">
-          El formato de Código de Rubro debe ser válido.
-      </p>
+          El Nombre de Rubro es requerido.
+      
   </div>
       
 		</div>
@@ -52,9 +49,7 @@
       <p *ngIf="Nivel?.hasError('required')" class="text-error">
           El Código de Rubro es requerido.
       </p>
-      <p *ngIf="Nivel?.hasError('nivel')" class="text-error">
-          El formato de Código de Rubro debe ser válido.
-      </p>
+      
   </div>
 
 		</div>
@@ -76,9 +71,7 @@
       <p *ngIf="TipoCuenta?.hasError('required')" class="text-error">
           El Código de Rubro es requerido.
       </p>
-      <p *ngIf="TipoCuenta?.hasError('tipoCuenta')" class="text-error">
-          El formato de Código de Rubro debe ser válido.
-      </p>
+      
   </div>
 
 		</div>
