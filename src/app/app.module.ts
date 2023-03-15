@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
 import { SubRubroComponent } from './plan-cuentas/sub-rubro/sub-rubro.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,9 +31,10 @@ import { SubRubroComponent } from './plan-cuentas/sub-rubro/sub-rubro.component'
     BrowserAnimationsModule,
     AppRoutingModule,
     BsDropdownModule.forRoot(),
-    NgxFileDropModule
+    NgxFileDropModule,
+    HttpClientModule
   ],
-  providers: [interceptorProvider],
+  providers: [interceptorProvider, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
