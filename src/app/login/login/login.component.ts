@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private tokenService: TokenService, private formBuilder: FormBuilder, private authService:AuthService, private ruta:Router) { 
     this.form=this.formBuilder.group({
       nombreUsuario:['',[Validators.required, Validators.minLength(5),Validators.maxLength(12)]],
-      email:['',[Validators.required, Validators.email]],
+      
       password:['',[Validators.required, Validators.minLength(8)]]
       
     })
@@ -32,9 +32,7 @@ export class LoginComponent implements OnInit {
     return this.form.get("nombreUsuario");
   }
 
-  get Mail(){
-    return this.form.get("email");
-  }
+  
 
   get Password(){
     return this.form.get("password");
@@ -53,7 +51,7 @@ export class LoginComponent implements OnInit {
       this.tokenService.setAuthorities(data.authorities);
       this.roles = data.authorities;
 
-      this.ruta.navigate(['/portfolio']);
+      this.ruta.navigate(['cargaFacComp']);
       console.log("Data: 1");
     },
 
@@ -76,18 +74,14 @@ export class LoginComponent implements OnInit {
     return this.Password?.touched && !this.Password?.valid;
   }
 
-  get MailValid() {
-    return false
-  }
-
+  
   public nombreUsuario = new FormControl('', Validators.required);
-  public email = new FormControl('', Validators.required);
-
+  
   public password = new FormControl('', Validators.required);
 
   public newForm = new FormGroup({
     nombreUsuario: this.nombreUsuario,
-    email: this.email,
+    
     password: this.password,
   })
 

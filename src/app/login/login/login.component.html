@@ -19,22 +19,7 @@
           </div>
 
           <br />
-          <div class="mb-3">
-              <label for="email">Email: </label>
-              <input type="email" formControlName="email" required class="form-control"
-                  [ngClass]="{'is invalid': Mail?.errors  && Mail?.touched, 'is valid': !Mail?.errors  && Mail?.touched}">
-          </div>
-
-          <div *ngIf="Mail?.errors  && Mail?.touched">
-              <p *ngIf="Mail?.hasError('required')" class="text-error">
-                  El email es requerido.
-              </p>
-              <p *ngIf="Mail?.hasError('email')" class="text-error">
-                  El formato del email debe ser válido.
-              </p>
-          </div>
-
-          <br />
+          
           <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password: </label>
               <input type="password" formControlName="password" required class="form-control"
