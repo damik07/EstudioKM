@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
 
 @Component({
   selector: 'app-rubro',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RubroComponent implements OnInit {
   rubrosForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
       codigoRubro: ['', Validators.required, Validators.minLength(1),Validators.maxLength(2)],
       nombreRubro: ['', Validators.required],
@@ -42,7 +43,10 @@ export class RubroComponent implements OnInit {
   
 
   onSubmit() {
-    console.log(this.rubrosForm.value);
+    const nuevoRubro = this.rubrosForm.value;
+    this.rubrosContablesService.agregarRubroContable(nuevoRubro);
+    console.log(this.rubrosContablesService.rubrosContables);
+    this.rubrosForm.reset();
   }
   ngOnInit() {
   }

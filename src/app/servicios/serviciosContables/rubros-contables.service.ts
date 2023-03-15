@@ -8,4 +8,8 @@ export class RubrosContablesService {
     
   ];
 
+  agregarRubroContable(nuevoRubro) {
+    this.rubrosContables.push(nuevoRubro);
+  };
+
 }
