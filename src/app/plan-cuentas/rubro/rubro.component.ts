@@ -12,7 +12,7 @@ export class RubroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
-      codigoRubro: ['', Validators.required, Validators.minLength(1),Validators.maxLength(2)],
+      codigoRubro: ['', [Validators.required, Validators.minLength(1),Validators.maxLength(2)]],
       nombreRubro: ['', Validators.required],
       nivel: ['', Validators.required],
       tipoCuenta: ['', Validators.required],
@@ -63,7 +63,9 @@ export class RubroComponent implements OnInit {
   
 
   onSubmit() {
+    console.log(this.rubrosForm.value)
     const nuevoRubro = this.rubrosForm.value;
+    console.log(nuevoRubro)
     this.rubrosContablesService.agregarRubroContable(nuevoRubro);
     console.log(this.rubrosContablesService.rubrosContables);
     this.rubrosForm.reset();
