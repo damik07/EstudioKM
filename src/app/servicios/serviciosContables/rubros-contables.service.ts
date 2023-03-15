@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn:'root'})
-export class FacturasComprasService {
-
-  distribucion?:any=[
+export class RubrosContablesService {
+  
+  rubrosContables?:any=[
     
-]
+  ];
 
 }

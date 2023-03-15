@@ -11,13 +11,35 @@ export class RubroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.rubrosForm = this.formBuilder.group({
-      codigoRubro: ['', Validators.required],
+      codigoRubro: ['', Validators.required, Validators.minLength(1),Validators.maxLength(2)],
       nombreRubro: ['', Validators.required],
       nivel: ['', Validators.required],
       tipoCuenta: ['', Validators.required],
       rubroSuperior: ['']
     });
   }
+
+  get CodigoRubro(){
+    return this.rubrosForm.get("codigoRubro");
+  };
+
+  get NombreRubro(){
+    return this.rubrosForm.get("nombreRubro");
+  };
+
+  get Nivel(){
+    return this.rubrosForm.get("nivel");
+  };
+
+  get TipoCuenta(){
+    return this.rubrosForm.get("tipoCuenta");
+  };
+
+  get RubroSuperior(){
+    return this.rubrosForm.get("rubroSuperior");
+  };
+
+  
 
   onSubmit() {
     console.log(this.rubrosForm.value);
