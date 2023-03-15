@@ -133,11 +133,7 @@ export class SidebarService {
         {
           title: 'Rubro',
           url: 'rubro'
-        },
-        {
-          title: 'SubRubro',
-          url: 'subRubro'
-        },        
+        },                
         {
           title: 'Cuenta Contable',
           url: 'cuentaContable'

@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
-import { SubRubroComponent } from './plan-cuentas/sub-rubro/sub-rubro.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -23,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, SubRubroComponent, NavbarComponent
+    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent
   ],
   imports: [
     FormsModule,
