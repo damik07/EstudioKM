@@ -24,6 +24,17 @@
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="nombreRubro" formControlName="nombreRubro" placeholder="Ingrese el nombre de rubro">
 			</div>
+
+      <!-- Identificador del error -->
+    <div *ngIf="NombreRubro?.errors  && NombreRubro?.touched">
+      <p *ngIf="NombreRubro?.hasError('required')" class="text-error">
+          El Código de Rubro es requerido.
+      </p>
+      <p *ngIf="NombreRubro?.hasError('nombreRubro')" class="text-error">
+          El formato de Código de Rubro debe ser válido.
+      </p>
+  </div>
+      
 		</div>
 		<div class="form-group row">
 			<label for="nivel" class="col-sm-3 col-form-label">Nivel:</label>
@@ -35,6 +46,17 @@
 					<option>3</option>
 				</select>
 			</div>
+
+      <!-- Identificador del error -->
+    <div *ngIf="Nivel?.errors  && Nivel?.touched">
+      <p *ngIf="Nivel?.hasError('required')" class="text-error">
+          El Código de Rubro es requerido.
+      </p>
+      <p *ngIf="Nivel?.hasError('nivel')" class="text-error">
+          El formato de Código de Rubro debe ser válido.
+      </p>
+  </div>
+
 		</div>
 		<div class="form-group row">
 			<label for="tipoCuenta" class="col-sm-3 col-form-label">Tipo de Cuenta:</label>
@@ -48,12 +70,25 @@
 					<option>Gastos</option>
 				</select>
 			</div>
+
+      <!-- Identificador del error -->
+    <div *ngIf="TipoCuenta?.errors  && TipoCuenta?.touched">
+      <p *ngIf="TipoCuenta?.hasError('required')" class="text-error">
+          El Código de Rubro es requerido.
+      </p>
+      <p *ngIf="TipoCuenta?.hasError('tipoCuenta')" class="text-error">
+          El formato de Código de Rubro debe ser válido.
+      </p>
+  </div>
+
 		</div>
 		<div class="form-group row">
 			<label for="rubroSuperior" class="col-sm-3 col-form-label">Rubro Superior:</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="rubroSuperior" formControlName="rubroSuperior" placeholder="Ingrese el rubro superior">
 			</div>
+
+      
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-12">
