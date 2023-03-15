@@ -16,13 +16,14 @@ import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
 import { SubRubroComponent } from './plan-cuentas/sub-rubro/sub-rubro.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, SubRubroComponent
+    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, SubRubroComponent, NavbarComponent
   ],
   imports: [
     FormsModule,
