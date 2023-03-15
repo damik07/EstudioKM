@@ -40,6 +40,26 @@ export class RubroComponent implements OnInit {
     return this.rubrosForm.get("rubroSuperior");
   };
 
+  get CodigoValid(){
+    return this.CodigoRubro?.touched && !this.CodigoRubro?.valid;
+  };
+
+  get NombreValid(){
+    return this.NombreRubro?.touched && !this.NombreRubro?.valid;
+  };
+
+  get NivelValid(){
+    return this.Nivel?.touched && !this.Nivel?.valid;
+  };
+
+  get TipoValid(){
+    return this.TipoCuenta?.touched && !this.TipoCuenta?.valid;
+  };
+
+  get SuperiorValid(){
+    return this.RubroSuperior?.touched && !this.RubroSuperior?.valid;
+  };
+
   
 
   onSubmit() {
