@@ -4,19 +4,19 @@
 		<div class="form-group row">
 			<label for="codigoRubro" class="col-sm-3 col-form-label">Código de Rubro:</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="codigoRubro" placeholder="Ingrese el código de rubro - deben ser 2 digitos excepto sea de nivel 1">
+				<input type="text" class="form-control" id="codigoRubro" [(ngModel)]="codigoRubro" placeholder="Ingrese el código de rubro - deben ser 2 digitos excepto sea de nivel 1">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="nombreRubro" class="col-sm-3 col-form-label">Nombre de Rubro:</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="nombreRubro" placeholder="Ingrese el nombre de rubro">
+				<input type="text" class="form-control" id="nombreRubro" [(ngModel)]="nombreRubro" placeholder="Ingrese el nombre de rubro">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="nivel" class="col-sm-3 col-form-label">Nivel:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="nivel">
+				<select class="form-control" id="nivel" [(ngModel)]="nivel">
 					<option>Seleccione un nivel</option>
 					<option>1</option>
 					<option>2</option>
@@ -27,7 +27,7 @@
 		<div class="form-group row">
 			<label for="tipoCuenta" class="col-sm-3 col-form-label">Tipo de Cuenta:</label>
 			<div class="col-sm-9">
-				<select class="form-control" id="tipoCuenta">
+				<select class="form-control" id="tipoCuenta" [(ngModel)]="tipoCuenta">
 					<option>Seleccione un tipo de cuenta</option>
 					<option>Activo</option>
 					<option>Pasivo</option>
@@ -40,7 +40,7 @@
 		<div class="form-group row">
 			<label for="rubroSuperior" class="col-sm-3 col-form-label">Rubro Superior:</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="rubroSuperior" placeholder="Ingrese el rubro superior">
+				<input type="text" class="form-control" id="rubroSuperior" [(ngModel)]="rubroSuperior" placeholder="Ingrese el rubro superior">
 			</div>
 		</div>
 		<div class="form-group row">
