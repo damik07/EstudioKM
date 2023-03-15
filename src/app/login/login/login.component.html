@@ -19,6 +19,23 @@
           </div>
 
           <br />
+
+          <div class="mb-3">
+            <label for="cuit">CUIT: </label>
+            <input type="cuit" formControlName="cuit" required class="form-control"
+                [ngClass]="{'is invalid': Cuit?.errors  && Cuit?.touched, 'is valid': !Cuit?.errors  && Cuit?.touched}">
+        </div>
+
+        <div *ngIf="Cuit?.errors  && Cuit?.touched">
+            <p *ngIf="Cuit?.hasError('required')" class="text-error">
+                El CUIT es requerido.
+            </p>
+            <p *ngIf="Cuit?.hasError('cuit')" class="text-error">
+                El formato del CUIT debe ser válido.
+            </p>
+        </div>
+
+        <br />
           
           <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label">Password: </label>

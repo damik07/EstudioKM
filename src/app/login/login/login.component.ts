@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(private tokenService: TokenService, private formBuilder: FormBuilder, private authService:AuthService, private ruta:Router) { 
     this.form=this.formBuilder.group({
       nombreUsuario:['',[Validators.required, Validators.minLength(5),Validators.maxLength(12)]],
+      cuit:['', [Validators.required, Validators.minLength(11),Validators.maxLength(11)]],
       
       password:['',[Validators.required, Validators.minLength(8)]]
       
@@ -32,7 +33,9 @@ export class LoginComponent implements OnInit {
     return this.form.get("nombreUsuario");
   }
 
-  
+  get Cuit(){
+    return this.form.get("cuit");
+  }
 
   get Password(){
     return this.form.get("password");
@@ -70,18 +73,22 @@ export class LoginComponent implements OnInit {
     return this.Usuario?.touched && !this.Usuario?.valid;
   }
 
+  get CuitValid(){
+    return this.Cuit?.touched && !this.Cuit?.valid;
+  }
+
   get PasswordValid(){
     return this.Password?.touched && !this.Password?.valid;
   }
 
   
   public nombreUsuario = new FormControl('', Validators.required);
-  
+  public cuit = new FormControl('', Validators.required);
   public password = new FormControl('', Validators.required);
 
   public newForm = new FormGroup({
     nombreUsuario: this.nombreUsuario,
-    
+    cuit: this.cuit,
     password: this.password,
   })
 
