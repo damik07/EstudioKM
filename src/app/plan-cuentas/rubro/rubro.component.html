@@ -13,7 +13,7 @@
       <p *ngIf="CodigoRubro?.hasError('required')" class="text-error">
           El Código de Rubro es requerido.
       </p>
-      <p *ngIf="CodigoRubro?.hasError('codigoRubro')" class="text-error">
+      <p *ngIf="CodigoRubro.errors?.['minlength'] || CodigoRubro.errors?.['maxlength']" class="text-error">
           El formato de Código de Rubro debe ser válido.
       </p>
   </div>
