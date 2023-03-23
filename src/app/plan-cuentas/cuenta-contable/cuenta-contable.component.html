@@ -60,6 +60,16 @@
 			<label for="rubroAsociado" class="col-sm-3 col-form-label">Rubro Asociado:</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="rubroAsociado" formControlName="rubroAsociado" placeholder="Seleccione el Rubro Asociado">
+        <!-- Corregir el data list para que genere una lista de rubros nivel 3 al cual asociar cuentas contables
+          
+        <datalist id="datalistOptions">
+          <option value="San Francisco">
+          <option value="New York">
+          <option value="Seattle">
+          <option value="Los Angeles">
+          <option value="Chicago">
+        </datalist>
+      -->
 			</div>
       <!-- Identificador del error -->
     <div *ngIf="RubroAsociado?.errors  && RubroAsociado?.touched">
