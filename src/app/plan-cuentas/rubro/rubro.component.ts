@@ -11,7 +11,7 @@ export class RubroComponent implements OnInit {
 
   rubrosForm: FormGroup;
   codificacion: String;
-  rubrosList: any [];
+  rubrosList: any;
   
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
@@ -23,6 +23,7 @@ export class RubroComponent implements OnInit {
     });
 
     this.rubrosList = rubrosContablesService.rubrosContables;
+    console.log(this.rubrosList)
   }
 
   get CodigoRubro(){
@@ -91,16 +92,18 @@ export class RubroComponent implements OnInit {
     const nuevoRubro = this.rubrosForm.value;
 
     //codificación del rubro
-    //const agrCodRubro = nuevoRubro.map(obj =>({
-    //  ...obj,
-    //    codigoPlan: obj.importe
-    //}));
+    const agrCodRubro = nuevoRubro.map(obj =>({
+      ...obj,
+        codigoPlan: this.codificacion
+    }));
 
-    this.rubrosContablesService.agregarRubroContable(nuevoRubro);
+    this.rubrosContablesService.agregarRubroContable(agrCodRubro);
+    console.log(agrCodRubro);
     this.rubrosForm.reset();
   }
 
   ngOnInit() {
+    this.generarCodificacion();
   }
 
 }
