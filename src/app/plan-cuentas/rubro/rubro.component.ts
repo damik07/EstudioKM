@@ -8,8 +8,11 @@ import { RubrosContablesService } from '../../servicios/serviciosContables/rubro
   styleUrls: ['./rubro.component.css']
 })
 export class RubroComponent implements OnInit {
-  rubrosForm: FormGroup;
 
+  rubrosForm: FormGroup;
+  codificacion: String;
+  rubrosList: any [];
+  
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
       codigoRubro: ['', [Validators.required, Validators.minLength(1),Validators.maxLength(2)]],
@@ -18,6 +21,8 @@ export class RubroComponent implements OnInit {
       tipoCuenta: ['', Validators.required],
       rubroSuperior: ['']
     });
+
+    this.rubrosList = rubrosContablesService.rubrosContables;
   }
 
   get CodigoRubro(){
@@ -60,13 +65,41 @@ export class RubroComponent implements OnInit {
     return this.RubroSuperior?.touched && !this.RubroSuperior?.valid;
   };
 
+  obtenerRubroSuperiorAsociado(): string {
+    const rubroActual = this.RubroSuperior; // obtener el código del rubro actual desde la variable "codigo"
+    const rubroSuperior = this.rubrosList.find(rubro => rubro.nombreRubro === rubroActual); // buscar el rubro superior asociado en la lista de rubros
+    return rubroSuperior.codificacion;
+  }
+
+  generarCodificacion(): void {
+    if (this.Nivel.value === 1) {
+      this.codificacion = `${this.CodigoRubro}.00.00.00`;
+    } else if (this.Nivel.value === 2) {
+      const rubroSuperior = this.obtenerRubroSuperiorAsociado(); // función para obtener el rubro superior asociado
+      const cod = rubroSuperior.slice(0,1)
+      this.codificacion = `${cod}.${this.CodigoRubro}.00.00`;
+    } else if (this.Nivel.value === 3) {
+      const rubroSuperior = this.obtenerRubroSuperiorAsociado(); // función para obtener el rubro superior asociado
+      const cod = rubroSuperior.slice(0,4)
+      this.codificacion = `${rubroSuperior}.${this.CodigoRubro}.00`;
+    }
+  }
+
   
 
   onSubmit() {
     const nuevoRubro = this.rubrosForm.value;
+
+    //codificación del rubro
+    //const agrCodRubro = nuevoRubro.map(obj =>({
+    //  ...obj,
+    //    codigoPlan: obj.importe
+    //}));
+
     this.rubrosContablesService.agregarRubroContable(nuevoRubro);
     this.rubrosForm.reset();
   }
+
   ngOnInit() {
   }
 
