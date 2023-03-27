@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 export class RubrosContablesService {
   
   rubrosContables?:any=[
+    
     {
       "codigoRubro": "1",
       "nombreRubro": "Activo",
