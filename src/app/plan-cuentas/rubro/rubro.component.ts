@@ -23,7 +23,7 @@ export class RubroComponent implements OnInit {
     });
 
     this.rubrosList = rubrosContablesService.rubrosContables;
-    console.log(this.rubrosList);
+    
     
     
   }
@@ -71,7 +71,7 @@ export class RubroComponent implements OnInit {
   obtenerRubroSuperiorAsociado(): any {
     const rubroActual = this.RubroSuperior; 
     const rubroSuperior = this.rubrosList.find(rubro => rubro.nombreRubro === rubroActual.value);
-    console.log(rubroSuperior.codificacion);     
+         
     return rubroSuperior.codificacion;
     
   }
@@ -104,7 +104,7 @@ export class RubroComponent implements OnInit {
     const objetoFinal = {...form, codificacion}
     this.rubrosContablesService.agregarRubroContable(objetoFinal);
    
-    console.log(objetoFinal);
+    
     this.rubrosForm.reset();
   }
 
