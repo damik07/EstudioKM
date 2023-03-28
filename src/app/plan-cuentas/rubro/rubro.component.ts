@@ -92,16 +92,6 @@ export class RubroComponent implements OnInit {
     
   }
 
-  agrCodRubro(): any {
-    const form = this.rubrosForm.value;
-    const mapeo = form.map(obj =>({
-      ...obj,
-        codigoPlan: this.codificacion
-    }));
-    return mapeo;
-
-  }
-
   
 
   onSubmit() {
@@ -109,11 +99,12 @@ export class RubroComponent implements OnInit {
     this.generarCodificacion();
     
     //codificación del rubro
-    const agrCodRubro = this.agrCodRubro();
-
-    this.rubrosContablesService.agregarRubroContable(agrCodRubro);
-    console.log(agrCodRubro);
-    
+    const form = this.rubrosForm.value;
+    const codificacion = this.codificacion;
+    const objetoFinal = {...form, codificacion}
+    this.rubrosContablesService.agregarRubroContable(objetoFinal);
+   
+    console.log(objetoFinal);
     this.rubrosForm.reset();
   }
 
