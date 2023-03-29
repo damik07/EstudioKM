@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
+interface Opcion {
+  codigoRubro: string;
+  nombreRubro: string;
+  nivel: string;
+  tipoCuenta: string;
+  rubroSuperior: string;
+  codificacion: string;
+}
+
 @Injectable({
   providedIn:'root'})
 export class RubrosContablesService {
@@ -70,7 +79,7 @@ export class RubrosContablesService {
     this.rubrosContables.push(nuevoRubro);
   };
 
-  getOpciones(): Observable<any[]> {
+  getOpciones(): Observable<Opcion[]> {
     return of(this.rubrosContables);
   }
 

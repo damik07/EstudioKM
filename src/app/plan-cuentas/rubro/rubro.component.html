@@ -78,8 +78,8 @@
 		<div class="form-group row">
 			<label for="rubroSuperior" class="col-sm-3 col-form-label">Rubro Superior:</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control"  id="rubroSuperior" formControlName="rubroSuperior" placeholder="Ingrese el rubro superior">
-				<datalist id="opciones">
+				<input type="text" class="form-control" list="opcionesFiltradas" id="rubroSuperior" formControlName="rubroSuperior" placeholder="Ingrese el rubro superior">
+				<datalist id="opcionesFiltradas">
           <option *ngFor="let list of opcionesFiltradas" [value]="list.nombreRubro">
           
         </datalist>
