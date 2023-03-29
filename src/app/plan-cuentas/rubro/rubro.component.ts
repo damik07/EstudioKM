@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
 
+interface Opcion {
+  codigoRubro: string;
+  nombreRubro: string;
+  nivel: string;
+  tipoCuenta: string;
+  rubroSuperior: string;
+  codificacion: string;
+}
+
 @Component({
   selector: 'app-rubro',
   templateUrl: './rubro.component.html',
@@ -11,8 +20,8 @@ export class RubroComponent implements OnInit {
 
   rubrosForm: FormGroup;
   codificacion: String;
-  rubrosList: any;
-  rubrosFiltro: any;
+  opciones: Opcion[] = [];
+  opcionesFiltradas: Opcion[] = [];
   
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
@@ -23,10 +32,7 @@ export class RubroComponent implements OnInit {
       rubroSuperior: ['']
     });
 
-    this.rubrosList = rubrosContablesService.rubrosContables;
-    
-    
-    
+        
   }
 
   get CodigoRubro(){
@@ -71,7 +77,7 @@ export class RubroComponent implements OnInit {
 
   obtenerRubroSuperiorAsociado(): any {
     const rubroActual = this.RubroSuperior; 
-    const rubroSuperior = this.rubrosList.find(rubro => rubro.nombreRubro === rubroActual.value);
+    const rubroSuperior = this.opciones.find(rubro => rubro.nombreRubro === rubroActual.value);
          
     return rubroSuperior.codificacion;
     
@@ -93,15 +99,7 @@ export class RubroComponent implements OnInit {
     
   }
 
-  ngOnChanges() {
     
-    const rubros = this.rubrosList;
-    this.rubrosFiltro = rubros.find(r =>({r.nivel === this.Nivel.value}));
-    console.log(this.rubrosFiltro);
-
-  }
-
-  
 
   onSubmit() {
     this.obtenerRubroSuperiorAsociado();
@@ -118,6 +116,22 @@ export class RubroComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.rubrosContablesService.rubrosContables.subscribe(
+      opciones => {
+        this.opciones = opciones;
+        this.opcionesFiltradas = opciones.slice();
+      },
+      error => {
+        console.error('Error al obtener las opciones:', error);
+      }
+    );
+
+    this.rubrosForm.controls.nivel.valueChanges.subscribe(valor => {
+      this.opcionesFiltradas = this.opciones.filter(opcion =>
+        opcion.nivel === valor
+      );
+    });
     
   }
 
