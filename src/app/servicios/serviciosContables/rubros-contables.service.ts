@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn:'root'})
@@ -68,5 +69,9 @@ export class RubrosContablesService {
   agregarRubroContable(nuevoRubro) {
     this.rubrosContables.push(nuevoRubro);
   };
+
+  getOpciones(): Observable<any[]> {
+    return of(this.rubrosContables);
+  }
 
 }

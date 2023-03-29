@@ -117,10 +117,11 @@ export class RubroComponent implements OnInit {
 
   ngOnInit() {
 
-    this.rubrosContablesService.rubrosContables.subscribe(
+    this.rubrosContablesService.getOpciones().subscribe(
       opciones => {
         this.opciones = opciones;
         this.opcionesFiltradas = opciones.slice();
+        console.log(this.opciones)
       },
       error => {
         console.error('Error al obtener las opciones:', error);
@@ -131,6 +132,7 @@ export class RubroComponent implements OnInit {
       this.opcionesFiltradas = this.opciones.filter(opcion =>
         opcion.nivel === valor
       );
+      console.log(this.opcionesFiltradas)
     });
     
   }
