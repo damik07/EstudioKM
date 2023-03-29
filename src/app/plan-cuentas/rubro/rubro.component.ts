@@ -93,11 +93,12 @@ export class RubroComponent implements OnInit {
     
   }
 
-  filtroRubros() {
+  ngOnChanges() {
     
     const rubros = this.rubrosList;
-    this.rubrosFiltro = rubros.find(r =>(r.nivel === this.Nivel.value))
-    
+    this.rubrosFiltro = rubros.find(r =>({r.nivel === this.Nivel.value}));
+    console.log(this.rubrosFiltro);
+
   }
 
   
