@@ -12,6 +12,7 @@ export class RubroComponent implements OnInit {
   rubrosForm: FormGroup;
   codificacion: String;
   rubrosList: any;
+  rubrosFiltro: any;
   
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService) {
     this.rubrosForm = this.formBuilder.group({
@@ -89,6 +90,13 @@ export class RubroComponent implements OnInit {
       this.codificacion = `${cod1}.${this.CodigoRubro.value}.00`;
     }
        
+    
+  }
+
+  filtroRubros() {
+    
+    const rubros = this.rubrosList;
+    this.rubrosFiltro = rubros.find(r =>(r.nivel === this.Nivel.value))
     
   }
 
