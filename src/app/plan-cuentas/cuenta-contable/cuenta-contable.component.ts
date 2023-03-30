@@ -13,6 +13,7 @@ export class CuentaContableComponent implements OnInit {
 
   cuentasContForm: FormGroup;
   rubrosList: any;
+  codificacion:any;
 
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService, private cuentaContableService:CuentasContablesService) { 
     this.cuentasContForm = this.formBuilder.group({
@@ -63,11 +64,37 @@ export class CuentaContableComponent implements OnInit {
   };
 
 
-  onSubmit() {
-    const nuevaCuenta = this.cuentasContForm.value;
-    this.cuentaContableService.agregarCuentaContable(nuevaCuenta);
-    this.cuentasContForm.reset();
+  obtenerRubroAsociado(): any {
+    const rubroActual = this.RubroAsociado; 
+    const rubroAsociado = this.rubrosList.find(rubro => rubro.nombreRubro === rubroActual.value);
+         
+    return rubroAsociado.codificacion;
+    
   }
+
+  generarCodificacion(): void {
+    const rubroAsoc1 = this.obtenerRubroAsociado(); // función para obtener el rubro superior asociado
+    const cod1 = rubroAsoc1.slice(0,7)
+    this.codificacion = `${cod1}.${this.CodigoCuenta.value}`;
+           
+    
+  }
+
+
+  onSubmit() {
+
+    this.obtenerRubroAsociado();
+    this.generarCodificacion();
+    
+    //codificación del rubro
+    const form = this.cuentasContForm.value;
+    const codificacion = this.codificacion;
+    const objetoFinal = {...form, codificacion}
+    this.cuentaContableService.agregarCuentaContable(objetoFinal);
+    this.cuentasContForm.reset();
+
+  }
+
 
   ngOnInit() {
 
