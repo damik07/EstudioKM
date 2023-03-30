@@ -4,10 +4,12 @@ import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/ca
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
+import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.component';
 
 const routes: Routes = [
   {path:'cargaFacComp', component:CargaFacturasCompraComponent},
   {path:'rubro', component:RubroComponent},
+  {path:'verCuentas', component:VerCuentasComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]
