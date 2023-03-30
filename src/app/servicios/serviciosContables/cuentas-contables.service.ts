@@ -17,7 +17,7 @@ export class CuentasContablesService {
       "nombreCuenta": "Banco BERSA c/c",
       "tipoCuenta": "Activo",
       "rubroAsociado": "Banco",
-      "codificacion": "1.01.01.01"
+      "codificacion": "1.01.02.01"
     },
     
   ];
