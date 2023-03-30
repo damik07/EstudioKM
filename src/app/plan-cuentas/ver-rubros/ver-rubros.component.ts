@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
-import { RubroComponent } from '../rubro/rubro.component';
+
 
 @Component({
   selector: 'app-ver-rubros',

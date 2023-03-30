@@ -1,5 +1,14 @@
 <div class="container">
-	<h2>Formulario de Rubros</h2>
+
+	<div class="row">
+		<div class="col-10">
+			<h3>Formulario de Rubros Contables</h3>
+		</div>
+		<div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end">
+			<a routerLink='/verRubros' class="btn btn-primary me-md-2" type="button">Ver rubros</a>
+		</div>
+	</div>
+
 	<form [formGroup]="rubrosForm" (ngSubmit)="onSubmit()">
 		<div class="form-group row">
 			<label for="codigoRubro" class="col-sm-3 col-form-label">Código de Rubro:</label>
