@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
 
 interface Opcion {
-  hidden: boolean;
   codigoRubro: string;
   nombreRubro: string;
   nivel: string;
@@ -130,18 +129,9 @@ export class RubroComponent implements OnInit {
     );
 
     this.rubrosForm.controls.nivel.valueChanges.subscribe(valor => {
-      this.opcionesFiltradas.forEach(opcion => opcion.hidden = true);
-  
-      this.opciones.forEach(opcion => {
-        if (opcion.nivel === valor) {
-          opcion.hidden = false;
-        }
-      });
-  
-      this.opcionesFiltradas = [...this.opciones.filter(opcion =>
-        opcion.nivel === valor
-      )];
-  
+      this.opcionesFiltradas = this.opciones.filter(opcion =>
+        Number(opcion.nivel) === (Number(valor) - 1)
+      );
       console.log(this.opcionesFiltradas)
     });
     
