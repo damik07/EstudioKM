@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
 
+
 @Component({
   selector: 'app-cuenta-contable',
   templateUrl: './cuenta-contable.component.html',
@@ -11,6 +12,7 @@ import { RubrosContablesService } from '../../servicios/serviciosContables/rubro
 export class CuentaContableComponent implements OnInit {
 
   cuentasContForm: FormGroup;
+  rubrosList: any;
 
   constructor(private formBuilder: FormBuilder, private rubrosContablesService:RubrosContablesService, private cuentaContableService:CuentasContablesService) { 
     this.cuentasContForm = this.formBuilder.group({
@@ -19,6 +21,11 @@ export class CuentaContableComponent implements OnInit {
       tipoCuenta: ['', Validators.required],
       rubroAsociado: ['', Validators.required]
     });
+
+    this.rubrosList = rubrosContablesService.rubrosContables.filter(rubros => 
+      rubros.nivel === "3"
+    );
+    
   };
 
   get CodigoCuenta(){
@@ -63,6 +70,7 @@ export class CuentaContableComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 }
