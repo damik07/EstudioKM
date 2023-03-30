@@ -10,14 +10,14 @@ export class CuentasContablesService {
       "nombreCuenta": "Caja Paraná",
       "tipoCuenta": "Activo",
       "rubroAsociado": "Caja",
-      "codificacion": "1.00.00.00"
+      "codificacion": "1.01.01.01"
     },
     {
       "codigoCuenta": "01",
       "nombreCuenta": "Banco BERSA c/c",
       "tipoCuenta": "Activo",
       "rubroAsociado": "Banco",
-      "codificacion": "1.00.00.00"
+      "codificacion": "1.01.01.01"
     },
     
   ];

@@ -91,6 +91,7 @@ export class CuentaContableComponent implements OnInit {
     const codificacion = this.codificacion;
     const objetoFinal = {...form, codificacion}
     this.cuentaContableService.agregarCuentaContable(objetoFinal);
+    console.log(objetoFinal);
     this.cuentasContForm.reset();
 
   }
