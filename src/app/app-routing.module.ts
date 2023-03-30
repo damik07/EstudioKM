@@ -5,11 +5,13 @@ import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
 import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.component';
+import { VerRubrosComponent } from './plan-cuentas/ver-rubros/ver-rubros.component';
 
 const routes: Routes = [
   {path:'cargaFacComp', component:CargaFacturasCompraComponent},
   {path:'rubro', component:RubroComponent},
   {path:'verCuentas', component:VerCuentasComponent},
+  {path:'verRubros', component:VerRubrosComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]

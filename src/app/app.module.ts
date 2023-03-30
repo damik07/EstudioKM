@@ -17,13 +17,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.component';
+import { VerRubrosComponent } from './plan-cuentas/ver-rubros/ver-rubros.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent
+    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent, VerRubrosComponent
   ],
   imports: [
     FormsModule,
