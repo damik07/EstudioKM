@@ -12,6 +12,7 @@ const routes: Routes = [
   {path:'rubro', component:RubroComponent},
   {path:'verCuentas', component:VerCuentasComponent},
   {path:'verRubros', component:VerRubrosComponent},
+  {path:'verPlanCuentas', component:VerRubrosComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]
