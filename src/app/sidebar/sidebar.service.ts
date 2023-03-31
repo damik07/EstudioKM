@@ -137,6 +137,10 @@ export class SidebarService {
         {
           title: 'Cuenta Contable',
           url: 'cuentaContable'
+        },
+        {
+          title: 'Plan de Cuentas',
+          url: 'verPlanCuentas'
         }
       ]
     },
