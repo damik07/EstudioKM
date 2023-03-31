@@ -11,17 +11,17 @@
   <thead>
     <tr>
       <th scope="col">Codificación</th>
-      <th scope="col">Nombre Rubro</th>
+      <th scope="col">Descripción</th>
       <th scope="col">Tipo Cuenta</th>
-      <th scope="col">Rubro Superior</th>
+      <th scope="col">Nivel de Rubro</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let rubro of planCuentasList">
       <td>{{rubro.codificacion}}</td>
-      <td>{{rubro.nombreRubro}}</td>
+      <td>{{rubro.descripcion}}</td>
       <td>{{rubro.tipoCuenta}}</td>
-      <td>{{rubro.rubroSuperior}}</td>
+      <td>{{rubro.nivel}}</td>
     </tr>
   </tbody>
 </table>

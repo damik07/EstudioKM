@@ -13,7 +13,33 @@ export class VerPlanCuentasComponent implements OnInit {
 
   constructor(private rubros:RubrosContablesService, private cuentas:CuentasContablesService) {
     
-    this.planCuentasList = rubros.rubrosContables;
+    const cuenta = cuentas.cuentasContables;
+    const rubro = rubros.rubrosContables;
+    const plan = rubro.concat(cuenta);
+
+    this.planCuentasList = [];
+      for(let i = 0; i < plan.length; i++){
+      let obj = {};
+      Object.assign(obj, plan[i], plan.find((item) => item.codificacion === plan[i].codificacion && item !== plan[i]));
+      this.planCuentasList.push(obj);      
+      };
+
+    this.planCuentasList = this.planCuentasList.sort((a, b) => a.codificacion.localeCompare(b.codificacion));
+
+    this.planCuentasList = this.planCuentasList.map(objeto => {
+      let cValor = "";
+      if (objeto.nombreRubro) {
+        cValor = objeto.nombreRubro
+      } else {objeto.nombreCuenta}
+      return {
+        ...objeto,
+        descripcion: cValor
+      }
+    });  
+    console.log(this.planCuentasList);
+    console.log(plan);
+
+    
 
    }
 
