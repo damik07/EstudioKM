@@ -1,6 +1,9 @@
 <div class="row">
-  <div class="col-10">
+  <div class="col-8">
     <h3>Plan de Cuentas</h3>
+  </div>
+  <div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end">
+    <a routerLink='/cuentaContable' class="btn btn-primary me-md-2" type="button">Nueva Cuenta</a>
   </div>
   <div class="col-2 d-grid gap-2 d-md-flex justify-content-md-end">
     <a routerLink='/rubro' class="btn btn-primary me-md-2" type="button">Nuevo Rubro</a>
@@ -12,6 +15,7 @@
     <tr>
       <th scope="col">Codificación</th>
       <th scope="col">Descripción</th>
+      <th scope="col">Cuenta/Rubro</th>
       <th scope="col">Tipo Cuenta</th>
       <th scope="col">Nivel de Rubro</th>
     </tr>
@@ -20,6 +24,7 @@
     <tr *ngFor="let rubro of planCuentasList">
       <td>{{rubro.codificacion}}</td>
       <td>{{rubro.descripcion}}</td>
+      <td>{{rubro.cuentaRubro}}</td>
       <td>{{rubro.tipoCuenta}}</td>
       <td>{{rubro.nivel}}</td>
     </tr>

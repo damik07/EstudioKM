@@ -36,12 +36,20 @@ export class VerPlanCuentasComponent implements OnInit {
         ...objeto,
         descripcion: cValor
       }
-    });  
-    console.log(this.planCuentasList);
-    console.log(plan);
+    });
+    
+    this.planCuentasList = this.planCuentasList.map(objeto => {
+      let cuentaRubro = "";
+      if (objeto.nombreRubro) {
+        cuentaRubro = "Rubro"
+      } else {cuentaRubro = "Cuenta Contable"}
+      return {
+        ...objeto,
+        cuentaRubro: cuentaRubro
+      }
+    });
 
     
-
    }
 
   ngOnInit() {
