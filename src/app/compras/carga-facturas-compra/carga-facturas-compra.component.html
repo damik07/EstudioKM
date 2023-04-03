@@ -59,6 +59,10 @@
           <td>{{ item.iva }}</td>
           <td>{{ item.total }}</td>
           <!-- falta fila de cuenta, luego de implementar el servicio -->
+          <td ><select class="form-select" aria-label="Default select example">
+            <option *ngFor="let c of cuenta">{{ c.nombreCuenta }}</option>
+            
+          </select></td>
         </tr>
       </tbody>
     </table>

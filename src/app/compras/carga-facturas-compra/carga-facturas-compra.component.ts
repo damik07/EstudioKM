@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import * as XLSX from 'xlsx';
+import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 
 @Component({
   selector: 'app-carga-facturas-compra',
@@ -12,8 +13,12 @@ export class CargaFacturasCompraComponent implements OnInit {
   public files: NgxFileDropEntry[] = [];
   data?:any[];
   cuenta?:any[];
+  
 
-  constructor() { }
+  constructor(private cuentas:CuentasContablesService) {
+    this.cuenta = cuentas.cuentasContables;
+    console.log(this.cuenta);
+   }
 
   ngOnInit() {
   }
