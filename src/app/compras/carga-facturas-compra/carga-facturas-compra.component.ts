@@ -111,12 +111,12 @@ export class CargaFacturasCompraComponent implements OnInit {
         op_exentas: celdas[13].innerHTML,
         iva: celdas[14].innerHTML,
         total: celdas[15].innerHTML,
-        cuenta: celdas[16].innerHTML,
+        cuenta: celdas[16].querySelector('select').value,
         fecha_imputacion: this.fechaDeInicio,
         fecha_carga: new Date()
         
       };
-      console.log(objetoDeFila);      
+           
       this.facturas.push(objetoDeFila);
       console.log(this.facturas);
     }
