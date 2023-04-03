@@ -28,9 +28,10 @@ export class VerPlanCuentasComponent implements OnInit {
 
     this.planCuentasList = this.planCuentasList.map(objeto => {
       let cValor = "";
-      if (objeto.nombreRubro) {
-        cValor = objeto.nombreRubro
-      } else {objeto.nombreCuenta}
+      if (!objeto.nombreRubro) {
+        cValor = objeto.nombreCuenta
+      } else {cValor = objeto.nombreRubro}
+
       return {
         ...objeto,
         descripcion: cValor
