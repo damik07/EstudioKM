@@ -13,6 +13,8 @@ export class CargaFacturasCompraComponent implements OnInit {
   public files: NgxFileDropEntry[] = [];
   data?:any[];
   cuenta?:any[];
+  facturas?:any[] = [];
+  fechaDeInicio: string;
   
 
   constructor(private cuentas:CuentasContablesService) {
@@ -79,13 +81,47 @@ export class CargaFacturasCompraComponent implements OnInit {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
 
-      /* guarda la info - quitada las primeras 4 filas por formato de exportación de archivo de la CFI */
+      /* guarda la info */
       this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","documento","p_venta","n_desde","n_hasta","cod_autoriz","doc_emisor","n_emisor","denominacion","tc","moneda","neto_gravado","neto_no_gravado","op_exentas","iva","total"],range: 2, rawNumbers:false }));
       console.log(this.data);
       
     };
     reader.readAsBinaryString(file);
   }
+
+  obtenerValoresDeTabla() {
+    const tabla = document.getElementById('importFactCompras');
+    const filas = tabla.getElementsByTagName('tr');
+    for (let i = 1; i < filas.length; i++) {
+      const celdas = filas[i].getElementsByTagName('td');
+      const objetoDeFila = {
+        fecha_factura: celdas[0].innerHTML,
+        documento: celdas[1].innerHTML,
+        p_venta: celdas[2].innerHTML,
+        n_desde: celdas[3].innerHTML,
+        n_hasta: celdas[4].innerHTML,
+        cod_autoriz: celdas[5].innerHTML,
+        doc_emisor: celdas[6].innerHTML,
+        n_emisor: celdas[7].innerHTML,
+        denominacion: celdas[8].innerHTML,
+        tc: celdas[9].innerHTML,
+        moneda: celdas[10].innerHTML,
+        neto_gravado: celdas[11].innerHTML,
+        neto_no_gravado: celdas[12].innerHTML,
+        op_exentas: celdas[13].innerHTML,
+        iva: celdas[14].innerHTML,
+        total: celdas[15].innerHTML,
+        cuenta: celdas[16].innerHTML,
+        fecha_imputacion: this.fechaDeInicio,
+        fecha_carga: new Date()
+        
+      };
+      console.log(objetoDeFila);      
+      this.facturas.push(objetoDeFila);
+      console.log(this.facturas);
+    }
+  }
+
 
   guardarBD() {
     console.log("agregar función POST luego de crear el backend, en data está la información, falta agregar la fecha")
