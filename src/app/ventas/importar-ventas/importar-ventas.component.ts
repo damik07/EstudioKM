@@ -91,7 +91,7 @@ export class ImportarVentasComponent implements OnInit {
             cod_tipo_doc_receptor: linea.substring(35, 37).trim(),
             n_documento_receptor: linea.substring(37, 48).trim(),
             nombre_receptor: linea.substring(48, 78).trim(),
-            imp_total_operacion: parseFloat(linea.substring(78, 93).trim()),
+            imp_total_operacion: parseFloat((linea.substring(78, 93).trim().slice(0, -2) + '.' + linea.substring(78, 93).trim().slice(-2)).trim()),
             imp_total_no_gravado: linea.substring(93, 108).trim(),
             imp_neto_gravado: linea.substring(108, 123).trim(),
             impuesto_liquidado_iva: linea.substring(123, 138).trim(),
