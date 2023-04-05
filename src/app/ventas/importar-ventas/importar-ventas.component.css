@@ -1,3 +1,6 @@
 .table {
   font-size: x-small;
 }
+select.form-select {
+  font-size: x-small;
+}
