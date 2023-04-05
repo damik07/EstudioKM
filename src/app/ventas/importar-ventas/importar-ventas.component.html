@@ -52,12 +52,12 @@
           <td>{{ item.cod_tipo_doc_receptor }}</td>
           <td>{{ item.n_documento_receptor }}</td>
           <td>{{ item.nombre_receptor }}</td>
-          <td>{{ item.moneda }}</td>
-          <td>{{ item.neto_gravado }}</td>
-          <td>{{ item.neto_no_gravado }}</td>
-          <td>{{ item.op_exentas }}</td>
-          <td>{{ item.iva }}</td>
-          <td>{{ item.total }}</td>
+          <td>{{ item.imp_total_operacion }}</td>
+          <td>{{ item.imp_total_no_gravado }}</td>
+          <td>{{ item.imp_neto_gravado }}</td>
+          <td>{{ item.cod_moneda }}</td>
+          <td>{{ item.fecha_venc_cae }}</td>
+          <td>{{ item.fecha_anulacion_comp }}</td>
           <!-- falta fila de cuenta, luego de implementar el servicio -->
           <td><select class="form-select" aria-label="Default select example">
             <option *ngFor="let c of cuenta">{{ c.nombreCuenta }}</option>
