@@ -42,16 +42,16 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of data">
-          <td>{{ item.concepto }}</td>
-          <td>{{ item.documento }}</td>
-          <td>{{ item.p_venta }}</td>
-          <td>{{ item.n_desde }}</td>
-          <td>{{ item.n_hasta }}</td>
-          <td>{{ item.cod_autoriz }}</td>
-          <td>{{ item.doc_emisor }}</td>
-          <td>{{ item.n_emisor }}</td>
-          <td>{{ item.denominacion }}</td>
-          <td>{{ item.tc }}</td>
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.tipo_comprobante }}</td>
+          <td>{{ item.controlador_fiscal }}</td>
+          <td>{{ item.punto_venta }}</td>
+          <td>{{ item.n_comprobante }}</td>
+          <td>{{ item.n_comprobante_r }}</td>
+          <td>{{ item.cant_hojas }}</td>
+          <td>{{ item.cod_tipo_doc_receptor }}</td>
+          <td>{{ item.n_documento_receptor }}</td>
+          <td>{{ item.nombre_receptor }}</td>
           <td>{{ item.moneda }}</td>
           <td>{{ item.neto_gravado }}</td>
           <td>{{ item.neto_no_gravado }}</td>

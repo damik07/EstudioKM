@@ -37,6 +37,7 @@ export class ImportarVentasComponent implements OnInit {
           // Aquí puede acceder al archivo real
           console.log(droppedFile.relativePath, file);
           this.obtenerDatosExcel(file);
+          
 
           /**
           // Podrías subirlo así:
@@ -83,32 +84,32 @@ export class ImportarVentasComponent implements OnInit {
             fecha: linea.substring(1, 9).trim(),
             tipo_comprobante: linea.substring(9, 11).trim(),
             controlador_fiscal: linea.substring(11, 12).trim(),
-            punto_venta: linea.substring(12, 17).trim(),
-            n_comprobante: linea.substring(17, 25).trim(),
-            n_comprobante_r: linea.substring(25, 33).trim(),
-            cant_hojas: linea.substring(33, 36).trim(),
-            cod_tipo_doc_receptor: linea.substring(36, 38).trim(),
-            n_documento_receptor: linea.substring(38, 49).trim(),
-            nombre_receptor: linea.substring(49, 79).trim(),
-            imp_total_operacion: parseFloat(linea.substring(79, 94).trim()),
-            imp_total_no_gravado: linea.substring(94, 109).trim(),
-            imp_neto_gravado: linea.substring(109, 124).trim(),
-            impuesto_liquidado_iva: linea.substring(124, 139).trim(),
-            percepcion_no_categorizados: linea.substring(139, 154).trim(),
-            importe_op_exentas: linea.substring(154, 169).trim(),
-            importe_pago_cuenta_imp_nac: linea.substring(169, 184).trim(),
-            importe_perc_ii_bb: linea.substring(184, 199).trim(),
-            importe_perc_imp_municipales: linea.substring(199, 214).trim(),
-            importe_imp_internos: linea.substring(214, 229).trim(),
-            transporte: linea.substring(229, 244).trim(),
-            tipo_responsable: linea.substring(244, 246).trim(),
-            cod_moneda: linea.substring(246, 249).trim(),
-            tipo_cambio: linea.substring(249, 259).trim(),
-            cod_alicuota_iva: linea.substring(259, 260).trim(),
-            cod_operacion: linea.substring(260, 261).trim(),
-            cae: linea.substring(261, 275).trim(),
-            fecha_venc_cae: linea.substring(275, 283).trim(),
-            fecha_anulacion_comp: linea.substring(283, 291).trim()
+            punto_venta: linea.substring(12, 16).trim(),
+            n_comprobante: linea.substring(16, 24).trim(),
+            n_comprobante_r: linea.substring(24, 32).trim(),
+            cant_hojas: linea.substring(32, 35).trim(),
+            cod_tipo_doc_receptor: linea.substring(35, 37).trim(),
+            n_documento_receptor: linea.substring(37, 48).trim(),
+            nombre_receptor: linea.substring(48, 78).trim(),
+            imp_total_operacion: parseFloat(linea.substring(78, 93).trim()),
+            imp_total_no_gravado: linea.substring(93, 108).trim(),
+            imp_neto_gravado: linea.substring(108, 123).trim(),
+            impuesto_liquidado_iva: linea.substring(123, 138).trim(),
+            percepcion_no_categorizados: linea.substring(138, 153).trim(),
+            importe_op_exentas: linea.substring(153, 168).trim(),
+            importe_pago_cuenta_imp_nac: linea.substring(168, 183).trim(),
+            importe_perc_ii_bb: linea.substring(183, 198).trim(),
+            importe_perc_imp_municipales: linea.substring(198, 213).trim(),
+            importe_imp_internos: linea.substring(213, 228).trim(),
+            transporte: linea.substring(228, 243).trim(),
+            tipo_responsable: linea.substring(243, 245).trim(),
+            cod_moneda: linea.substring(245, 248).trim(),
+            tipo_cambio: linea.substring(248, 258).trim(),
+            cod_alicuota_iva: linea.substring(258, 259).trim(),
+            cod_operacion: linea.substring(259, 260).trim(),
+            cae: linea.substring(260, 274).trim(),
+            fecha_venc_cae: linea.substring(274, 282).trim(),
+            fecha_anulacion_comp: linea.substring(282, 290).trim()
             
           };
           this.data.push(registro);
@@ -116,6 +117,7 @@ export class ImportarVentasComponent implements OnInit {
       });
     };
     reader.readAsText(file);
+    console.log(this.data);
   }
   
   
