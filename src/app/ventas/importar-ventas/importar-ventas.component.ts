@@ -76,18 +76,22 @@ export class ImportarVentasComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       const lineas = reader.result.toString().split('\n');
-      this.data = lineas.map((linea) => {
-        return {
-          concepto: linea.substring(0, 10).trim(),
-          descripcion: linea.substring(10, 30).trim(),
-          monto: parseFloat(linea.substring(30).trim())
-        };
+      this.data = [];
+      lineas.forEach((linea) => {
+        if (linea.substring(0, 1).trim() === "1") {
+          const registro = {
+            concepto: linea.substring(0, 10).trim(),
+            descripcion: linea.substring(10, 30).trim(),
+            monto: parseFloat(linea.substring(30).trim())
+          };
+          this.data.push(registro);
+        }
       });
     };
     reader.readAsText(file);
   }
-
-
+  
+  
 
   obtenerValoresDeTabla() {
     const tabla = document.getElementById('importFactCompras');
