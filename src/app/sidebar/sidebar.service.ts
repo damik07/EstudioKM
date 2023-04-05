@@ -50,7 +50,7 @@ export class SidebarService {
       submenus: [
         {
           title: 'Importar Ventas',
-          url: 'cargaFacComp'
+          url: 'impVentas'
         },
         {
           title: 'Orders'

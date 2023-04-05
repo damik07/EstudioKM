@@ -3,6 +3,7 @@ import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 
 import * as XLSX from 'xlsx';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-importar-ventas',
@@ -17,7 +18,7 @@ export class ImportarVentasComponent implements OnInit {
   facturas?:any[] = [];
   fechaDeInicio: string;
 
-  constructor(private cuentas:CuentasContablesService) {
+  constructor(private cuentas:CuentasContablesService, private http: HttpClient) {
     this.cuenta = cuentas.cuentasContables;
     console.log(this.cuenta);
    }
@@ -73,22 +74,20 @@ export class ImportarVentasComponent implements OnInit {
 
   obtenerDatosExcel(file) {
     const reader = new FileReader();
-    reader.onload = (e: any) => {
-      /* lee el archivo */
-      const bstr = e.target.result;
-      const wb = XLSX.read(bstr, { type: 'binary' });
-
-      /* grava la primera hoja */
-      const wsname = wb.SheetNames[0];
-      const ws = wb.Sheets[wsname];
-
-      /* guarda la info */
-      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","documento","p_venta","n_desde","n_hasta","cod_autoriz","doc_emisor","n_emisor","denominacion","tc","moneda","neto_gravado","neto_no_gravado","op_exentas","iva","total"],range: 2, rawNumbers:false }));
-      console.log(this.data);
-      
+    reader.onload = () => {
+      const lineas = reader.result.toString().split('\n');
+      this.data = lineas.map((linea) => {
+        return {
+          concepto: linea.substring(0, 10).trim(),
+          descripcion: linea.substring(10, 30).trim(),
+          monto: parseFloat(linea.substring(30).trim())
+        };
+      });
     };
-    reader.readAsBinaryString(file);
+    reader.readAsText(file);
   }
+
+
 
   obtenerValoresDeTabla() {
     const tabla = document.getElementById('importFactCompras');
