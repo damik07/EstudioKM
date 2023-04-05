@@ -19,13 +19,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.component';
 import { VerRubrosComponent } from './plan-cuentas/ver-rubros/ver-rubros.component';
 import { VerPlanCuentasComponent } from './plan-cuentas/ver-plan-cuentas/ver-plan-cuentas.component';
+import { ImportarVentasComponent } from './ventas/importar-ventas/importar-ventas.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent, VerRubrosComponent, VerPlanCuentasComponent
+    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent, VerRubrosComponent, VerPlanCuentasComponent, ImportarVentasComponent
   ],
   imports: [
     FormsModule,

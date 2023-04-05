@@ -23,7 +23,7 @@ export class SidebarService {
       },
       submenus: [
         {
-          title: 'Carga de Facturas',
+          title: 'Importar Compras',
           url: 'cargaFacComp',
           badge: {
             text: 'Pro ',
@@ -39,7 +39,7 @@ export class SidebarService {
       ]
     },
     {
-      title: 'E-commerce',
+      title: 'Ventas',
       icon: 'fa fa-shopping-cart',
       active: false,
       type: 'dropdown',
@@ -49,7 +49,8 @@ export class SidebarService {
       },
       submenus: [
         {
-          title: 'Products',
+          title: 'Importar Ventas',
+          url: 'cargaFacComp'
         },
         {
           title: 'Orders'
