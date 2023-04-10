@@ -82,7 +82,7 @@ export class ImportarVentasComponent implements OnInit {
       let ventas = this.ventas.facturasVentas;
       lineas.forEach((linea) => {
         if (linea.substring(0, 1).trim() === "1") {
-
+          //debería incorporar en el obtener valores esta expresión de comparación, no en la obtención de los datos del txt
           //for (let i = 0; i < ventas.length; i++) {
             //if (linea.substring(12, 16).trim() != ventas[i].punto_venta && linea.substring(16, 24).trim() != ventas[i].n_comprobante) {
 
