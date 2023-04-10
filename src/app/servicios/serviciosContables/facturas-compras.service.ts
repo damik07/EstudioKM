@@ -6,6 +6,10 @@ export class FacturasComprasService {
 
   facturasCompras?:any=[
     
-]
+  ];
+
+  agregarFacturasCompras(nuevaFacturas) {
+    this.facturasCompras.push(nuevaFacturas);
+  };
 
 }
