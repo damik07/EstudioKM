@@ -124,6 +124,7 @@ export class ImportarVentasComponent implements OnInit {
   
 
   obtenerValoresDeTabla() {
+    if (this.fechaDeInicio) {
     const tabla = document.getElementById('importFactCompras');
     const filas = tabla.getElementsByTagName('tr');
     for (let i = 1; i < filas.length; i++) {
@@ -163,10 +164,16 @@ export class ImportarVentasComponent implements OnInit {
         fecha_carga: new Date()
         
       };
-           
       this.facturas.push(objetoDeFila);
       console.log(this.facturas);
-    }
+
+      }; 
+           
+      
+    } else {alert("Debe seleccionar fecha de imputación")}
+
+
+
   }
 
 
