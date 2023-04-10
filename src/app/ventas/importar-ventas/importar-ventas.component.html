@@ -22,21 +22,34 @@
       <thead>
         <tr>
           <th>Fecha</th>
-          <th>Tipo</th>
+          <th>Tipo Comprobante</th>
+          <th>Controlador Fisc.</th>
           <th>Punto de venta</th>
-          <th>Nº desde</th>
-          <th>Nº hasta</th>
-          <th>Cód. Autorización</th>
+          <th>Nº comprobante</th>
+          <th>Nº comp. registrado</th>
+          <th>Cantidad de Hojas</th>
           <th>Tipo Doc. Emisor</th>
           <th>Nº Doc. Emisor</th>
           <th>Denominación Emisor</th>
+          <th>Total operación</th>
+          <th>Total no gravado</th>
+          <th>Total gravado</th>
+          <th>Total IVA liq.</th>
+          <th>Perc. no categ.</th>
+          <th>Total op. exentas</th>
+          <th>Pago cuenta impuestos nacionales</th>
+          <th>Perc II.BB.</th>
+          <th>Perc Imp. municipales</th>
+          <th>Impuestos Internos</th>
+          <th>Transporte</th>
+          <th>Tipo Responsable</th>
+          <th>Cód. Moneda</th>
           <th>Tipo Cambio</th>
-          <th>Moneda</th>
-          <th>Imp. Neto Gravado</th>
-          <th>Imp. Neto No Gravado</th>
-          <th>Imp. Op. Exentas</th>
-          <th>IVA</th>
-          <th>Imp. Total</th>
+          <th>Cód. Alicuota IVA</th>
+          <th>Cód. operación</th>
+          <th>CAE</th>
+          <th>Fecha venc. CAE</th>
+          <th>Fecha anulación comp.</th>
           <th>Cuenta Contable</th>
         </tr>
       </thead>
@@ -47,7 +60,7 @@
           <td>{{ item.controlador_fiscal }}</td>
           <td>{{ item.punto_venta }}</td>
           <td>{{ item.n_comprobante }}</td>
-          <td>{{ item.n_comprobante_r }}</td>
+          <td>{{ item.n_comprobante_registrado }}</td>
           <td>{{ item.cant_hojas }}</td>
           <td>{{ item.cod_tipo_doc_receptor }}</td>
           <td>{{ item.n_documento_receptor }}</td>
@@ -55,7 +68,20 @@
           <td>{{ item.imp_total_operacion.toFixed(2) }}</td>
           <td>{{ item.imp_total_no_gravado }}</td>
           <td>{{ item.imp_neto_gravado }}</td>
+          <td>{{ item.impuesto_liquidado_iva }}</td>
+          <td>{{ item.percepcion_no_categorizados }}</td>
+          <td>{{ item.importe_op_exentas }}</td>
+          <td>{{ item.importe_pago_cuenta_imp_nac }}</td>
+          <td>{{ item.importe_perc_ii_bb }}</td>
+          <td>{{ item.importe_perc_imp_municipales }}</td>
+          <td>{{ item.importe_imp_internos }}</td>
+          <td>{{ item.transporte }}</td>
+          <td>{{ item.tipo_responsable }}</td>
           <td>{{ item.cod_moneda }}</td>
+          <td>{{ item.tipo_cambio }}</td>
+          <td>{{ item.cod_alicuota_iva }}</td>
+          <td>{{ item.cod_operacion }}</td>
+          <td>{{ item.cae }}</td>
           <td>{{ item.fecha_venc_cae }}</td>
           <td>{{ item.fecha_anulacion_comp }}</td>
           <!-- falta fila de cuenta, luego de implementar el servicio -->

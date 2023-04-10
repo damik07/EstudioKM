@@ -86,7 +86,7 @@ export class ImportarVentasComponent implements OnInit {
             controlador_fiscal: linea.substring(11, 12).trim(),
             punto_venta: linea.substring(12, 16).trim(),
             n_comprobante: linea.substring(16, 24).trim(),
-            n_comprobante_r: linea.substring(24, 32).trim(),
+            n_comprobante_registrado: linea.substring(24, 32).trim(),
             cant_hojas: linea.substring(32, 35).trim(),
             cod_tipo_doc_receptor: linea.substring(35, 37).trim(),
             n_documento_receptor: linea.substring(37, 48).trim(),
