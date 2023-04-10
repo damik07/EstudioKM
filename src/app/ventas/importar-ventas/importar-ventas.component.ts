@@ -79,50 +79,56 @@ export class ImportarVentasComponent implements OnInit {
     reader.onload = () => {
       const lineas = reader.result.toString().split('\n');
       this.data = [];
+      let ventas = this.ventas.facturasVentas;
       lineas.forEach((linea) => {
         if (linea.substring(0, 1).trim() === "1") {
-          const registro = {            
-            fecha: new Date (parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())).toLocaleDateString('en-GB'),
-            tipo_comprobante: linea.substring(9, 11).trim(),
-            controlador_fiscal: linea.substring(11, 12).trim(),
-            punto_venta: linea.substring(12, 16).trim(),
-            n_comprobante: linea.substring(16, 24).trim(),
-            n_comprobante_registrado: linea.substring(24, 32).trim(),
-            cant_hojas: linea.substring(32, 35).trim(),
-            cod_tipo_doc_receptor: linea.substring(35, 37).trim(),
-            n_documento_receptor: linea.substring(37, 48).trim(),
-            nombre_receptor: linea.substring(48, 78).trim(),
-            imp_total_operacion: parseFloat((linea.substring(78, 93).trim().slice(0, -2) + '.' + linea.substring(78, 93).trim().slice(-2)).trim()),
-            imp_total_no_gravado: parseFloat((linea.substring(93, 108).trim().slice(0, -2) + '.' + linea.substring(93, 108).trim().slice(-2)).trim()),
-            imp_neto_gravado: parseFloat((linea.substring(108, 123).trim().slice(0, -2) + '.' + linea.substring(108, 123).trim().slice(-2)).trim()),
-            impuesto_liquidado_iva: parseFloat((linea.substring(123, 138).trim().slice(0, -2) + '.' + linea.substring(123, 138).trim().slice(-2)).trim()),
-            percepcion_no_categorizados: parseFloat((linea.substring(138, 153).trim().slice(0, -2) + '.' + linea.substring(138, 153).trim().slice(-2)).trim()),
-            importe_op_exentas: parseFloat((linea.substring(153, 168).trim().slice(0, -2) + '.' + linea.substring(153, 168).trim().slice(-2)).trim()),
-            importe_pago_cuenta_imp_nac: parseFloat((linea.substring(168, 183).trim().slice(0, -2) + '.' + linea.substring(168, 183).trim().slice(-2)).trim()),
-            importe_perc_ii_bb: parseFloat((linea.substring(183, 198).trim().slice(0, -2) + '.' + linea.substring(183, 198).trim().slice(-2)).trim()),
-            importe_perc_imp_municipales: parseFloat((linea.substring(198, 213).trim().slice(0, -2) + '.' + linea.substring(198, 213).trim().slice(-2)).trim()),
-            importe_imp_internos: parseFloat((linea.substring(213, 228).trim().slice(0, -2) + '.' + linea.substring(213, 228).trim().slice(-2)).trim()),
-            transporte: parseFloat((linea.substring(228, 243).trim().slice(0, -2) + '.' + linea.substring(228, 243).trim().slice(-2)).trim()),
-            tipo_responsable: linea.substring(243, 245).trim(),
-            cod_moneda: linea.substring(245, 248).trim(),            
-            tipo_cambio: parseFloat((linea.substring(248, 252).trim().slice(0, 4) + '.' + linea.substring(252, 258).trim().slice(0, 6)).trim()),
-            cod_alicuota_iva: linea.substring(258, 259).trim(),
-            cod_operacion: linea.substring(259, 260).trim(),
-            cae: linea.substring(260, 274).trim(),            
-            fecha_venc_cae: new Date (parseInt(linea.substring(274, 278).trim()), parseInt(linea.substring(278, 280).trim()) - 1, parseInt(linea.substring(280, 282).trim())).toLocaleDateString('en-GB'),
-            fecha_anulacion_comp: new Date (parseInt(linea.substring(282, 286).trim()), parseInt(linea.substring(286, 288).trim()) - 1, parseInt(linea.substring(288, 290).trim())).toLocaleDateString('en-GB')
-            
-            
+          for (let i = 0; i < ventas.length; i++) {
+            if (linea.substring(12, 16).trim() !== ventas[i].punto_venta && linea.substring(16, 24).trim() !== ventas[i].n_comprobante) {
+
+              const registro = {
+                fecha: new Date(parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())).toLocaleDateString('en-GB'),
+                tipo_comprobante: linea.substring(9, 11).trim(),
+                controlador_fiscal: linea.substring(11, 12).trim(),
+                punto_venta: linea.substring(12, 16).trim(),
+                n_comprobante: linea.substring(16, 24).trim(),
+                n_comprobante_registrado: linea.substring(24, 32).trim(),
+                cant_hojas: linea.substring(32, 35).trim(),
+                cod_tipo_doc_receptor: linea.substring(35, 37).trim(),
+                n_documento_receptor: linea.substring(37, 48).trim(),
+                nombre_receptor: linea.substring(48, 78).trim(),
+                imp_total_operacion: parseFloat((linea.substring(78, 93).trim().slice(0, -2) + '.' + linea.substring(78, 93).trim().slice(-2)).trim()),
+                imp_total_no_gravado: parseFloat((linea.substring(93, 108).trim().slice(0, -2) + '.' + linea.substring(93, 108).trim().slice(-2)).trim()),
+                imp_neto_gravado: parseFloat((linea.substring(108, 123).trim().slice(0, -2) + '.' + linea.substring(108, 123).trim().slice(-2)).trim()),
+                impuesto_liquidado_iva: parseFloat((linea.substring(123, 138).trim().slice(0, -2) + '.' + linea.substring(123, 138).trim().slice(-2)).trim()),
+                percepcion_no_categorizados: parseFloat((linea.substring(138, 153).trim().slice(0, -2) + '.' + linea.substring(138, 153).trim().slice(-2)).trim()),
+                importe_op_exentas: parseFloat((linea.substring(153, 168).trim().slice(0, -2) + '.' + linea.substring(153, 168).trim().slice(-2)).trim()),
+                importe_pago_cuenta_imp_nac: parseFloat((linea.substring(168, 183).trim().slice(0, -2) + '.' + linea.substring(168, 183).trim().slice(-2)).trim()),
+                importe_perc_ii_bb: parseFloat((linea.substring(183, 198).trim().slice(0, -2) + '.' + linea.substring(183, 198).trim().slice(-2)).trim()),
+                importe_perc_imp_municipales: parseFloat((linea.substring(198, 213).trim().slice(0, -2) + '.' + linea.substring(198, 213).trim().slice(-2)).trim()),
+                importe_imp_internos: parseFloat((linea.substring(213, 228).trim().slice(0, -2) + '.' + linea.substring(213, 228).trim().slice(-2)).trim()),
+                transporte: parseFloat((linea.substring(228, 243).trim().slice(0, -2) + '.' + linea.substring(228, 243).trim().slice(-2)).trim()),
+                tipo_responsable: linea.substring(243, 245).trim(),
+                cod_moneda: linea.substring(245, 248).trim(),
+                tipo_cambio: parseFloat((linea.substring(248, 252).trim().slice(0, 4) + '.' + linea.substring(252, 258).trim().slice(0, 6)).trim()),
+                cod_alicuota_iva: linea.substring(258, 259).trim(),
+                cod_operacion: linea.substring(259, 260).trim(),
+                cae: linea.substring(260, 274).trim(),
+                fecha_venc_cae: new Date(parseInt(linea.substring(274, 278).trim()), parseInt(linea.substring(278, 280).trim()) - 1, parseInt(linea.substring(280, 282).trim())).toLocaleDateString('en-GB'),
+                fecha_anulacion_comp: new Date(parseInt(linea.substring(282, 286).trim()), parseInt(linea.substring(286, 288).trim()) - 1, parseInt(linea.substring(288, 290).trim())).toLocaleDateString('en-GB')
+
+
+              };
+
+              this.data.push(registro);
+            };
           };
-          
-          this.data.push(registro);
-        }
+        };
       });
     };
     reader.readAsText(file);
     console.log(this.data);
   }
-  
+
   
 
   obtenerValoresDeTabla() {
