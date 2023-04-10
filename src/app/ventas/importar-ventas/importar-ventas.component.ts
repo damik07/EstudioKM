@@ -82,8 +82,9 @@ export class ImportarVentasComponent implements OnInit {
       let ventas = this.ventas.facturasVentas;
       lineas.forEach((linea) => {
         if (linea.substring(0, 1).trim() === "1") {
-          for (let i = 0; i < ventas.length; i++) {
-            if (linea.substring(12, 16).trim() !== ventas[i].punto_venta && linea.substring(16, 24).trim() !== ventas[i].n_comprobante) {
+
+          //for (let i = 0; i < ventas.length; i++) {
+            //if (linea.substring(12, 16).trim() != ventas[i].punto_venta && linea.substring(16, 24).trim() != ventas[i].n_comprobante) {
 
               const registro = {
                 fecha: new Date(parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())).toLocaleDateString('en-GB'),
@@ -121,8 +122,8 @@ export class ImportarVentasComponent implements OnInit {
 
               this.data.push(registro);
             };
-          };
-        };
+         // };
+        //};
       });
     };
     reader.readAsText(file);
