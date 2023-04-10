@@ -107,9 +107,10 @@ export class ImportarVentasComponent implements OnInit {
             tipo_cambio: linea.substring(248, 258).trim(),
             cod_alicuota_iva: linea.substring(258, 259).trim(),
             cod_operacion: linea.substring(259, 260).trim(),
-            cae: linea.substring(260, 274).trim(),
-            fecha_venc_cae: linea.substring(274, 282).trim(),
-            fecha_anulacion_comp: linea.substring(282, 290).trim()
+            cae: linea.substring(260, 274).trim(),            
+            fecha_venc_cae: new Date (parseInt(linea.substring(274, 278).trim()), parseInt(linea.substring(278, 280).trim()) - 1, parseInt(linea.substring(280, 282).trim())).toLocaleDateString('en-GB'),
+            fecha_anulacion_comp: new Date (parseInt(linea.substring(282, 286).trim()), parseInt(linea.substring(286, 288).trim()) - 1, parseInt(linea.substring(288, 290).trim())).toLocaleDateString('en-GB')
+            
             
           };
           this.data.push(registro);
