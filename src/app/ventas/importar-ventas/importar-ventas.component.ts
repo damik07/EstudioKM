@@ -4,6 +4,7 @@ import { CuentasContablesService } from '../../servicios/serviciosContables/cuen
 
 import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
+import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
 
 @Component({
   selector: 'app-importar-ventas',
@@ -18,7 +19,7 @@ export class ImportarVentasComponent implements OnInit {
   facturas?:any[] = [];
   fechaDeInicio: string;
 
-  constructor(private cuentas:CuentasContablesService, private http: HttpClient) {
+  constructor(private cuentas:CuentasContablesService, private http: HttpClient, private ventas:FacturasVentasService) {
     this.cuenta = cuentas.cuentasContables;
     console.log(this.cuenta);
    }
@@ -113,6 +114,7 @@ export class ImportarVentasComponent implements OnInit {
             
             
           };
+          
           this.data.push(registro);
         }
       });
