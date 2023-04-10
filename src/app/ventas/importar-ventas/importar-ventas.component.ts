@@ -81,7 +81,7 @@ export class ImportarVentasComponent implements OnInit {
       lineas.forEach((linea) => {
         if (linea.substring(0, 1).trim() === "1") {
           const registro = {            
-            fecha: new Date (parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())),
+            fecha: new Date (parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())).toLocaleDateString('en-GB'),
             tipo_comprobante: linea.substring(9, 11).trim(),
             controlador_fiscal: linea.substring(11, 12).trim(),
             punto_venta: linea.substring(12, 16).trim(),
