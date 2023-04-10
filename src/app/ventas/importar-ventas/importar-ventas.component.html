@@ -22,12 +22,12 @@
       <thead>
         <tr>
           <th>Fecha</th>
-          <th>Tipo Comprobante</th>
-          <th>Controlador Fisc.</th>
+          <th>Tipo Comp</th>
+          <th id="ocultar">Controlador Fisc.</th>
           <th>Punto de venta</th>
-          <th>Nº comprobante</th>
-          <th>Nº comp. registrado</th>
-          <th>Cantidad de Hojas</th>
+          <th>Nº comp.</th>
+          <th id="ocultar">Nº comp. registrado</th>
+          <th id="ocultar">Cantidad de Hojas</th>
           <th>Tipo Doc. Emisor</th>
           <th>Nº Doc. Emisor</th>
           <th>Denominación Emisor</th>
@@ -37,19 +37,19 @@
           <th>Total IVA liq.</th>
           <th>Perc. no categ.</th>
           <th>Total op. exentas</th>
-          <th>Pago cuenta impuestos nacionales</th>
+          <th>Pago cta imp. nac.</th>
           <th>Perc II.BB.</th>
           <th>Perc Imp. municipales</th>
-          <th>Impuestos Internos</th>
-          <th>Transporte</th>
-          <th>Tipo Responsable</th>
-          <th>Cód. Moneda</th>
-          <th>Tipo Cambio</th>
+          <th>Imp. Internos</th>
+          <th id="ocultar">Transporte</th>
+          <th id="ocultar">Tipo Responsable</th>
+          <th id="ocultar">Cód. Moneda</th>
+          <th id="ocultar">Tipo Cambio</th>
           <th>Cód. Alicuota IVA</th>
-          <th>Cód. operación</th>
-          <th>CAE</th>
-          <th>Fecha venc. CAE</th>
-          <th>Fecha anulación comp.</th>
+          <th id="ocultar">Cód. operación</th>
+          <th id="ocultar">CAE</th>
+          <th id="ocultar">Fecha venc. CAE</th>
+          <th id="ocultar">Fecha anulación comp.</th>
           <th>Cuenta Contable</th>
         </tr>
       </thead>
@@ -57,11 +57,11 @@
         <tr *ngFor="let item of data">
           <td>{{ item.fecha }}</td>
           <td>{{ item.tipo_comprobante }}</td>
-          <td>{{ item.controlador_fiscal }}</td>
+          <td id="ocultar">{{ item.controlador_fiscal }}</td>
           <td>{{ item.punto_venta }}</td>
           <td>{{ item.n_comprobante }}</td>
-          <td>{{ item.n_comprobante_registrado }}</td>
-          <td>{{ item.cant_hojas }}</td>
+          <td id="ocultar">{{ item.n_comprobante_registrado }}</td>
+          <td id="ocultar">{{ item.cant_hojas }}</td>
           <td>{{ item.cod_tipo_doc_receptor }}</td>
           <td>{{ item.n_documento_receptor }}</td>
           <td>{{ item.nombre_receptor }}</td>
@@ -75,15 +75,15 @@
           <td>{{ item.importe_perc_ii_bb.toFixed(2) }}</td>
           <td>{{ item.importe_perc_imp_municipales.toFixed(2) }}</td>
           <td>{{ item.importe_imp_internos.toFixed(2) }}</td>
-          <td>{{ item.transporte.toFixed(2) }}</td>
-          <td>{{ item.tipo_responsable }}</td>
-          <td>{{ item.cod_moneda }}</td>
-          <td>{{ item.tipo_cambio.toFixed(6) }}</td>
+          <td id="ocultar">{{ item.transporte.toFixed(2) }}</td>
+          <td id="ocultar">{{ item.tipo_responsable }}</td>
+          <td id="ocultar">{{ item.cod_moneda }}</td>
+          <td id="ocultar">{{ item.tipo_cambio.toFixed(6) }}</td>
           <td>{{ item.cod_alicuota_iva }}</td>
-          <td>{{ item.cod_operacion }}</td>
-          <td>{{ item.cae }}</td>
-          <td>{{ item.fecha_venc_cae }}</td>
-          <td>{{ item.fecha_anulacion_comp }}</td>
+          <td id="ocultar">{{ item.cod_operacion }}</td>
+          <td id="ocultar">{{ item.cae }}</td>
+          <td id="ocultar">{{ item.fecha_venc_cae }}</td>
+          <td id="ocultar">{{ item.fecha_anulacion_comp }}</td>
           <!-- falta fila de cuenta, luego de implementar el servicio -->
           <td><select class="form-select" aria-label="Default select example">
             <option *ngFor="let c of cuenta">{{ c.nombreCuenta }}</option>
