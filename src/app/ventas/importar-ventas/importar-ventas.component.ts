@@ -79,13 +79,9 @@ export class ImportarVentasComponent implements OnInit {
     reader.onload = () => {
       const lineas = reader.result.toString().split('\n');
       this.data = [];
-      let ventas = this.ventas.facturasVentas;
+      
       lineas.forEach((linea) => {
         if (linea.substring(0, 1).trim() === "1") {
-          //debería incorporar en el obtener valores esta expresión de comparación, no en la obtención de los datos del txt
-          //for (let i = 0; i < ventas.length; i++) {
-            //if (linea.substring(12, 16).trim() != ventas[i].punto_venta && linea.substring(16, 24).trim() != ventas[i].n_comprobante) {
-
               const registro = {
                 fecha: new Date(parseInt(linea.substring(1, 5).trim()), parseInt(linea.substring(5, 7).trim()) - 1, parseInt(linea.substring(7, 9).trim())).toLocaleDateString('en-GB'),
                 tipo_comprobante: linea.substring(9, 11).trim(),
@@ -122,8 +118,7 @@ export class ImportarVentasComponent implements OnInit {
 
               this.data.push(registro);
             };
-         // };
-        //};
+        
       });
     };
     reader.readAsText(file);
@@ -134,10 +129,12 @@ export class ImportarVentasComponent implements OnInit {
 
   obtenerValoresDeTabla() {
     if (this.fechaDeInicio) {
+      let ventas = this.ventas.facturasVentas;
     const tabla = document.getElementById('importFactCompras');
     const filas = tabla.getElementsByTagName('tr');
     for (let i = 1; i < filas.length; i++) {
       const celdas = filas[i].getElementsByTagName('td');
+      if(ventas.filter(f => f.punto_venta !== celdas[3].innerHTML && f.n_comprobante !== celdas[4].innerHTML)) {
       const objetoDeFila = {
         fecha_comprobante: celdas[0].innerHTML,
         tipo_comprobante: celdas[1].innerHTML,
@@ -175,7 +172,7 @@ export class ImportarVentasComponent implements OnInit {
       };
       this.facturas.push(objetoDeFila);
       console.log(this.facturas);
-
+    };
       }; 
            
       
