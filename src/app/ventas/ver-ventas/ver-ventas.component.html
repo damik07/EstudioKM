@@ -97,12 +97,12 @@
         <td>
           <div class="row">
             <div class="col-5">
-              <button type="button" id="botonAccion"><i class="fas fa-pen"></i></button>
+              <button id="botonAccion"><i class="fas fa-pen"></i></button>
             </div>
 
             <div class="col-5">
-              <button type="button" id="botonAccion" data-bs-toggle="modal"
-              [attr.data-bs-target]="'#deleteFactura'+ item.id"><i class="fas fa-trash-alt"></i></button>
+              <button id="botonAccion" data-bs-toggle="modal"
+              [data-bs-target]="'#deleteFactura'+ item.id"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </td>
@@ -121,8 +121,8 @@
                 ¿Esta seguro que desea eliminar el documento de Venta?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" (click)="(eliminarVenta(item))" class="btn btn-primary" data-bs-dismiss="modal">Eliminar</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button (click)="eliminarVenta(item)" class="btn btn-primary" data-bs-dismiss="modal">Eliminar</button>
               </div>
             </div>
           </div>
