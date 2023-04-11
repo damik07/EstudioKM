@@ -102,19 +102,19 @@
 
             <div class="col-5">
               <button type="button" id="botonAccion" data-bs-toggle="modal"
-              [attr.data-bs-target]="'#delete_factura'+ item.id"><i class="fas fa-trash-alt"></i></button>
+              [attr.data-bs-target]="'#deleteFactura'+ item.id"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </td>
 
         <!-- modal de eliminar -->
 
-        <div class="modal fade" id="delete_factura{{item.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+        <div class="modal fade" id="deleteFactura{{item.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
           tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Educacion</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Venta</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
