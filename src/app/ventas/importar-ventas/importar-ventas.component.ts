@@ -173,7 +173,8 @@ export class ImportarVentasComponent implements OnInit {
           };
           this.facturas.push(objetoDeFila);
           console.log(this.facturas);
-        } else {          
+        } else {
+          this.facturasRepet = [];          
           this.facturasRepet.push({
             fecha_comprobante: celdas[0].innerHTML,
             tipo_comprobante: celdas[1].innerHTML,
