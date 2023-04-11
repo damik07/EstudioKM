@@ -57,6 +57,7 @@
         <th id="ocultar">CAE</th>
         <th id="ocultar">Fecha venc. CAE</th>
         <th id="ocultar">Fecha anulación comp.</th>
+        <th>Cuenta Contable</th>
         <th>Acciones</th>
   
       </tr>
@@ -92,14 +93,15 @@
         <td id="ocultar">{{ item.cae }}</td>
         <td id="ocultar">{{ item.fecha_venc_cae }}</td>
         <td id="ocultar">{{ item.fecha_anulacion_comp }}</td>
+        <td>{{ item.cuenta }}</td>
         <td>
           <div class="row">
             <div class="col-5">
-              <button type="button" ><i class="fas fa-pen"></i></button>
+              <button type="button" id="botonAccion"><i class="fas fa-pen"></i></button>
             </div>
   
             <div class="col-5">
-              <button type="button" ><i class="fas fa-trash-alt"></i></button>
+              <button type="button" id="botonAccion"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
         </td>  

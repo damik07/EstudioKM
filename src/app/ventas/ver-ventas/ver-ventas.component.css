@@ -7,3 +7,6 @@ select.form-select {
 #ocultar {
   display: none;
 }
+#botonAccion {
+  border-color: white;
+}
