@@ -42,4 +42,17 @@ export class VerVentasComponent implements OnInit {
 
   };
 
+
+  eliminarVenta(item: any){
+    console.log(item);
+    //this.datosPorfolio.borrarEducacion(educacion).subscribe(()=>{
+      //this.ngOnInit();
+      //this.educacionList = this.educacionList.filter( (t:any) =>{return t.id !== educacion.id})
+      alert("La venta seleccionada se a eliminado correctamente");
+      
+    //}
+    //);
+
+  }
+
 }

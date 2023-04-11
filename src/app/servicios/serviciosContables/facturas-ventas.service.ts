@@ -6,6 +6,7 @@ export class FacturasVentasService {
 
   facturasVentas?:any=[
     {
+      "id": 1,
         "fecha_comprobante": "2023-01-01",
         "tipo_comprobante": "01",
         "controlador_fiscal": "01",
@@ -40,6 +41,7 @@ export class FacturasVentasService {
         "fecha_carga":"01"
     },
     {
+      "id": 2,
       "fecha_comprobante": "2023-01-01",
       "tipo_comprobante": "01",
       "controlador_fiscal": "01",

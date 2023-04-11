@@ -1,7 +1,7 @@
 <h4>Seleccionar fecha de imputación</h4>
 <form (ngSubmit)="filterData1(f.value)" #f="ngForm">
   <div>
-    <div class="row">      
+    <div class="row">
       <div class="col-2">
         <label for="startDate1" class="form-label">Fecha inicio</label>
         <input class="form-control" type="month" name="startDate1" id="startDate1" ngModel>
@@ -18,7 +18,7 @@
       </div>
 
     </div>
-    
+
   </div>
 
 </form>
@@ -59,7 +59,7 @@
         <th id="ocultar">Fecha anulación comp.</th>
         <th>Cuenta Contable</th>
         <th>Acciones</th>
-  
+
       </tr>
     </thead>
     <tbody>
@@ -99,17 +99,42 @@
             <div class="col-5">
               <button type="button" id="botonAccion"><i class="fas fa-pen"></i></button>
             </div>
-  
+
             <div class="col-5">
-              <button type="button" id="botonAccion"><i class="fas fa-trash-alt"></i></button>
+              <button type="button" id="botonAccion" data-bs-toggle="modal"
+              [attr.data-bs-target]="'#delete_factura'+ item.id"><i class="fas fa-trash-alt"></i></button>
             </div>
           </div>
-        </td>  
-  
+        </td>
+
+        <!-- modal de eliminar -->
+
+        <div class="modal fade" id="delete_factura{{item.id}}" data-bs-backdrop="static" data-bs-keyboard="false"
+          tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Eliminar Educacion</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                ¿Esta seguro que desea eliminar el documento de Venta?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" (click)="(eliminarVenta(item))" class="btn btn-primary" data-bs-dismiss="modal">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </tr>
     </tbody>
   </table>
 
 
 </div>
+
+
 
