@@ -130,57 +130,55 @@ export class ImportarVentasComponent implements OnInit {
   obtenerValoresDeTabla() {
     if (this.fechaDeInicio) {
       let ventas = this.ventas.facturasVentas;
-    const tabla = document.getElementById('importFactCompras');
-    const filas = tabla.getElementsByTagName('tr');
-    for (let i = 1; i < filas.length; i++) {
-      const celdas = filas[i].getElementsByTagName('td');
-      if(ventas.filter(f => f.punto_venta !== celdas[3].innerHTML && f.n_comprobante !== celdas[4].innerHTML)) {
-      const objetoDeFila = {
-        fecha_comprobante: celdas[0].innerHTML,
-        tipo_comprobante: celdas[1].innerHTML,
-        controlador_fiscal: celdas[2].innerHTML,
-        punto_venta: celdas[3].innerHTML,
-        n_comprobante: celdas[4].innerHTML,
-        n_comprobante_registrado: celdas[5].innerHTML,
-        cant_hojas: celdas[6].innerHTML,
-        cod_tipo_doc_receptor: celdas[7].innerHTML,
-        n_documento_receptor: celdas[8].innerHTML,
-        nombre_receptor: celdas[9].innerHTML,
-        imp_total_operacion: celdas[10].innerHTML,
-        imp_total_no_gravado: celdas[11].innerHTML,
-        imp_neto_gravado: celdas[12].innerHTML,
-        impuesto_liquidado_iva: celdas[13].innerHTML,
-        percepcion_no_categorizados: celdas[14].innerHTML,
-        importe_op_exentas: celdas[15].innerHTML,
-        importe_pago_cuenta_imp_nac: celdas[16].innerHTML,
-        importe_perc_ii_bb: celdas[17].innerHTML,
-        importe_perc_imp_municipales: celdas[18].innerHTML,
-        importe_imp_internos: celdas[19].innerHTML,
-        transporte: celdas[20].innerHTML,
-        tipo_responsable: celdas[21].innerHTML,
-        cod_moneda: celdas[22].innerHTML,
-        tipo_cambio: celdas[23].innerHTML,
-        cod_alicuota_iva: celdas[24].innerHTML,
-        cod_operacion: celdas[25].innerHTML,
-        cae: celdas[26].innerHTML,
-        fecha_venc_cae: celdas[27].innerHTML,
-        fecha_anulacion_comp: celdas[28].innerHTML,
-        cuenta: celdas[29].querySelector('select').value,
-        fecha_imputacion: this.fechaDeInicio,
-        fecha_carga: new Date()
-        
-      };
-      this.facturas.push(objetoDeFila);
-      console.log(this.facturas);
-    };
-      }; 
-           
-      
-    } else {alert("Debe seleccionar fecha de imputación")}
+      const tabla = document.getElementById('importFactCompras');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 1; i < filas.length; i++) {
+        const celdas = filas[i].getElementsByTagName('td');
+        const existeVenta = ventas.some(f => f.punto_venta === celdas[3].innerHTML && f.n_comprobante === celdas[4].innerHTML);
+        if (!existeVenta) {
+          const objetoDeFila = {
+            fecha_comprobante: celdas[0].innerHTML,
+            tipo_comprobante: celdas[1].innerHTML,
+            controlador_fiscal: celdas[2].innerHTML,
+            punto_venta: celdas[3].innerHTML,
+            n_comprobante: celdas[4].innerHTML,
+            n_comprobante_registrado: celdas[5].innerHTML,
+            cant_hojas: celdas[6].innerHTML,
+            cod_tipo_doc_receptor: celdas[7].innerHTML,
+            n_documento_receptor: celdas[8].innerHTML,
+            nombre_receptor: celdas[9].innerHTML,
+            imp_total_operacion: celdas[10].innerHTML,
+            imp_total_no_gravado: celdas[11].innerHTML,
+            imp_neto_gravado: celdas[12].innerHTML,
+            impuesto_liquidado_iva: celdas[13].innerHTML,
+            percepcion_no_categorizados: celdas[14].innerHTML,
+            importe_op_exentas: celdas[15].innerHTML,
+            importe_pago_cuenta_imp_nac: celdas[16].innerHTML,
+            importe_perc_ii_bb: celdas[17].innerHTML,
+            importe_perc_imp_municipales: celdas[18].innerHTML,
+            importe_imp_internos: celdas[19].innerHTML,
+            transporte: celdas[20].innerHTML,
+            tipo_responsable: celdas[21].innerHTML,
+            cod_moneda: celdas[22].innerHTML,
+            tipo_cambio: celdas[23].innerHTML,
+            cod_alicuota_iva: celdas[24].innerHTML,
+            cod_operacion: celdas[25].innerHTML,
+            cae: celdas[26].innerHTML,
+            fecha_venc_cae: celdas[27].innerHTML,
+            fecha_anulacion_comp: celdas[28].innerHTML,
+            cuenta: celdas[29].querySelector('select').value,
+            fecha_imputacion: this.fechaDeInicio,
+            fecha_carga: new Date()
+          };
+          this.facturas.push(objetoDeFila);
+          console.log(this.facturas);
+        }
+      }
+    } else {
+      alert("Debe seleccionar fecha de imputación");
+    }
+}
 
-
-
-  }
 
 
   guardarBD() {
