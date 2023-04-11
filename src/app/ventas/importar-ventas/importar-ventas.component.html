@@ -2,8 +2,7 @@
   <ngx-file-drop dropZoneLabel="Suelte archivos aquí" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
     (onFileLeave)="fileLeave($event)">
     <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
-      Contenido personalizado opcional que reemplaza todo el contenido
-      predeterminado.
+      Arrastre aquí o pulse el botón Buscar Archivo.
       <button type="button" (click)="openFileSelector()">Buscar Archivo</button>
     </ng-template>
   </ngx-file-drop>
