@@ -53,7 +53,8 @@ export class SidebarService {
           url: 'impVentas'
         },
         {
-          title: 'Orders'
+          title: 'Consulta Ventas',
+          url: 'verVentas'
         },
         {
           title: 'Credit cart'

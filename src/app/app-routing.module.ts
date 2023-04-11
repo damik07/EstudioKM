@@ -8,6 +8,7 @@ import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.comp
 import { VerPlanCuentasComponent } from './plan-cuentas/ver-plan-cuentas/ver-plan-cuentas.component';
 import { VerRubrosComponent } from './plan-cuentas/ver-rubros/ver-rubros.component';
 import { ImportarVentasComponent } from './ventas/importar-ventas/importar-ventas.component';
+import { VerVentasComponent } from './ventas/ver-ventas/ver-ventas.component';
 
 const routes: Routes = [
   {path:'cargaFacComp', component:CargaFacturasCompraComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'verRubros', component:VerRubrosComponent},
   {path:'verPlanCuentas', component:VerPlanCuentasComponent},
   {path:'impVentas', component:ImportarVentasComponent},
+  {path:'verVentas', component:VerVentasComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]
