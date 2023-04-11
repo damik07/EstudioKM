@@ -173,8 +173,8 @@ export class ImportarVentasComponent implements OnInit {
           };
           this.facturas.push(objetoDeFila);
           console.log(this.facturas);
-        } else {
-          const repetidas = {
+        } else {          
+          this.facturasRepet.push({
             fecha_comprobante: celdas[0].innerHTML,
             tipo_comprobante: celdas[1].innerHTML,
             controlador_fiscal: celdas[2].innerHTML,
@@ -203,14 +203,10 @@ export class ImportarVentasComponent implements OnInit {
             cod_operacion: celdas[25].innerHTML,
             cae: celdas[26].innerHTML,
             fecha_venc_cae: celdas[27].innerHTML,
-            fecha_anulacion_comp: celdas[28].innerHTML,
-            cuenta: celdas[29].querySelector('select').value,
-            fecha_imputacion: this.fechaDeInicio,
-            fecha_carga: new Date()
-          };
-          this.facturasRepet.push(repetidas);
+            fecha_anulacion_comp: celdas[28].innerHTML
+          });
           console.log(this.facturasRepet);
-          alert("Existen facturas repetidas que no fueron incorporadas");
+          alert("Existen facturas repetidas que no fueron incorporadas a la base de datos");
         }
       }
     } else {
