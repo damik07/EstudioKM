@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import * as XLSX from 'xlsx';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
+import { FacturasComprasService } from '../../servicios/serviciosContables/facturas-compras.service';
 
 @Component({
   selector: 'app-carga-facturas-compra',
@@ -14,10 +15,11 @@ export class CargaFacturasCompraComponent implements OnInit {
   data?:any[];
   cuenta?:any[];
   facturas?:any[] = [];
+  facturasRepet?:any[];
   fechaDeInicio: string;
   
 
-  constructor(private cuentas:CuentasContablesService) {
+  constructor(private cuentas:CuentasContablesService, private compras:FacturasComprasService) {
     this.cuenta = cuentas.cuentasContables;
     console.log(this.cuenta);
    }
@@ -90,35 +92,66 @@ export class CargaFacturasCompraComponent implements OnInit {
   }
 
   obtenerValoresDeTabla() {
-    const tabla = document.getElementById('importFactCompras');
-    const filas = tabla.getElementsByTagName('tr');
-    for (let i = 1; i < filas.length; i++) {
-      const celdas = filas[i].getElementsByTagName('td');
-      const objetoDeFila = {
-        fecha_factura: celdas[0].innerHTML,
-        documento: celdas[1].innerHTML,
-        p_venta: celdas[2].innerHTML,
-        n_desde: celdas[3].innerHTML,
-        n_hasta: celdas[4].innerHTML,
-        cod_autoriz: celdas[5].innerHTML,
-        doc_emisor: celdas[6].innerHTML,
-        n_emisor: celdas[7].innerHTML,
-        denominacion: celdas[8].innerHTML,
-        tc: celdas[9].innerHTML,
-        moneda: celdas[10].innerHTML,
-        neto_gravado: celdas[11].innerHTML,
-        neto_no_gravado: celdas[12].innerHTML,
-        op_exentas: celdas[13].innerHTML,
-        iva: celdas[14].innerHTML,
-        total: celdas[15].innerHTML,
-        cuenta: celdas[16].querySelector('select').value,
-        fecha_imputacion: this.fechaDeInicio,
-        fecha_carga: new Date()
-        
-      };
-           
-      this.facturas.push(objetoDeFila);
-      console.log(this.facturas);
+    if (this.fechaDeInicio) {
+      let compras = this.compras.facturasCompras;
+      const tabla = document.getElementById('importFactCompras');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 1; i < filas.length; i++) {
+        const celdas = filas[i].getElementsByTagName('td');
+        const existeCompra = compras.some(f => f.p_venta === celdas[2].innerHTML && f.n_desde === celdas[3].innerHTML && f.n_hasta === celdas[4].innerHTML && f.n_emisor === celdas[7].innerHTML);
+        if (!existeCompra) {
+          const objetoDeFila = {
+            fecha_factura: celdas[0].innerHTML,
+            documento: celdas[1].innerHTML,
+            p_venta: celdas[2].innerHTML,
+            n_desde: celdas[3].innerHTML,
+            n_hasta: celdas[4].innerHTML,
+            cod_autoriz: celdas[5].innerHTML,
+            doc_emisor: celdas[6].innerHTML,
+            n_emisor: celdas[7].innerHTML,
+            denominacion: celdas[8].innerHTML,
+            tc: celdas[9].innerHTML,
+            moneda: celdas[10].innerHTML,
+            neto_gravado: celdas[11].innerHTML,
+            neto_no_gravado: celdas[12].innerHTML,
+            op_exentas: celdas[13].innerHTML,
+            iva: celdas[14].innerHTML,
+            total: celdas[15].innerHTML,
+            cuenta: celdas[16].querySelector('select').value,
+            fecha_imputacion: this.fechaDeInicio,
+            fecha_carga: new Date()
+
+          };
+
+          this.facturas.push(objetoDeFila);
+          console.log(this.facturas);
+        } else {
+          this.facturasRepet = [];
+          this.facturasRepet.push({
+            fecha_factura: celdas[0].innerHTML,
+            documento: celdas[1].innerHTML,
+            p_venta: celdas[2].innerHTML,
+            n_desde: celdas[3].innerHTML,
+            n_hasta: celdas[4].innerHTML,
+            cod_autoriz: celdas[5].innerHTML,
+            doc_emisor: celdas[6].innerHTML,
+            n_emisor: celdas[7].innerHTML,
+            denominacion: celdas[8].innerHTML,
+            tc: celdas[9].innerHTML,
+            moneda: celdas[10].innerHTML,
+            neto_gravado: celdas[11].innerHTML,
+            neto_no_gravado: celdas[12].innerHTML,
+            op_exentas: celdas[13].innerHTML,
+            iva: celdas[14].innerHTML,
+            total: celdas[15].innerHTML
+          });
+          console.log(this.facturasRepet);
+          alert("Existen facturas repetidas que no fueron incorporadas a la base de datos");
+
+        }
+      }
+    } else {
+      alert("Debe seleccionar fecha de imputación");
     }
   }
 
