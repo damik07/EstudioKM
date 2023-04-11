@@ -99,3 +99,80 @@
 
   <button (click)="obtenerValoresDeTabla()" class="btn btn-primary mb-3" *ngIf="data">Guardar</button>
 </div>
+
+<hr *ngIf="facturasRepet">
+
+<div class="upload-table" *ngIf="facturasRepet">
+  <table class="table table-striped table-hover table-sm" id="importFactCompras">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo Comp</th>
+        <th id="ocultar">Controlador Fisc.</th>
+        <th>Punto de venta</th>
+        <th>Nº comp.</th>
+        <th id="ocultar">Nº comp. registrado</th>
+        <th id="ocultar">Cantidad de Hojas</th>
+        <th>Tipo Doc. Emisor</th>
+        <th>Nº Doc. Emisor</th>
+        <th>Denominación Emisor</th>
+        <th>Total operación</th>
+        <th>Total no gravado</th>
+        <th>Total gravado</th>
+        <th>Total IVA liq.</th>
+        <th>Perc. no categ.</th>
+        <th>Total op. exentas</th>
+        <th>Pago cta imp. nac.</th>
+        <th>Perc II.BB.</th>
+        <th>Perc Imp. municipales</th>
+        <th>Imp. Internos</th>
+        <th id="ocultar">Transporte</th>
+        <th id="ocultar">Tipo Responsable</th>
+        <th id="ocultar">Cód. Moneda</th>
+        <th id="ocultar">Tipo Cambio</th>
+        <th>Cód. Alicuota IVA</th>
+        <th id="ocultar">Cód. operación</th>
+        <th id="ocultar">CAE</th>
+        <th id="ocultar">Fecha venc. CAE</th>
+        <th id="ocultar">Fecha anulación comp.</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of facturasRepet">
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.tipo_comprobante }}</td>
+        <td id="ocultar">{{ item.controlador_fiscal }}</td>
+        <td>{{ item.punto_venta }}</td>
+        <td>{{ item.n_comprobante }}</td>
+        <td id="ocultar">{{ item.n_comprobante_registrado }}</td>
+        <td id="ocultar">{{ item.cant_hojas }}</td>
+        <td>{{ item.cod_tipo_doc_receptor }}</td>
+        <td>{{ item.n_documento_receptor }}</td>
+        <td>{{ item.nombre_receptor }}</td>
+        <td>{{ item.imp_total_operacion.toFixed(2) }}</td>
+        <td>{{ item.imp_total_no_gravado.toFixed(2) }}</td>
+        <td>{{ item.imp_neto_gravado.toFixed(2) }}</td>
+        <td>{{ item.impuesto_liquidado_iva.toFixed(2) }}</td>
+        <td>{{ item.percepcion_no_categorizados.toFixed(2) }}</td>
+        <td>{{ item.importe_op_exentas.toFixed(2) }}</td>
+        <td>{{ item.importe_pago_cuenta_imp_nac.toFixed(2) }}</td>
+        <td>{{ item.importe_perc_ii_bb.toFixed(2) }}</td>
+        <td>{{ item.importe_perc_imp_municipales.toFixed(2) }}</td>
+        <td>{{ item.importe_imp_internos.toFixed(2) }}</td>
+        <td id="ocultar">{{ item.transporte.toFixed(2) }}</td>
+        <td id="ocultar">{{ item.tipo_responsable }}</td>
+        <td id="ocultar">{{ item.cod_moneda }}</td>
+        <td id="ocultar">{{ item.tipo_cambio.toFixed(6) }}</td>
+        <td>{{ item.cod_alicuota_iva }}</td>
+        <td id="ocultar">{{ item.cod_operacion }}</td>
+        <td id="ocultar">{{ item.cae }}</td>
+        <td id="ocultar">{{ item.fecha_venc_cae }}</td>
+        <td id="ocultar">{{ item.fecha_anulacion_comp }}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>

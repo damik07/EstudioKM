@@ -10,7 +10,7 @@ export class FacturasVentasService {
         "tipo_comprobante": "01",
         "controlador_fiscal": "01",
         "punto_venta": "0002",
-        "n_comprobante": "00000116",
+        "n_comprobante": "00000115",
         "n_comprobante_registrado": "01",
         "cant_hojas": "01",
         "cod_tipo_doc_receptor": "01",
