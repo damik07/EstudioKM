@@ -43,7 +43,7 @@ export class VerVentasComponent implements OnInit {
   };
 
 
-  eliminarVenta(item: any){
+  eliminarVenta(item:any){
     console.log(item);
     //this.datosPorfolio.borrarEducacion(educacion).subscribe(()=>{
       //this.ngOnInit();
