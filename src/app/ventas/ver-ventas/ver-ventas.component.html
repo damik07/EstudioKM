@@ -114,6 +114,17 @@
 </div>
 
 
+<form [formGroup]="formulario" *ngIf="objetoAEditar">
+  <div class="form-group">
+    <label for="cuentaContable">Cuenta contable</label>
+    <input type="text" class="form-control" id="cuentaContable" formControlName="cuentaContable">
+  </div>
+  <div class="form-group">
+    <label for="fechaImputacion">Fecha de imputación</label>
+    <input type="date" class="form-control" id="fechaImputacion" formControlName="fechaImputacion">
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
 
 
  
