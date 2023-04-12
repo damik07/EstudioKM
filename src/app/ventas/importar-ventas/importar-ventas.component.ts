@@ -172,6 +172,10 @@ export class ImportarVentasComponent implements OnInit {
             fecha_carga: new Date()
           };
           this.facturas.push(objetoDeFila);
+
+          //agregar acá el asiento contable
+          
+
           console.log(this.facturas);
         } else {
           this.facturasRepet = [];          
