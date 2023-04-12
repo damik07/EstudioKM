@@ -5,7 +5,7 @@ import { CuentasContablesService } from '../../servicios/serviciosContables/cuen
 import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
-import { ConfigContableService } from 'src/app/servicios/config-contable.service';
+import { ConfigContableService } from 'src/app/servicios/serviciosContables/config-contable.service';
 import { AsientosContablesService } from 'src/app/servicios/serviciosContables/asientos-contables.service';
 
 @Component({
@@ -187,7 +187,7 @@ export class ImportarVentasComponent implements OnInit {
               fechaCarga: new Date()
             }
             this.asiento.agregarAsientoContable(creditosAsientos);
-            
+
           }
 
           console.log(this.facturas);
