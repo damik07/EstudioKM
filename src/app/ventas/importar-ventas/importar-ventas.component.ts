@@ -5,6 +5,8 @@ import { CuentasContablesService } from '../../servicios/serviciosContables/cuen
 import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
+import { ConfigContableService } from 'src/app/servicios/config-contable.service';
+import { AsientosContablesService } from 'src/app/servicios/serviciosContables/asientos-contables.service';
 
 @Component({
   selector: 'app-importar-ventas',
@@ -20,7 +22,7 @@ export class ImportarVentasComponent implements OnInit {
   facturasRepet?:any[];
   fechaDeInicio: string;
 
-  constructor(private cuentas:CuentasContablesService, private http: HttpClient, private ventas:FacturasVentasService) {
+  constructor(private cuentas:CuentasContablesService, private http: HttpClient, private ventas:FacturasVentasService, private configContable:ConfigContableService, private asiento:AsientosContablesService) {
     this.cuenta = cuentas.cuentasContables;
     console.log(this.cuenta);
    }
@@ -173,8 +175,20 @@ export class ImportarVentasComponent implements OnInit {
           };
           this.facturas.push(objetoDeFila);
 
-          //agregar acá el asiento contable
-          
+          //agregar acá asientos contables
+                   
+          if(parseFloat(celdas[10].innerHTML) >0) {
+            const creditosAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: this.configContable.configContable.cuentaImportVentas,
+              signoSaldo: 1,
+              importe: celdas[10].innerHTML,
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(creditosAsientos);
+            
+          }
 
           console.log(this.facturas);
         } else {
