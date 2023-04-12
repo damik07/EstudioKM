@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
 
 @Component({
@@ -10,8 +11,12 @@ export class VerVentasComponent implements OnInit {
 
   data?:any;
   filtro?:any[];
+  objetoAEditar:any;
+  formulario: FormGroup;
 
-  constructor(private ventas:FacturasVentasService) { }
+  constructor(private ventas:FacturasVentasService) {
+    
+   }
 
   ngOnInit() {
   }
@@ -35,10 +40,6 @@ export class VerVentasComponent implements OnInit {
     console.log(this.filtro);
     
 
-    
-
-
-
 
   };
 
@@ -49,6 +50,19 @@ export class VerVentasComponent implements OnInit {
       //this.ngOnInit();
       //this.educacionList = this.educacionList.filter( (t:any) =>{return t.id !== educacion.id})
       alert("La venta seleccionada se a eliminado correctamente");
+      
+    //}
+    //);
+
+  }
+
+  editarVenta(item:any){
+    this.objetoAEditar = item;
+    console.log(this.objetoAEditar);
+    //this.datosPorfolio.borrarEducacion(educacion).subscribe(()=>{
+      //this.ngOnInit();
+      //this.educacionList = this.educacionList.filter( (t:any) =>{return t.id !== educacion.id})
+      //alert("La venta seleccionada se a eliminado correctamente");
       
     //}
     //);
