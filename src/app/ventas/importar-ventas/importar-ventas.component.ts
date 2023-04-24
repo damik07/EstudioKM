@@ -5,8 +5,9 @@ import { CuentasContablesService } from '../../servicios/serviciosContables/cuen
 import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
-import { ConfigContableService } from 'src/app/servicios/serviciosContables/config-contable.service';
-import { AsientosContablesService } from 'src/app/servicios/serviciosContables/asientos-contables.service';
+
+import { AsientosContablesService } from '../../servicios/serviciosContables/asientos-contables.service';
+import { ConfigContableService } from '../../servicios/serviciosContables/config-contable.service';
 
 @Component({
   selector: 'app-importar-ventas',
