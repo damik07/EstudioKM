@@ -10,7 +10,7 @@ export class ConfigContableService {
       "cuentaImportCompras": "1.01.01.02", //cuenta de proveedores      
       "cuentaIvaCF": "1.01.01.03",
       "cuentaIvaDF": "1.01.01.04",
-      "importe": 500000,
+      "cuentaVentas": "1.01.01.05",
       "fechaMovimiento": "2023-02-01",
       "fechaCarga": "2023-02-01"
     }

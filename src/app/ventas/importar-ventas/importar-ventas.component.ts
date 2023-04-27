@@ -177,7 +177,8 @@ export class ImportarVentasComponent implements OnInit {
           this.facturas.push(objetoDeFila);
 
           //agregar acá asientos contables
-                   
+          
+          //asiento del crédito en el DEBE         
           if(parseFloat(celdas[10].innerHTML) >0) {
             const creditosAsientos = {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
@@ -188,6 +189,34 @@ export class ImportarVentasComponent implements OnInit {
               fechaCarga: new Date()
             }
             this.asiento.agregarAsientoContable(creditosAsientos);
+
+          }
+
+          //asiento del IVA Débito Fiscal
+          if(parseFloat(celdas[13].innerHTML) >0) {
+            const ivaAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: this.configContable.configContable.cuentaIvaDF,
+              signoSaldo: -1,
+              importe: celdas[13].innerHTML,
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(ivaAsientos);
+
+          }
+
+          //asiento de la venta (importe neto gravado y total no gravado)
+          if(parseFloat(celdas[12].innerHTML) >0) {
+            const ventaAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: this.configContable.configContable.cuentaVentas,
+              signoSaldo: -1,
+              importe: (celdas[12].innerHTML + celdas[11].innerHTML),
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(ventaAsientos);
 
           }
 
