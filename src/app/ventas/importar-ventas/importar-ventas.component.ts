@@ -185,7 +185,7 @@ export class ImportarVentasComponent implements OnInit {
           if(parseFloat(celdas[10].innerHTML) >0) {
             const creditosAsientos = {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
-              codificacion: this.configContable.configContable.cuentaImportVentas,
+              codificacion: this.configContable.configContable.cuentaCreditoVentas,
               signoSaldo: 1,
               importe: celdas[10].innerHTML,
               fechaMovimiento: celdas[0].innerHTML,
