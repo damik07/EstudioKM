@@ -5,3 +5,6 @@
 select.form-select {
   font-size: x-small;
 }
+#ocultar {
+  display: none;
+}
