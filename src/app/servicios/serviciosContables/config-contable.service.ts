@@ -13,7 +13,6 @@ export class ConfigContableService {
       "cuentaVentas": "1.01.01.05",
       "fechaMovimiento": "2023-02-01",
       "fechaCarga": "2023-02-01"
-    }
-  ;
+    };
 
 }
