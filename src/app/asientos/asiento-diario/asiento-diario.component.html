@@ -24,12 +24,13 @@
 
 <hr>
 
+<h6>DEBE</h6>
 <table class="table table-striped table-hover table-sm" id="asientoDiarioDebe">
   <thead>
     <tr>
-      <th>Columna 1</th>
-      <th>Columna 2</th>
-      <th>Columna 3</th>
+      <th>Código</th>
+      <th>Nombre Cuenta</th>
+      <th>Importe</th>
     </tr>
   </thead>
   <tbody id="tablaBody">
@@ -38,3 +39,21 @@
 </table>
 
 <button (click)="agregarFila()">Agregar Fila</button>
+
+<hr>
+
+<h6>HABER</h6>
+<table class="table table-striped table-hover table-sm" id="asientoDiarioHaber">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nombre Cuenta</th>
+      <th>Importe</th>
+    </tr>
+  </thead>
+  <tbody id="tablaBody1">
+    <!-- Aquí se agregarán las filas dinámicamente -->
+  </tbody>
+</table>
+
+<button (click)="agregarFila1()">Agregar Fila</button>

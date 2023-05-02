@@ -20,7 +20,7 @@ export class AsientoDiarioComponent implements OnInit {
     const tablaBody = document.getElementById('tablaBody');
     const nuevaFila = document.createElement('tr');
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       const nuevaCelda = document.createElement('td');
       const nuevoInput = document.createElement('input');
       nuevoInput.type = 'text';
@@ -75,6 +75,44 @@ export class AsientoDiarioComponent implements OnInit {
 
   mostrarResultadosBusqueda(buscador: HTMLElement, resultados: string[]) {
     // Lógica para mostrar los resultados en el buscador
+  }
+
+
+
+
+
+
+  agregarFila1() {
+    const tablaBody = document.getElementById('tablaBody1');
+    const nuevaFila = document.createElement('tr');
+
+    for (let i = 0; i < 3; i++) {
+      const nuevaCelda = document.createElement('td');
+      const nuevoInput = document.createElement('input');
+      nuevoInput.type = 'text';
+      nuevoInput.id = `input${i + 1}`;
+      nuevoInput.addEventListener('keydown', (event) => {
+        if (event.ctrlKey && event.key === 'm') {
+          const target = event.target as HTMLElement;
+        this.mostrarBuscador(target);
+        }
+      });
+
+      nuevaCelda.appendChild(nuevoInput);
+      nuevaFila.appendChild(nuevaCelda);
+    }
+
+    const celdaBoton = document.createElement('td');
+    const botonEliminar = document.createElement('button');
+    botonEliminar.textContent = 'Eliminar';
+    botonEliminar.addEventListener('click', () => {
+      nuevaFila.remove();
+    });
+
+    celdaBoton.appendChild(botonEliminar);
+    nuevaFila.appendChild(celdaBoton);
+
+    tablaBody.appendChild(nuevaFila);
   }
 
 }
