@@ -217,9 +217,6 @@ export class CargaFacturasCompraComponent implements OnInit {
   }
 
 
-  guardarBD() {
-    console.log("agregar función POST luego de crear el backend, en data está la información, falta agregar la fecha")
-    
-  }
+  
 
 }
