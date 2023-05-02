@@ -26,7 +26,7 @@ export class AsientoDiarioComponent implements OnInit {
       nuevoInput.type = 'text';
       nuevoInput.id = `input${i + 1}`;
       nuevoInput.addEventListener('keydown', (event) => {
-        if (event.ctrlKey && event.key === 'h') {
+        if (event.ctrlKey && event.key === 'm') {
           const target = event.target as HTMLElement;
         this.mostrarBuscador(target);
         }
