@@ -166,10 +166,11 @@ export class CargaFacturasCompraComponent implements OnInit {
             const netoNoGravado = parseFloat(celdas[12].innerHTML);
             const opExentas = parseFloat(celdas[13].innerHTML);
             const total = netoGravado + netoNoGravado + opExentas;
+            const codifCuenta = this.cuenta.find(cuenta => cuenta.nombreCuenta === celdas[16].querySelector('select').value);
 
             const gastoAsientos = {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
-              codificacion: celdas[16].querySelector('select').value,
+              codificacion: codifCuenta.codificacion,
               signoSaldo: 1,
               importe: total,
               fechaMovimiento: celdas[0].innerHTML,
