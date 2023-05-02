@@ -23,12 +23,11 @@ export class ImportarVentasComponent implements OnInit {
   facturasRepet?:any[];
   fechaDeInicio: string;
   asientos?:any[] = [];
-  config:any[];
+  
 
   constructor(private cuentas:CuentasContablesService, private http: HttpClient, private ventas:FacturasVentasService, private configContable:ConfigContableService, private asiento:AsientosContablesService) {
     this.cuenta = cuentas.cuentasContables;
-    this.config = configContable.configContable;
-    console.log(this.config);
+    
     
    }
 
