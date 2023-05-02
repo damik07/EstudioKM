@@ -164,7 +164,7 @@ export class CargaFacturasCompraComponent implements OnInit {
           if(parseFloat(celdas[12].innerHTML) >0 || parseFloat(celdas[11].innerHTML) >0 || parseFloat(celdas[13].innerHTML) >0) {
             const netoGravado = parseFloat(celdas[11].innerHTML);
             const netoNoGravado = parseFloat(celdas[12].innerHTML);
-            const opExentas = parseFloat(celdas[12].innerHTML);
+            const opExentas = parseFloat(celdas[13].innerHTML);
             const total = netoGravado + netoNoGravado + opExentas;
 
             const gastoAsientos = {

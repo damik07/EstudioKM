@@ -187,7 +187,7 @@ export class ImportarVentasComponent implements OnInit {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: this.configContable.configContable.cuentaCreditoVentas,
               signoSaldo: 1,
-              importe: celdas[10].innerHTML,
+              importe: parseFloat(celdas[10].innerHTML),
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
@@ -202,7 +202,7 @@ export class ImportarVentasComponent implements OnInit {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: this.configContable.configContable.cuentaIvaDF,
               signoSaldo: -1,
-              importe: celdas[13].innerHTML,
+              importe: parseFloat(celdas[13].innerHTML),
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
@@ -212,12 +212,17 @@ export class ImportarVentasComponent implements OnInit {
           }
 
           //asiento de la venta (importe neto gravado y total no gravado)
-          if(parseFloat(celdas[12].innerHTML) >0) {
+          if(parseFloat(celdas[12].innerHTML) >0 || parseFloat(celdas[11].innerHTML) >0 || parseFloat(celdas[15].innerHTML) >0) {
+            const netoGravado = parseFloat(celdas[12].innerHTML);
+            const netoNoGravado = parseFloat(celdas[11].innerHTML);
+            const opExentas = parseFloat(celdas[15].innerHTML);
+            const total = netoGravado + netoNoGravado + opExentas;
+
             const ventaAsientos = {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: this.configContable.configContable.cuentaVentas,
               signoSaldo: -1,
-              importe: (celdas[12].innerHTML + celdas[11].innerHTML),
+              importe: total,
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
