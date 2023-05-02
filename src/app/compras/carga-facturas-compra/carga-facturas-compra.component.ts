@@ -136,7 +136,7 @@ export class CargaFacturasCompraComponent implements OnInit {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: this.configContable.configContable.cuentaProveedoresCompras,
               signoSaldo: -1,
-              importe: celdas[15].innerHTML,
+              importe: parseFloat(celdas[15].innerHTML),
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
@@ -151,7 +151,7 @@ export class CargaFacturasCompraComponent implements OnInit {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: this.configContable.configContable.cuentaIvaCF,
               signoSaldo: 1,
-              importe: celdas[14].innerHTML,
+              importe: parseFloat(celdas[14].innerHTML),
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
