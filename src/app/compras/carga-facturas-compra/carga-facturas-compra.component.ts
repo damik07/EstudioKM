@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { AsientosContablesService } from 'src/app/servicios/serviciosContables/asientos-contables.service';
+import { ConfigContableService } from 'src/app/servicios/serviciosContables/config-contable.service';
 import * as XLSX from 'xlsx';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import { FacturasComprasService } from '../../servicios/serviciosContables/facturas-compras.service';
@@ -17,9 +19,10 @@ export class CargaFacturasCompraComponent implements OnInit {
   facturas?:any[] = [];
   facturasRepet?:any[];
   fechaDeInicio: string;
+  asientos?:any[] = [];
   
 
-  constructor(private cuentas:CuentasContablesService, private compras:FacturasComprasService) {
+  constructor(private cuentas:CuentasContablesService, private compras:FacturasComprasService, private configContable:ConfigContableService, private asiento:AsientosContablesService) {
     this.cuenta = cuentas.cuentasContables;
     console.log(this.cuenta);
    }
@@ -122,9 +125,61 @@ export class CargaFacturasCompraComponent implements OnInit {
             fecha_carga: new Date()
 
           };
-
           this.facturas.push(objetoDeFila);
+
+
+          //agregar acá asientos contables
+          
+          //asiento de proveedores en el HABER         
+          if(parseFloat(celdas[15].innerHTML) >0) {
+            const proveedoresAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: this.configContable.configContable.cuentaProveedoresCompras,
+              signoSaldo: -1,
+              importe: celdas[15].innerHTML,
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(proveedoresAsientos);
+            this.asientos.push(proveedoresAsientos);
+
+          }
+
+          //asiento del IVA Crédito Fiscal
+          if(parseFloat(celdas[14].innerHTML) >0) {
+            const ivaAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: this.configContable.configContable.cuentaIvaCF,
+              signoSaldo: 1,
+              importe: celdas[14].innerHTML,
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(ivaAsientos);
+            this.asientos.push(ivaAsientos);
+
+          }
+
+          //asiento del gasto (importe neto gravado y total no gravado)
+          if(parseFloat(celdas[12].innerHTML) >0) {
+            const gastoAsientos = {
+              idTransaccion: 1,   //traer el id el asiento del documento - falta   
+              codificacion: celdas[16].querySelector('select').value,
+              signoSaldo: 1,
+              importe: (celdas[12].innerHTML + celdas[11].innerHTML),
+              fechaMovimiento: celdas[0].innerHTML,
+              fechaCarga: new Date()
+            }
+            this.asiento.agregarAsientoContable(gastoAsientos);
+            this.asientos.push(gastoAsientos)
+
+          }
+
           console.log(this.facturas);
+          console.log(this.asientos);
+
+
+          
         } else {
           this.facturasRepet = [];
           this.facturasRepet.push({
