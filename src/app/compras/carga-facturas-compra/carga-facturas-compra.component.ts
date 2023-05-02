@@ -162,11 +162,15 @@ export class CargaFacturasCompraComponent implements OnInit {
 
           //asiento del gasto (importe neto gravado y total no gravado)
           if(parseFloat(celdas[12].innerHTML) >0 || parseFloat(celdas[11].innerHTML) >0) {
+            const netoGravado = parseFloat(celdas[11].innerHTML);
+            const netoNoGravado = parseFloat(celdas[12].innerHTML);
+            const total = netoGravado + netoNoGravado;
+
             const gastoAsientos = {
               idTransaccion: 1,   //traer el id el asiento del documento - falta   
               codificacion: celdas[16].querySelector('select').value,
               signoSaldo: 1,
-              importe: (celdas[12].innerHTML + celdas[11].innerHTML),
+              importe: total,
               fechaMovimiento: celdas[0].innerHTML,
               fechaCarga: new Date()
             }
