@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
-import { AsientosContablesService } from 'src/app/servicios/serviciosContables/asientos-contables.service';
-import { ConfigContableService } from 'src/app/servicios/serviciosContables/config-contable.service';
+import { AsientosContablesService } from '../../servicios/serviciosContables/asientos-contables.service';
+import { ConfigContableService } from '../../servicios/serviciosContables/config-contable.service';
 import * as XLSX from 'xlsx';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import { FacturasComprasService } from '../../servicios/serviciosContables/facturas-compras.service';
