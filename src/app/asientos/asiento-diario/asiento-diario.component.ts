@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsientoDiarioComponent implements OnInit {
 
+  mesImputacion: string;
+  fechaAsiento: string;
+  observaciones: string;
+
   constructor() { }
 
   ngOnInit() {
