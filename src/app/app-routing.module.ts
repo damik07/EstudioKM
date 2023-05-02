@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AsientoDiarioComponent } from './asientos/asiento-diario/asiento-diario.component';
 import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'verPlanCuentas', component:VerPlanCuentasComponent},
   {path:'impVentas', component:ImportarVentasComponent},
   {path:'verVentas', component:VerVentasComponent},
+  {path:'asientoDiario', component:AsientoDiarioComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]

@@ -62,7 +62,7 @@ export class SidebarService {
       ]
     },
     {
-      title: 'Components',
+      title: 'Sueldos',
       icon: 'far fa-gem',
       active: false,
       type: 'dropdown',
@@ -85,16 +85,18 @@ export class SidebarService {
       ]
     },
     {
-      title: 'Charts',
+      title: 'Asientos Contables',
       icon: 'fa fa-chart-line',
       active: false,
       type: 'dropdown',
       submenus: [
         {
-          title: 'Pie chart',
+          title: 'Asiento Diario',
+          url: 'asientoDiario'
         },
         {
-          title: 'Line chart'
+          title: 'Importar Asiento',
+          url: 'verVentas'
         },
         {
           title: 'Bar chart'
