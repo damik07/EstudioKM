@@ -22,6 +22,7 @@ export class ImportarVentasComponent implements OnInit {
   facturas?:any[] = [];
   facturasRepet?:any[];
   fechaDeInicio: string;
+  asientos?:any[] = [];
 
   constructor(private cuentas:CuentasContablesService, private http: HttpClient, private ventas:FacturasVentasService, private configContable:ConfigContableService, private asiento:AsientosContablesService) {
     this.cuenta = cuentas.cuentasContables;
@@ -189,6 +190,7 @@ export class ImportarVentasComponent implements OnInit {
               fechaCarga: new Date()
             }
             this.asiento.agregarAsientoContable(creditosAsientos);
+            this.asientos.push(creditosAsientos);
 
           }
 
@@ -203,6 +205,7 @@ export class ImportarVentasComponent implements OnInit {
               fechaCarga: new Date()
             }
             this.asiento.agregarAsientoContable(ivaAsientos);
+            this.asientos.push(ivaAsientos);
 
           }
 
@@ -217,10 +220,13 @@ export class ImportarVentasComponent implements OnInit {
               fechaCarga: new Date()
             }
             this.asiento.agregarAsientoContable(ventaAsientos);
+            this.asientos.push(ventaAsientos)
 
           }
 
           console.log(this.facturas);
+          console.log(this.asientos);
+
         } else {
           this.facturasRepet = [];          
           this.facturasRepet.push({
