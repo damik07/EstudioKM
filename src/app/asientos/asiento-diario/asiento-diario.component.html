@@ -40,6 +40,16 @@
 
 <button (click)="agregarFila()">Agregar Fila</button>
 
+<ng-template #datalistTemplate let-opcion>
+<option [value]="opcion"></option>
+</ng-template>
+
+<ng-container *ngFor="let opcion of opcionesDatalist">
+<datalist [id]="'datalist' + opcionesDatalist.indexOf(opcion)">
+  <option *ngFor="let item of opcionesDatalist" [value]="item"></option>
+</datalist>
+</ng-container>
+
 <hr>
 
 <h6>HABER</h6>

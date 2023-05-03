@@ -17,6 +17,7 @@ export class AsientoDiarioComponent implements OnInit {
   fechaAsiento: string;
   observaciones: string;
   rubrosList: any;
+  opcionesDatalist: string[] = ['Opción 1', 'Opción 2', 'Opción 3'];
 
   constructor(private rubrosContablesService:RubrosContablesService) {
     this.rubrosList = rubrosContablesService.rubrosContables.filter(rubros => 
@@ -38,29 +39,9 @@ export class AsientoDiarioComponent implements OnInit {
       nuevoInput.type = 'text';
       nuevoInput.id = `input${i + 1}`;
 
-      if (i === 0) {
-        const datalist = document.createElement('datalist');
-        datalist.id = `datalist${i + 1}`;
-        // Agrega las opciones del datalist (puedes reemplazar estas opciones con tus propios valores)
-        datalist.innerHTML = `
-          <option *ngFor="let list of rubrosList" [value]="list.codificacion">
-          
-        `;
-        nuevoInput.setAttribute('list', datalist.id);
-        nuevaCelda.appendChild(datalist);
-      };
-
-      if (i === 1) {
-        const datalist = document.createElement('datalist');
-        datalist.id = `datalist${i + 1}`;
-        // Agrega las opciones del datalist (puedes reemplazar estas opciones con tus propios valores)
-        datalist.innerHTML = `
-          <option *ngFor="let list of rubrosList" [value]="list.nombreRubro">
-          
-        `;
-        nuevoInput.setAttribute('list', datalist.id);
-        nuevaCelda.appendChild(datalist);
-      };
+      if (i < 2) {
+        nuevoInput.setAttribute('list', `datalist${i + 1}`);
+      }
 
       nuevaCelda.appendChild(nuevoInput);
       nuevaFila.appendChild(nuevaCelda);
