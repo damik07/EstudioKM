@@ -1,4 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
+import * as $ from 'jquery';
+
+
+
 
 
 @Component({
@@ -11,8 +16,13 @@ export class AsientoDiarioComponent implements OnInit {
   mesImputacion: string;
   fechaAsiento: string;
   observaciones: string;
+  rubrosList: any;
 
-  constructor() { }
+  constructor(private rubrosContablesService:RubrosContablesService) {
+    this.rubrosList = rubrosContablesService.rubrosContables.filter(rubros => 
+      rubros.nivel === "3"
+    );
+   }
 
   ngOnInit() {
   }
@@ -27,6 +37,30 @@ export class AsientoDiarioComponent implements OnInit {
       const nuevoInput = document.createElement('input');
       nuevoInput.type = 'text';
       nuevoInput.id = `input${i + 1}`;
+
+      if (i === 0) {
+        const datalist = document.createElement('datalist');
+        datalist.id = `datalist${i + 1}`;
+        // Agrega las opciones del datalist (puedes reemplazar estas opciones con tus propios valores)
+        datalist.innerHTML = `
+          <option *ngFor="let list of rubrosList" [value]="list.codificacion">
+          
+        `;
+        nuevoInput.setAttribute('list', datalist.id);
+        nuevaCelda.appendChild(datalist);
+      };
+
+      if (i === 1) {
+        const datalist = document.createElement('datalist');
+        datalist.id = `datalist${i + 1}`;
+        // Agrega las opciones del datalist (puedes reemplazar estas opciones con tus propios valores)
+        datalist.innerHTML = `
+          <option *ngFor="let list of rubrosList" [value]="list.nombreRubro">
+          
+        `;
+        nuevoInput.setAttribute('list', datalist.id);
+        nuevaCelda.appendChild(datalist);
+      };
 
       nuevaCelda.appendChild(nuevoInput);
       nuevaFila.appendChild(nuevaCelda);
@@ -43,6 +77,14 @@ export class AsientoDiarioComponent implements OnInit {
     nuevaFila.appendChild(celdaBoton);
 
     tablaBody.appendChild(nuevaFila);
+
+    $(document).on('input', '#tablaBody input', function() {
+      const currentInput = $(this);
+      const currentRow = currentInput.closest('tr');
+      const otherInput = currentRow.find('input:not(#' + currentInput.attr('id') + ')');
+    
+      otherInput.val(currentInput.val());
+    });
     
   }
 
