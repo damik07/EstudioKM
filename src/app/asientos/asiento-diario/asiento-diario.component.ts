@@ -23,6 +23,7 @@ export class AsientoDiarioComponent implements OnInit {
     this.rubrosList = rubrosContablesService.rubrosContables.filter(rubros => 
       rubros.nivel === "3"
     );
+    
    }
 
   ngOnInit() {
