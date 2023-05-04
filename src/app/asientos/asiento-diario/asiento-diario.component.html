@@ -44,9 +44,12 @@
 <option [value]="opcion"></option>
 </ng-template>
 
-<ng-container *ngFor="let opcion of opcionesDatalist">
-<datalist [id]="'datalist' + opcionesDatalist.indexOf(opcion)">
-  <option *ngFor="let item of opcionesDatalist" [value]="item"></option>
+<ng-container *ngFor="let opcion of cuentasCodList; let i = index">
+<datalist *ngIf="i === 0" id="datalist">
+  <option *ngFor="let item of cuentasCodList" [value]="item"></option>
+</datalist>
+<datalist *ngIf="i === 1" id="datalist1">
+  <option *ngFor="let item of cuentasNombreList" [value]="item"></option>
 </datalist>
 </ng-container>
 

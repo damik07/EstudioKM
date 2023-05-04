@@ -1,9 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { RubrosContablesService } from '../../servicios/serviciosContables/rubros-contables.service';
 import * as $ from 'jquery';
-
-
-
+import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 
 
 @Component({
@@ -16,13 +13,15 @@ export class AsientoDiarioComponent implements OnInit {
   mesImputacion: string;
   fechaAsiento: string;
   observaciones: string;
-  rubrosList: any;
+  cuentasCodList: any;
+  cuentasNombreList: any;
   opcionesDatalist: string[] = ['Opción 1', 'Opción 2', 'Opción 3'];
 
-  constructor(private rubrosContablesService:RubrosContablesService) {
-    this.rubrosList = rubrosContablesService.rubrosContables.filter(rubros => 
-      rubros.nivel === "3"
-    );
+  constructor(private cuentasContablesService:CuentasContablesService) {
+    this.cuentasCodList = cuentasContablesService.cuentasContables.map(obj => obj['codificacion']);
+    this.cuentasNombreList = cuentasContablesService.cuentasContables.map(obj => obj['nombreCuenta']);
+    
+    
     
    }
 
@@ -40,8 +39,10 @@ export class AsientoDiarioComponent implements OnInit {
       nuevoInput.type = 'text';
       nuevoInput.id = `input${i + 1}`;
 
-      if (i < 2) {
-        nuevoInput.setAttribute('list', `datalist${i + 1}`);
+      if (i === 0) {
+        nuevoInput.setAttribute('list', 'datalist');
+      } else if (i === 1) {
+        nuevoInput.setAttribute('list', 'datalist1');
       }
 
       nuevaCelda.appendChild(nuevoInput);
