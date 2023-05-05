@@ -12,6 +12,8 @@ export class AsientosContablesService {
       "signoSaldo": -1,
       "importe": 500000,
       "fechaMovimiento": "2023-02-01",
+      "fechaImputacion": "2023-02-01",
+      "observaciones": "",
       "fechaCarga": "2023-02-01"
     },
     {
@@ -21,6 +23,8 @@ export class AsientosContablesService {
       "signoSaldo": 1,
       "importe": 500000,
       "fechaMovimiento": "2023-02-01",
+      "fechaImputacion": "2023-02-01",
+      "observaciones": "",
       "fechaCarga": "2023-02-01"
     },
     

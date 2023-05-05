@@ -151,19 +151,45 @@ export class AsientoDiarioComponent implements OnInit {
 
   guardar(){
     if (this.fechaAsiento) {
-      const tabla = document.getElementById('importFactCompras');
+      const tabla = document.getElementById('asientoDiarioDebe');
       const filas = tabla.getElementsByTagName('tr');
       for (let i = 1; i < filas.length; i++) {
         const celdas = filas[i].getElementsByTagName('td');
         const objetoDeFila = {
-            fecha_factura: celdas[0].innerHTML,
-            documento: celdas[1].innerHTML,
+            idTransaccion: 1,
+            codificacion: celdas[0].innerHTML,
+            signoSaldo: 1,
+            importe: parseFloat(celdas[2].innerHTML),
+            fechaMovimiento: this.fechaAsiento,
+            fechaImputacion: this.mesImputacion,
+            observaciones: this.observaciones,
             fecha_carga: new Date()
 
-          };
-          
-          this.asientos.push(objetoDeFila);
-      }
+        };
+
+        this.asientos.push(objetoDeFila);
+      };
+
+      const tabla1 = document.getElementById('asientoDiarioHaber');
+      const filas1 = tabla1.getElementsByTagName('tr');
+      for (let i = 1; i < filas1.length; i++) {
+        const celdas1 = filas1[i].getElementsByTagName('td');
+        const objetoDeFila = {
+            idTransaccion: 1,
+            codificacion: celdas1[0].innerHTML,
+            signoSaldo: -1,
+            importe: parseFloat(celdas1[2].innerHTML),
+            fechaMovimiento: this.fechaAsiento,
+            fechaImputacion: this.mesImputacion,
+            observaciones: this.observaciones,
+            fecha_carga: new Date()
+
+        };
+
+        this.asientos.push(objetoDeFila);
+      };
+
+
     }
   }
 
