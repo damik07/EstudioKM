@@ -192,7 +192,7 @@ export class AsientoDiarioComponent implements OnInit {
 
 
   guardar(){
-    if (this.fechaAsiento) {
+    if (this.fechaAsiento && this.mesImputacion && this.totalDebe === this.totalHaber && this.totalDebe != 0) {
       const tabla = document.getElementById('asientoDiarioDebe');
       const filas = tabla.getElementsByTagName('tr');
       for (let i = 1; i < filas.length; i++) {
@@ -232,7 +232,17 @@ export class AsientoDiarioComponent implements OnInit {
       };
 
 
+    } else if (this.fechaAsiento){
+      alert("No se ha ingresado fecha de asiento")
+    } else if (this.mesImputacion){
+      alert("No se ha ingresado fecha de imputación")
+    } else if (this.totalDebe === this.totalHaber){
+      alert("Existe una diferencia entre el total del valor del DEBE respecto al HABER")
+    } else if (this.totalDebe != 0){
+      alert("No se han ingresado importes a registrar")
     }
-  }
+  } 
+
+  
 
 }
