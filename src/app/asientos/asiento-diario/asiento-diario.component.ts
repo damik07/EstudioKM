@@ -192,8 +192,9 @@ export class AsientoDiarioComponent implements OnInit {
 
 
   guardar(){
-    console.log(this.fechaAsiento);
-    if (parseFloat(this.fechaAsiento) && this.mesImputacion && this.totalDebe === this.totalHaber && this.totalDebe != 0) {
+    const fecha = Date.parse(this.fechaAsiento);
+    console.log (fecha);
+    if (fecha && this.mesImputacion && this.totalDebe === this.totalHaber && this.totalDebe != 0) {
       const tabla = document.getElementById('asientoDiarioDebe');
       const filas = tabla.getElementsByTagName('tr');
       for (let i = 1; i < filas.length; i++) {
