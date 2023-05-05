@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 
 
@@ -16,6 +15,7 @@ export class AsientoDiarioComponent implements OnInit {
   cuentasCodList: any;
   cuentasNombreList: any;
   cuentas:any;
+  asientos:any;
   
 
   constructor(private cuentasContablesService:CuentasContablesService) {
@@ -149,6 +149,22 @@ export class AsientoDiarioComponent implements OnInit {
     tablaBody.appendChild(nuevaFila);
   }
 
-  
+  guardar(){
+    if (this.fechaAsiento) {
+      const tabla = document.getElementById('importFactCompras');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 1; i < filas.length; i++) {
+        const celdas = filas[i].getElementsByTagName('td');
+        const objetoDeFila = {
+            fecha_factura: celdas[0].innerHTML,
+            documento: celdas[1].innerHTML,
+            fecha_carga: new Date()
+
+          };
+          
+          this.asientos.push(objetoDeFila);
+      }
+    }
+  }
 
 }
