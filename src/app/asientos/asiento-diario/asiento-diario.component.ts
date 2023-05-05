@@ -47,30 +47,27 @@ export class AsientoDiarioComponent implements OnInit {
 
 
       if (i === 0 || i === 1) {
-        nuevoInput.setAttribute('list', 'datalist');
         nuevoInput.addEventListener('input', (event) => {
           const inputElement = event.target as HTMLInputElement;
           const valorSeleccionado = inputElement.value;
-          const cuenta = this.cuentas.find((cuenta) => cuenta.codificacion === valorSeleccionado);
-          const codigo = this.cuentas.find((cuenta) => cuenta.nombreCuenta === valorSeleccionado);
-          if (cuenta) {
-            const inputs = nuevaFila.querySelectorAll('input');
-            inputs.forEach((input) => {
-              if (input !== event.target) {
-                input.value = cuenta.nombreCuenta;
-              }
-            });
-          } else if (codigo) {
-            const inputs = nuevaFila.querySelectorAll('input');
-            inputs.forEach((input) => {
-              if (input !== event.target) {
-                input.value = cuenta.codificacion;
-              }
-            });
+    
+          if (i === 0) {
+            const cuenta = this.cuentas.find((cuenta) => cuenta.codificacion === valorSeleccionado);
+            if (cuenta) {
+              const inputSiguiente = nuevaFila.querySelector(`#input${i + 2}`) as HTMLInputElement;
+              inputSiguiente.value = cuenta.nombreCuenta;
+            }
+          } else if (i === 1) {
+            const cuenta = this.cuentas.find((cuenta) => cuenta.nombreCuenta === valorSeleccionado);
+            if (cuenta) {
+              const inputAnterior = nuevaFila.querySelector(`#input${i}`) as HTMLInputElement;
+              inputAnterior.value = cuenta.codificacion;
+            }
           }
         });
       }
 
+      
       
 
       nuevaCelda.appendChild(nuevoInput);
