@@ -86,13 +86,7 @@ export class AsientoDiarioComponent implements OnInit {
 
     tablaBody.appendChild(nuevaFila);
 
-    //$(document).on('input', '#tablaBody input', function() {
-      //const currentInput = $(this);
-      //const currentRow = currentInput.closest('tr');
-      //const otherInput = currentRow.find('input:not(#' + currentInput.attr('id') + ')');
     
-      //otherInput.val(currentInput.val());
-    //});
     
   }
 
@@ -107,11 +101,40 @@ export class AsientoDiarioComponent implements OnInit {
       const nuevoInput = document.createElement('input');
       nuevoInput.type = 'text';
       nuevoInput.id = `input${i + 1}`;
-      
 
+      if (i === 0) {
+        nuevoInput.setAttribute('list', 'datalist');
+      } else if (i === 1) {
+        nuevoInput.setAttribute('list', 'datalist1');
+      }
+
+
+      if (i === 0 || i === 1) {
+        nuevoInput.addEventListener('input', (event) => {
+          const inputElement = event.target as HTMLInputElement;
+          const valorSeleccionado = inputElement.value;
+    
+          if (i === 0) {
+            const cuenta = this.cuentas.find((cuenta) => cuenta.codificacion === valorSeleccionado);
+            if (cuenta) {
+              const inputSiguiente = nuevaFila.querySelector(`#input${i + 2}`) as HTMLInputElement;
+              inputSiguiente.value = cuenta.nombreCuenta;
+            }
+          } else if (i === 1) {
+            const cuenta = this.cuentas.find((cuenta) => cuenta.nombreCuenta === valorSeleccionado);
+            if (cuenta) {
+              const inputAnterior = nuevaFila.querySelector(`#input${i}`) as HTMLInputElement;
+              inputAnterior.value = cuenta.codificacion;
+            }
+          }
+        });
+      }
+
+      
       nuevaCelda.appendChild(nuevoInput);
       nuevaFila.appendChild(nuevaCelda);
     }
+
 
     const celdaBoton = document.createElement('td');
     const botonEliminar = document.createElement('button');
