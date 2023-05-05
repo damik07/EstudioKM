@@ -16,8 +16,8 @@ export class AsientoDiarioComponent implements OnInit {
   cuentasNombreList: any;
   cuentas:any;
   asientos:any;
-  totalDebe:any;
-  totalHaber:any;
+  totalDebe:any = 0
+  totalHaber:any = 0
   
 
   constructor(private cuentasContablesService:CuentasContablesService) {
@@ -137,6 +137,12 @@ export class AsientoDiarioComponent implements OnInit {
         });
       }
 
+      if (i === 2) {
+        nuevoInput.addEventListener('input', () => {
+          this.sumatorias();
+        });
+      }
+
       
       nuevaCelda.appendChild(nuevoInput);
       nuevaFila.appendChild(nuevaCelda);
@@ -178,9 +184,11 @@ export class AsientoDiarioComponent implements OnInit {
       valores1.push(parseFloat(input.value));
     };
 
-    this.totalHaber = valores.reduce((a, b) => a + b, 0);
+    this.totalHaber = valores1.reduce((a, b) => a + b, 0);
        
   }
+
+  
 
 
   guardar(){
