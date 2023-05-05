@@ -71,7 +71,18 @@
 
 <button (click)="agregarFila1()">Agregar Fila</button>
 
-<hr >
+<hr>
+
+<div class="row">
+  <div class="col-2">
+    <label for="debe"> Total Debe</label>
+  </div>
+  <div class="col-3">
+    <input type="text" [value]="totalDebe" readonly>
+  </div>
+</div>
+
+<hr>
 
 <button (click)="guardar()" class="btn btn-primary mb-3">Guardar</button>
 

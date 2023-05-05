@@ -16,6 +16,8 @@ export class AsientoDiarioComponent implements OnInit {
   cuentasNombreList: any;
   cuentas:any;
   asientos:any;
+  totalDebe:any;
+  totalHaber:any;
   
 
   constructor(private cuentasContablesService:CuentasContablesService) {
@@ -67,7 +69,12 @@ export class AsientoDiarioComponent implements OnInit {
         });
       }
 
-      
+      if (i === 2) {
+        nuevoInput.addEventListener('input', () => {
+          this.sumatorias();
+        });
+      }
+
       
 
       nuevaCelda.appendChild(nuevoInput);
@@ -148,6 +155,33 @@ export class AsientoDiarioComponent implements OnInit {
 
     tablaBody.appendChild(nuevaFila);
   }
+
+    
+  sumatorias() {
+    const valores = []
+    const tabla = document.getElementById('asientoDiarioDebe');
+    const filas = tabla.getElementsByTagName('tr');
+    for (let i = 1; i < filas.length; i++) {
+      const celdas = filas[i].getElementsByTagName('td');
+      const input = celdas[2].querySelector('input');
+      valores.push(parseFloat(input.value));
+    };
+
+    this.totalDebe = valores.reduce((a, b) => a + b, 0);
+
+    const valores1 = []
+    const tabla1 = document.getElementById('asientoDiarioHaber');
+    const filas1 = tabla1.getElementsByTagName('tr');
+    for (let i = 1; i < filas1.length; i++) {
+      const celdas = filas1[i].getElementsByTagName('td');
+      const input = celdas[2].querySelector('input');
+      valores1.push(parseFloat(input.value));
+    };
+
+    this.totalHaber = valores.reduce((a, b) => a + b, 0);
+       
+  }
+
 
   guardar(){
     if (this.fechaAsiento) {
