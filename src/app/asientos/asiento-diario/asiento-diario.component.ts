@@ -15,13 +15,13 @@ export class AsientoDiarioComponent implements OnInit {
   observaciones: string;
   cuentasCodList: any;
   cuentasNombreList: any;
-  opcionesDatalist: string[] = ['Opción 1', 'Opción 2', 'Opción 3'];
+  cuentas:any;
+  
 
   constructor(private cuentasContablesService:CuentasContablesService) {
     this.cuentasCodList = cuentasContablesService.cuentasContables.map(obj => obj['codificacion']);
     this.cuentasNombreList = cuentasContablesService.cuentasContables.map(obj => obj['nombreCuenta']);
-    
-    
+    this.cuentas = cuentasContablesService.cuentasContables;
     
    }
 
@@ -45,6 +45,34 @@ export class AsientoDiarioComponent implements OnInit {
         nuevoInput.setAttribute('list', 'datalist1');
       }
 
+
+      if (i === 0 || i === 1) {
+        nuevoInput.setAttribute('list', 'datalist');
+        nuevoInput.addEventListener('input', (event) => {
+          const inputElement = event.target as HTMLInputElement;
+          const valorSeleccionado = inputElement.value;
+          const cuenta = this.cuentas.find((cuenta) => cuenta.codificacion === valorSeleccionado);
+          const codigo = this.cuentas.find((cuenta) => cuenta.nombreCuenta === valorSeleccionado);
+          if (cuenta) {
+            const inputs = nuevaFila.querySelectorAll('input');
+            inputs.forEach((input) => {
+              if (input !== event.target) {
+                input.value = cuenta.nombreCuenta;
+              }
+            });
+          } else if (codigo) {
+            const inputs = nuevaFila.querySelectorAll('input');
+            inputs.forEach((input) => {
+              if (input !== event.target) {
+                input.value = cuenta.codificacion;
+              }
+            });
+          }
+        });
+      }
+
+      
+
       nuevaCelda.appendChild(nuevoInput);
       nuevaFila.appendChild(nuevaCelda);
     }
@@ -61,13 +89,13 @@ export class AsientoDiarioComponent implements OnInit {
 
     tablaBody.appendChild(nuevaFila);
 
-    $(document).on('input', '#tablaBody input', function() {
-      const currentInput = $(this);
-      const currentRow = currentInput.closest('tr');
-      const otherInput = currentRow.find('input:not(#' + currentInput.attr('id') + ')');
+    //$(document).on('input', '#tablaBody input', function() {
+      //const currentInput = $(this);
+      //const currentRow = currentInput.closest('tr');
+      //const otherInput = currentRow.find('input:not(#' + currentInput.attr('id') + ')');
     
-      otherInput.val(currentInput.val());
-    });
+      //otherInput.val(currentInput.val());
+    //});
     
   }
 
