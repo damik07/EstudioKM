@@ -235,13 +235,13 @@ export class AsientoDiarioComponent implements OnInit {
       console.log(this.asientos)
 
 
-    } else if (this.fechaAsiento){
+    } else if (!this.fechaAsiento){
       alert("No se ha ingresado fecha de asiento")
-    } else if (this.mesImputacion){
+    } else if (!this.mesImputacion){
       alert("No se ha ingresado fecha de imputación")
-    } else if (this.totalDebe === this.totalHaber){
+    } else if (this.totalDebe != this.totalHaber){
       alert("Existe una diferencia entre el total del valor del DEBE respecto al HABER")
-    } else if (this.totalDebe != 0){
+    } else if (this.totalDebe === 0){
       alert("No se han ingresado importes a registrar")
     }
   } 
