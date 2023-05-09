@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
+import { parseDate } from 'ngx-bootstrap/chronos/create/local';
 
 @Component({
   selector: 'app-importar-asientos',
@@ -15,9 +16,9 @@ export class ImportarAsientosComponent implements OnInit {
   dataDebe?:any[];
   dataHaber?:any[];
   cuentas?:any[];
-  fechaImputacion: string;
-  fechaAsiento: string;
-  observaciones: string;
+  fechaImputacion: any = '';
+  fechaAsiento: any = '';
+  observaciones: any = '';
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
@@ -87,28 +88,31 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guardar la variables fijas */
       const fAsiento = ws["B2"];
-      fAsiento.v = this.fechaAsiento;
+      this.fechaAsiento = parseDate(fAsiento['v']);
 
       const fImputacion = ws["A2"];
-      fImputacion.v = this.fechaImputacion;
+      this.fechaImputacion = parseDate(fImputacion['v']);
 
       const observ = ws["C2"];
-      observ.v = this.observaciones;
+      this.observaciones = parseFloat(observ['v']);
 
       /* guarda la info */
       this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
       console.log(this.data);
+      console.log(this.fechaAsiento);
+      console.log(this.fechaImputacion);
+      console.log(this.observaciones);
       
     };
     reader.readAsBinaryString(file);
 
-    this.dataDebe = this.data.filter(d => {
-      d.signoSaldo === 1;
-    });
+    //this.dataDebe = this.data.filter(d => {
+     // d.signoSaldo === 1;
+   // });
 
-    this.dataHaber = this.data.filter(d => {
-      d.signoSaldo === -1;
-    });
+    //this.dataHaber = this.data.filter(d => {
+     // d.signoSaldo === -1;
+    //});
 
   }
 
