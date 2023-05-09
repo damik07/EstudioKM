@@ -96,7 +96,7 @@ export class SidebarService {
         },
         {
           title: 'Importar Asiento',
-          url: 'verVentas'
+          url: 'importarAsientos'
         },
         {
           title: 'Bar chart'

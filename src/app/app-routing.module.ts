@@ -20,6 +20,7 @@ const routes: Routes = [
   {path:'impVentas', component:ImportarVentasComponent},
   {path:'verVentas', component:VerVentasComponent},
   {path:'asientoDiario', component:AsientoDiarioComponent},
+  {path:'importarAsientos', component:AsientoDiarioComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]
