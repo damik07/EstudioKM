@@ -98,6 +98,7 @@ export class ImportarAsientosComponent implements OnInit {
       /* guarda la info */
       this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
       console.log(this.fechaAsiento);
+      console.log(fAsiento);
       console.log(this.fechaImputacion);
       console.log(this.observaciones);
 
