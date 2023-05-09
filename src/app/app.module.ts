@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
 import { VerCuentasComponent } from './plan-cuentas/ver-cuentas/ver-cuentas.component';
@@ -41,7 +41,7 @@ import { ImportarAsientosComponent } from './asientos/importar-asientos/importar
     NgxFileDropModule,
     HttpClientModule
   ],
-  providers: [interceptorProvider, { provide: LocationStrategy, useClass: HashLocationStrategy }],
+  providers: [interceptorProvider, { provide: LocationStrategy, useClass: HashLocationStrategy }, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

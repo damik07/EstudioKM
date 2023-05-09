@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-importar-asientos',
@@ -22,7 +23,7 @@ export class ImportarAsientosComponent implements OnInit {
   totalDebe:any = 0
   totalHaber:any = 0
 
-  constructor(private cuenta:CuentasContablesService) {
+  constructor(private cuenta:CuentasContablesService, private datePipe:DatePipe) {
     this.cuentas = cuenta.cuentasContables;
    }
 
