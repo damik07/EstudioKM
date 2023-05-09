@@ -11,6 +11,31 @@
   <hr *ngIf="data">
 
   <div *ngIf="data">
+    <div class="row">
+      <div class="col-3">
+        <label for="mesImputacion" class="col3 col-form-label">Seleccionar mes imputación</label>
+      </div>
+      <div class="col-2">
+        <input class="form-control" type="month" name="mesImputacion" id="mesImputacion" [value]="fechaImputacion">
+      </div>
+    
+      <div class="col-3">
+        <label for="fechaAsiento" class="col3 col-form-label">Seleccionar fecha de Asiento</label>
+      </div>
+      <div class="col-2">
+        <input class="form-control" type="date" name="fechaAsiento" id="fechaAsiento" [value]="fechaAsiento">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <label for="observaciones" class="col3 col-form-label">Observaciones</label>
+      </div>
+      <div class="col-9">
+        <input class="form-control" type="text" name="observaciones" id="observaciones" [value]="observaciones">
+      </div>
+    </div>
+
+
     <h6>DEBE</h6>
     <table class="table table-striped table-hover table-sm" id="asientoDiarioDebe">
       <thead>
@@ -21,8 +46,8 @@
         </tr>
       </thead>
       <tbody id="tablaBody">
-        <tr *ngFor="let item of data">
-          <td>{{ item.fecha }}</td>
+        <tr *ngFor="let item of dataDebe">
+          <td>{{ item.codificacion }}</td>
         </tr>
       </tbody>
     </table>
@@ -37,8 +62,8 @@
         </tr>
       </thead>
       <tbody id="tablaBody1">
-        <tr *ngFor="let item of data">
-          <td>{{ item.fecha }}</td>
+        <tr *ngFor="let item of dataHaber">
+          <td>{{ item.codificacion }}</td>
         </tr>
       </tbody>
     </table>

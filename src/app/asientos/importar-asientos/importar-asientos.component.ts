@@ -12,6 +12,8 @@ export class ImportarAsientosComponent implements OnInit {
 
   public files: NgxFileDropEntry[] = [];
   data?:any[];
+  dataDebe?:any[];
+  dataHaber?:any[];
   cuentas?:any[];
   fechaImputacion: string;
   fechaAsiento: string;
@@ -99,7 +101,18 @@ export class ImportarAsientosComponent implements OnInit {
       
     };
     reader.readAsBinaryString(file);
+
+    this.dataDebe = this.data.filter(d => {
+      d.signoSaldo === 1;
+    });
+
+    this.dataHaber = this.data.filter(d => {
+      d.signoSaldo === -1;
+    });
+
   }
+
+  
 
 
   guardar(){
