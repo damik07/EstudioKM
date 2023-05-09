@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { CuentasContablesService } from 'src/app/servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -11,15 +12,16 @@ export class ImportarAsientosComponent implements OnInit {
 
   public files: NgxFileDropEntry[] = [];
   data?:any[];
-  cuenta?:any[];
-  facturas?:any[] = [];
-  facturasRepet?:any[];
-  fechaDeInicio: string;
+  cuentas?:any[];
+  fechaImputacion: string;
+  fechaAsiento: string;
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
 
-  constructor() { }
+  constructor(private cuenta:CuentasContablesService) {
+    this.cuentas = cuenta.cuentasContables;
+   }
 
   ngOnInit() {
   }
