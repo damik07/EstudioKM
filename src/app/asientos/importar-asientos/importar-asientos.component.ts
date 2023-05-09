@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
-import { parseDate } from 'ngx-bootstrap/chronos/create/local';
 
 @Component({
   selector: 'app-importar-asientos',
@@ -88,13 +87,13 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guardar la variables fijas */
       const fAsiento = ws["B2"];
-      this.fechaAsiento = parseDate(fAsiento['v']);
+      this.fechaAsiento = fAsiento['v'];
 
-      const fImputacion = ws["A2"];
-      this.fechaImputacion = parseDate(fImputacion['v']);
+      const fImputacion = ws["B1"];
+      this.fechaImputacion = fImputacion['v'];
 
-      const observ = ws["C2"];
-      this.observaciones = parseFloat(observ['v']);
+      const observ = ws["B3"];
+      this.observaciones = observ['v'];
 
       /* guarda la info */
       this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
