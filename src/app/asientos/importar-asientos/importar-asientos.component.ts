@@ -16,7 +16,7 @@ export class ImportarAsientosComponent implements OnInit {
   dataHaber?:any[];
   cuentas?:any[];
   fechaImputacion: any = '';
-  fechaAsiento: any = '';
+  fechaAsiento: any;
   observaciones: any = '';
   asientos?:any[] = [];
   totalDebe:any = 0
@@ -87,10 +87,10 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guardar la variables fijas */
       const fAsiento = ws["B2"];
-      this.fechaAsiento = fAsiento['w'];
+      this.fechaAsiento = fAsiento['v'];
 
       const fImputacion = ws["B1"];
-      this.fechaImputacion = fImputacion['w'];
+      this.fechaImputacion = fImputacion['v'];
 
       const observ = ws["B3"];
       this.observaciones = observ['v'];
@@ -116,6 +116,8 @@ export class ImportarAsientosComponent implements OnInit {
 
     
   }
+
+  
 
   
 
