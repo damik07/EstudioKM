@@ -16,6 +16,8 @@ export class ImportarAsientosComponent implements OnInit {
   facturasRepet?:any[];
   fechaDeInicio: string;
   asientos?:any[] = [];
+  totalDebe:any = 0
+  totalHaber:any = 0
 
   constructor() { }
 
@@ -87,8 +89,8 @@ export class ImportarAsientosComponent implements OnInit {
   }
 
 
-  agregarFila1(){
-    
+  guardar(){
+
   }
 
 

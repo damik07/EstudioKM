@@ -21,7 +21,9 @@
         </tr>
       </thead>
       <tbody id="tablaBody">
-        <!-- Aquí se agregarán las filas dinámicamente -->
+        <tr *ngFor="let item of data">
+          <td>{{ item.fecha }}</td>
+        </tr>
       </tbody>
     </table>
 
@@ -35,11 +37,33 @@
         </tr>
       </thead>
       <tbody id="tablaBody1">
-        <!-- Aquí se agregarán las filas dinámicamente -->
+        <tr *ngFor="let item of data">
+          <td>{{ item.fecha }}</td>
+        </tr>
       </tbody>
     </table>
 
-    <button (click)="agregarFila1()">Agregar Fila</button>
+    <hr>
+
+<div class="row">
+  <div class="col-2">
+    <label for="debe"> Total Debe</label>
+  </div>
+  <div class="col-3">
+    <input type="text" [value]="totalDebe" readonly>
+  </div>
+
+  <div class="col-2">
+    <label for="haber"> Total Haber</label>
+  </div>
+  <div class="col-3">
+    <input type="text" [value]="totalHaber" readonly>
+  </div>
+</div>
+
+<hr>
+
+<button (click)="guardar()" class="btn btn-primary mb-3">Guardar</button>
 
   </div>
 </div>
