@@ -97,22 +97,23 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guarda la info */
       this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
-      console.log(this.data);
       console.log(this.fechaAsiento);
       console.log(this.fechaImputacion);
       console.log(this.observaciones);
+
+      this.dataDebe = this.data.filter((d) => 
+      d.signoSaldo === "1"
+      );
+
+      this.dataHaber = this.data.filter((d) => 
+      d.signoSaldo === "-1"
+      );
+
       
     };
     reader.readAsBinaryString(file);
 
-    //this.dataDebe = this.data.filter(d => {
-     // d.signoSaldo === 1;
-   // });
-
-    //this.dataHaber = this.data.filter(d => {
-     // d.signoSaldo === -1;
-    //});
-
+    
   }
 
   
