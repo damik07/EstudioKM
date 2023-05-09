@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
-import { CuentasContablesService } from 'src/app/servicios/serviciosContables/cuentas-contables.service';
+import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -15,6 +15,7 @@ export class ImportarAsientosComponent implements OnInit {
   cuentas?:any[];
   fechaImputacion: string;
   fechaAsiento: string;
+  observaciones: string;
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
@@ -82,8 +83,18 @@ export class ImportarAsientosComponent implements OnInit {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
 
+      /* guardar la variables fijas */
+      const fAsiento = ws["B2"];
+      fAsiento.v = this.fechaAsiento;
+
+      const fImputacion = ws["A2"];
+      fImputacion.v = this.fechaImputacion;
+
+      const observ = ws["C2"];
+      observ.v = this.observaciones;
+
       /* guarda la info */
-      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","documento","p_venta","n_desde","n_hasta","cod_autoriz","doc_emisor","n_emisor","denominacion","tc","moneda","neto_gravado","neto_no_gravado","op_exentas","iva","total"],range: 2, rawNumbers:false }));
+      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
       console.log(this.data);
       
     };
