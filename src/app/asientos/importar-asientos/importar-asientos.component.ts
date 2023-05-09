@@ -87,10 +87,10 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guardar la variables fijas */
       const fAsiento = ws["B2"];
-      this.fechaAsiento = fAsiento['v'];
+      this.fechaAsiento = fAsiento['w'];
 
       const fImputacion = ws["B1"];
-      this.fechaImputacion = fImputacion['v'];
+      this.fechaImputacion = fImputacion['w'];
 
       const observ = ws["B3"];
       this.observaciones = observ['v'];
