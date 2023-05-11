@@ -45,7 +45,7 @@
     <div class="col-2">
       <select class="form-select form-select-sm" type="text" name="cuenta" id="cuenta">
         <option selected>Seleccionar cuenta</option>
-        <option *ngFor="let item of cuenta" [value]="item.nombreCuenta"></option>
+        <option *ngFor="let item of cuenta">{{item.nombreCuenta}}</option>
         
       </select>
     </div>
