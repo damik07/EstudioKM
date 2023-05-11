@@ -136,8 +136,60 @@ export class ImportarAsientosComponent implements OnInit {
 
 
   guardar(){
+    const fecha = Date.parse(this.fechaAsiento);
+    if (fecha && this.fechaImputacion && this.totalDebe === this.totalHaber && this.totalDebe != 0) {
+      const tabla = document.getElementById('asientoDiarioDebe');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 1; i < filas.length; i++) {
+        const celdas = filas[i].getElementsByTagName('td');
+        const objetoDeFila = {
+            idTransaccion: 1,
+            codificacion: celdas[0].innerHTML,
+            signoSaldo: 1,
+            importe: parseFloat(celdas[2].innerHTML),
+            fechaMovimiento: this.fechaAsiento,
+            fechaImputacion: this.fechaImputacion,
+            observaciones: this.observaciones,
+            fecha_carga: new Date()
 
-  }
+        };
+
+        this.asientos.push(objetoDeFila);
+      };
+
+      const tabla1 = document.getElementById('asientoDiarioHaber');
+      const filas1 = tabla1.getElementsByTagName('tr');
+      for (let i = 1; i < filas1.length; i++) {
+        const celdas1 = filas1[i].getElementsByTagName('td');
+        const objetoDeFila = {
+            idTransaccion: 1,
+            codificacion: celdas1[0].innerHTML,
+            signoSaldo: -1,
+            importe: parseFloat(celdas1[2].innerHTML),
+            fechaMovimiento: this.fechaAsiento,
+            fechaImputacion: this.fechaImputacion,
+            observaciones: this.observaciones,
+            fecha_carga: new Date()
+
+        };
+
+        this.asientos.push(objetoDeFila);
+      };
+      console.log(this.asientos)
+
+
+    } else if (!this.fechaAsiento){
+      alert("No se ha ingresado fecha de asiento")
+    } else if (!this.fechaImputacion){
+      alert("No se ha ingresado fecha de imputación")
+    } else if (this.totalDebe != this.totalHaber){
+      alert("Existe una diferencia entre el total del valor del DEBE respecto al HABER")
+    } else if (this.totalDebe === 0){
+      alert("No se han ingresado importes a registrar")
+    }
+  } 
+
+  
 
 
 }
