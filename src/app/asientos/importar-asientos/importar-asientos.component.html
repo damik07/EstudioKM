@@ -16,14 +16,14 @@
         <label for="mesImputacion" class="col3 col-form-label">Seleccionar mes imputación</label>
       </div>
       <div class="col-2">
-        <input class="form-control" type="text" [value]="fechaImputacion">
+        <input class="form-control" type="text" name="fechaImputacion" id="fechaImputacion" [value]="datePipe.transform(fechaImputacion, 'dd/MM/yyyy')">
       </div>
     
       <div class="col-3">
         <label for="fechaAsiento" class="col3 col-form-label">Seleccionar fecha de Asiento</label>
       </div>
       <div class="col-2">
-        <input class="form-control" type="text" [value]="fechaAsiento">
+        <input class="form-control" type="text" name="fechaAsiento" id="fechaAsiento" [value]="datePipe.transform(fechaAsiento, 'dd/MM/yyyy')">
       </div>
     </div>
     <div class="row">

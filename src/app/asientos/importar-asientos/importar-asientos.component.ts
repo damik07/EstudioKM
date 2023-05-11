@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
 @Component({
   selector: 'app-importar-asientos',
@@ -22,9 +23,11 @@ export class ImportarAsientosComponent implements OnInit {
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
+  datePipe: DatePipe = new DatePipe('es');
 
-  constructor(private cuenta:CuentasContablesService, private datePipe:DatePipe) {
+  constructor(private cuenta:CuentasContablesService) {
     this.cuentas = cuenta.cuentasContables;
+    registerLocaleData(localeEs)
    }
 
   ngOnInit() {
@@ -88,10 +91,10 @@ export class ImportarAsientosComponent implements OnInit {
 
       /* guardar la variables fijas */
       const fAsiento = ws["B2"];
-      this.fechaAsiento = fAsiento['v'];
+      this.fechaAsiento = fAsiento['w'];
 
       const fImputacion = ws["B1"];
-      this.fechaImputacion = fImputacion['v'];
+      this.fechaImputacion = fImputacion['w'];
 
       const observ = ws["B3"];
       this.observaciones = observ['v'];
