@@ -118,8 +118,8 @@ export class ImportarAsientosComponent implements OnInit {
       d.signoSaldo === "-1"
       );
 
-      this.totalDebe = this.dataDebe.reduce((a, b) => a + b.importe, 0)
-      this.totalHaber = this.dataHaber.reduce((a, b) => a + b.importe, 0)
+      this.totalDebe = this.dataDebe.reduce((a, b) => a + parseFloat(b.importe), 0)
+      this.totalHaber = this.dataHaber.reduce((a, b) => a + parseFloat(b.importe), 0)
 
       
     };
