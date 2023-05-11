@@ -107,13 +107,14 @@ export class SidebarService {
       ]
     },
     {
-      title: 'Maps',
+      title: 'Bancos',
       icon: 'fa fa-globe',
       active: false,
       type: 'dropdown',
       submenus: [
         {
-          title: 'Google maps',
+          title: 'Conciliación Bancaria',
+          url: 'conciliacionBancaria'
         },
         {
           title: 'Open street map'
