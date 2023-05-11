@@ -64,15 +64,17 @@
   <table class="table table-striped table-hover table-sm" id="asientoDiarioDebe">
     <thead>
       <tr>
-        <th>Código</th>
-        <th>Nombre Cuenta</th>
-        <th>Importe</th>
+        <th>Fecha</th>
+        <th>Concepto</th>
+        <th>Importe 1</th>
+        <th>Importe 2</th>
       </tr>
     </thead>
     <tbody id="tablaBody">
       <tr *ngFor="let item of data">
         <td>{{ item.codificacion }}</td>
         <td>{{ item.descCuenta }}</td>
+        <td>{{ item.importe }}</td>
         <td>{{ item.importe }}</td>
       </tr>
     </tbody>
