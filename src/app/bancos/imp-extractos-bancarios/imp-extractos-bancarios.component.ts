@@ -12,6 +12,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
   public files: NgxFileDropEntry[] = [];
   data?:any[];
+  cuenta?:any[];
   dataDebe?:any[];
   dataHaber?:any[];
   fechaImputacion: any = '';
@@ -21,7 +22,10 @@ export class ImpExtractosBancariosComponent implements OnInit {
   totalDebe:any = 0
   totalHaber:any = 0
 
-  constructor() { }
+  constructor(private cuentas:CuentasContablesService) {
+    this.cuenta = cuentas.cuentasContables;
+    
+  }
 
   ngOnInit() {
   }
@@ -37,7 +41,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
           // Aquí puede acceder al archivo real
 
           // ACÁ HABRIA QUE AGREGAR DIFERENTES IF PARA IDENTIFICAR EL FORMATO DE ARCHIVO A ABRIR Y EL MODELO DE FORMATO SEGÚN EL BANCO PARA PDF
-          
+
 
           console.log(droppedFile.relativePath, file);
           this.obtenerDatosExcel(file);

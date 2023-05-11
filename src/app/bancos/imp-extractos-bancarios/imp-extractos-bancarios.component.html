@@ -1,4 +1,57 @@
 <div class="center">
+  <div class="row">
+    <div class="col-1">
+      <label for="formato" class="col3 col-form-label">Formato</label>
+    </div>
+    <div class="col-2">
+      <select class="form-select form-select-sm" type="text" name="formato" id="formato">
+        <option selected>Seleccionar formato</option>
+        <option value="1">Excel</option>
+        <option value="2">PDF</option>
+      </select>
+    </div>
+  
+    <div class="col-2">
+      <label for="modelo" class="col3 col-form-label">Modelo Banco</label>
+    </div>
+    <div class="col-2">
+      <select class="form-select form-select-sm" type="text" name="modelo" id="modelo">
+        <option selected>Seleccionar Modelo</option>
+        <option value="1">Banco de Entre Ríos (Bersa)</option>
+        <option value="2">Banco Macro</option>
+        <option value="3">Banco Santander Río</option>
+        <option value="4">Banco Galicia</option>
+        <option value="5">Banco Supervielle</option>
+        <option value="6">Banco Nación</option>
+        <option value="7">Banco Credicoop</option>
+        <option value="8">Banco Patagonia</option>
+        <option value="9">Banco Itaú</option>
+        <option value="10">Banco HSBC</option>
+        <option value="11">Banco Ciudad</option>
+        <option value="12">Banco Provincia de Buenos Aires</option>
+        <option value="13">Banco ICBC</option>
+        <option value="14">Banco Comafi</option>
+        <option value="15">Banco Piano</option>
+        <option value="16">Banco de la Provincia de Córdoba</option>
+        <option value="17">Banco San Juan</option>
+        <option value="18">Banco Santa Cruz</option>
+        <option value="19">Banco Santa Fe</option>
+        <option value="20">MercadoPago</option>
+      </select>
+    </div>
+    <div class="col-1">
+      <label for="cuenta" class="col3 col-form-label">Cuenta</label>
+    </div>
+    <div class="col-2">
+      <select class="form-select form-select-sm" type="text" name="cuenta" id="cuenta">
+        <option selected>Seleccionar cuenta</option>
+        <option *ngFor="let item of cuenta" [value]="item.nombreCuenta"></option>
+        
+      </select>
+    </div>
+
+  </div>
+  <hr>
   <ngx-file-drop dropZoneLabel="Suelte archivos aquí" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
     (onFileLeave)="fileLeave($event)">
     <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
@@ -6,4 +59,24 @@
       <button type="button" (click)="openFileSelector()">Buscar Archivo</button>
     </ng-template>
   </ngx-file-drop>
+
+  <hr>
+
+  <table class="table table-striped table-hover table-sm" id="asientoDiarioDebe">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>Nombre Cuenta</th>
+        <th>Importe</th>
+      </tr>
+    </thead>
+    <tbody id="tablaBody">
+      <tr *ngFor="let item of data">
+        <td>{{ item.codificacion }}</td>
+        <td>{{ item.descCuenta }}</td>
+        <td>{{ item.importe }}</td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>
