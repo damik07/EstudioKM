@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AsientoDiarioComponent } from './asientos/asiento-diario/asiento-diario.component';
 import { ImportarAsientosComponent } from './asientos/importar-asientos/importar-asientos.component';
 import { ConciliacionBancariaComponent } from './bancos/conciliacion-bancaria/conciliacion-bancaria.component';
+import { ImpExtractosBancariosComponent } from './bancos/imp-extractos-bancarios/imp-extractos-bancarios.component';
 import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'asientoDiario', component:AsientoDiarioComponent},
   {path:'importarAsientos', component:ImportarAsientosComponent},
   {path:'conciliacionBancaria', component:ConciliacionBancariaComponent},
+  {path:'impExtractos', component:ImpExtractosBancariosComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]

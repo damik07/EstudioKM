@@ -117,7 +117,8 @@ export class SidebarService {
           url: 'conciliacionBancaria'
         },
         {
-          title: 'Open street map'
+          title: 'Importar Extractos Bancarios',
+          url: 'impExtractos'
         }
       ]
     },
