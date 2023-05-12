@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
+import { PDFDocumentProxy } from 'pdfjs-dist';
 
 @Component({
   selector: 'app-imp-extractos-bancarios',
@@ -105,10 +106,121 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
       
       reader.readAsBinaryString(file);
+
+    } else if(this.formato === "2"){
+      const fileReader = new FileReader();
+
+      fileReader.onload = (e: any) => {
+        const typedArray = new Uint8Array(e.target.result);
+        const loadingTask = (window as any).pdfjsLib.getDocument(typedArray);
+
+        loadingTask.promise.then((pdf: PDFDocumentProxy) => {
+          // Obtener la primera página del PDF
+          pdf.getPage(1).then((page) => {
+            const viewport = page.getViewport({ scale: 1 });
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Establecer el tamaño del canvas
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            const renderContext = {
+              canvasContext: context,
+              viewport: viewport,
+            };
+
+            // Renderizar la página en el canvas
+            page.render(renderContext).promise.then(() => {
+              // Leer los datos de la tabla del canvas
+              const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+              const tableData = this.extractTableDataFromImageData(imageData);
+
+              // Utilizar los datos de la tabla como desees
+              console.log(tableData);
+            });
+          });
+        });
+      };
+
+      fileReader.readAsArrayBuffer(file);
+
       
+
+
     }
 
     
+  }
+
+  async extractTableDataFromPDF(file: File): Promise<any[]> {
+    const tableData: any[] = [];
+    const worker = createWorker();
+  
+    await worker.load();
+    await worker.loadLanguage('eng');
+    await worker.initialize('eng');
+    
+    const { data: { text } } = await worker.recognize(file);
+    
+    await worker.terminate();
+  
+    // Procesa el texto extraído para obtener los datos de la tabla
+  
+    // ... Aquí puedes aplicar algoritmos de segmentación y procesamiento para identificar las columnas y filas
+  
+    // Retorna los datos de la tabla en un formato adecuado
+    return tableData;
+  }
+
+  extractTableDataFromImageData(imageData: ImageData): any[] {
+    const tableData: any[] = [];
+    const { width, height, data } = imageData;
+
+    // Supongamos que la tabla tiene 6 columnas y 10 filas
+    const numColumns = 6;
+    const numRows = 10;
+
+    // Calcula el ancho y alto de cada celda en la imagen
+    const cellWidth = Math.floor(width / numColumns);
+    const cellHeight = Math.floor(height / numRows);
+
+    for (let row = 0; row < numRows; row++) {
+      const rowData: any = {};
+
+      for (let col = 0; col < numColumns; col++) {
+        const cellData: any[] = [];
+
+        // Calcula las coordenadas de inicio y fin de cada celda
+        const startX = col * cellWidth;
+        const endX = startX + cellWidth;
+        const startY = row * cellHeight;
+        const endY = startY + cellHeight;
+
+        // Recorre los píxeles de la celda y extrae los datos
+        for (let y = startY; y < endY; y++) {
+          for (let x = startX; x < endX; x++) {
+            const index = (y * width + x) * 4;
+            const r = data[index];
+            const g = data[index + 1];
+            const b = data[index + 2];
+            const value = `rgb(${r}, ${g}, ${b})`;
+
+            // Aquí puedes aplicar lógica adicional según el formato y contenido de la celda
+            cellData.push(value);
+          }
+        }
+
+        // Asigna los datos de la celda a la columna correspondiente en la fila actual
+        rowData[`column${col + 1}`] = cellData;
+      }
+
+      // Agrega la fila completa a los datos de la tabla
+      tableData.push(rowData);
+    }
+
+    return tableData;
+
   }
 
   guardar(){
