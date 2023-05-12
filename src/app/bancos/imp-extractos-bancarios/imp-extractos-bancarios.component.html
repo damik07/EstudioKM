@@ -4,7 +4,7 @@
       <label for="formato" class="col3 col-form-label">Formato</label>
     </div>
     <div class="col-2">
-      <select class="form-select form-select-sm" type="text" name="formato" id="formato">
+      <select class="form-select form-select-sm" type="text" name="formato" id="formato" [(ngModel)]="formato">
         <option selected>Seleccionar formato</option>
         <option value="1">Excel</option>
         <option value="2">PDF</option>
@@ -15,7 +15,7 @@
       <label for="modelo" class="col3 col-form-label">Modelo Banco</label>
     </div>
     <div class="col-2">
-      <select class="form-select form-select-sm" type="text" name="modelo" id="modelo">
+      <select class="form-select form-select-sm" type="text" name="modelo" id="modelo" [(ngModel)]="modelo">
         <option selected>Seleccionar Modelo</option>
         <option value="1">Banco de Entre Ríos (Bersa)</option>
         <option value="2">Banco Macro</option>
@@ -43,7 +43,7 @@
       <label for="cuenta" class="col3 col-form-label">Cuenta</label>
     </div>
     <div class="col-2">
-      <select class="form-select form-select-sm" type="text" name="cuenta" id="cuenta">
+      <select class="form-select form-select-sm" type="text" name="cuenta" id="cuenta" [(ngModel)]="selecCuenta">
         <option selected>Seleccionar cuenta</option>
         <option *ngFor="let item of cuenta">{{item.nombreCuenta}}</option>        
       </select>

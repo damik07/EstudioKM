@@ -15,9 +15,9 @@ export class ImpExtractosBancariosComponent implements OnInit {
   cuenta?:any[];
   dataDebe?:any[];
   dataHaber?:any[];
-  fechaImputacion: any = '';
-  fechaAsiento: any;
-  observaciones: any = '';
+  formato: any;
+  modelo: any;
+  selecCuenta: any;
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
@@ -81,29 +81,31 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
 
   obtenerDatosExcel(file) {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      /* lee el archivo */
-      const bstr = e.target.result;
-      const wb = XLSX.read(bstr, { type: 'binary' });
+    if(this.formato === "1") {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        /* lee el archivo */
+        const bstr = e.target.result;
+        const wb = XLSX.read(bstr, { type: 'binary' });
 
-      /* grava la primera hoja */
-      const wsname = wb.SheetNames[0];
-      const ws = wb.Sheets[wsname];
+        /* grava la primera hoja */
+        const wsname = wb.SheetNames[0];
+        const ws = wb.Sheets[wsname];
 
-      /* guarda la info */
-      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","importe","referencia","descripcion"],range: 1, rawNumbers:false }));
+        /* guarda la info */
+        this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","importe","referencia","descripcion"],range: 1, rawNumbers:false }));
+        
+              
+        console.log(this.data);
+
+        
+
+        
+      };
+
       
-            
-      console.log(this.data);
-
-      
-
-      
-    };
-
-    
-    reader.readAsBinaryString(file);
+      reader.readAsBinaryString(file);
+    }
 
     
   }
