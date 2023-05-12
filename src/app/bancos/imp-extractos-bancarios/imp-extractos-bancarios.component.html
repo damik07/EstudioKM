@@ -61,23 +61,30 @@
 
   <hr>
 
-  <table class="table table-striped table-hover table-sm" id="asientoDiarioDebe">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Descripción</th>
-        <th>Referencia</th>
-        <th>Importe</th>
-      </tr>
-    </thead>
-    <tbody id="tablaBody">
-      <tr *ngFor="let item of data">
-        <td>{{ item.fecha }}</td>
-        <td>{{ item.descripcion }}</td>
-        <td>{{ item.referencia }}</td>
-        <td>{{ item.importe }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf="data">
+
+    <table class="table table-striped table-hover table-sm" id="movBancarios">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Descripción</th>
+          <th>Referencia</th>
+          <th>Importe</th>
+        </tr>
+      </thead>
+      <tbody id="tablaBody">
+        <tr *ngFor="let item of data">
+          <td>{{ item.fecha }}</td>
+          <td>{{ item.descripcion }}</td>
+          <td>{{ item.referencia }}</td>
+          <td>{{ item.importe }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <button (click)="guardar()" class="btn btn-primary mb-3">Guardar</button>
+  </div>
 
 </div>

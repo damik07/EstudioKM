@@ -110,4 +110,12 @@ export class ImpExtractosBancariosComponent implements OnInit {
     
   }
 
+  guardar(){
+    
+  }
+
+
+
+
+
 }
