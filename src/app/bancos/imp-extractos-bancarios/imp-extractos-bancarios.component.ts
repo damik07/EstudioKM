@@ -105,13 +105,14 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
       
       reader.readAsBinaryString(file);
+      
     }
 
     
   }
 
   guardar(){
-    
+
   }
 
 
