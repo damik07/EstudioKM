@@ -3,7 +3,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import { PDFDocumentProxy } from 'pdfjs-dist';
-import { createWorker } from 'tesseract.js';
+import { createWorker, createScheduler, Worker } from 'tesseract.js';
 
 @Component({
   selector: 'app-imp-extractos-bancarios',
@@ -154,25 +154,31 @@ export class ImpExtractosBancariosComponent implements OnInit {
     
   }
 
-  async extractTableDataFromPDF(file: File): Promise<any[]> {
-    const tableData: any[] = [];
-    const worker = createWorker();
   
-    await worker.load();
-    await worker.loadLanguage('eng');
-    await worker.initialize('eng');
+  //async extractTableDataFromPDF(file: File): Promise<any[]> {
+    //const worker: Worker = createWorker();
+    //const scheduler = createScheduler();
+  
+    //await worker.load();
+   // await worker.loadLanguage('eng');
+   // await worker.initialize('eng');
+  
+    //await scheduler.addWorker(worker);
+  
+    //const { data: { text } } = await scheduler.addJob('recognize', file);
     
-    const { data: { text } } = await worker.recognize(file);
-    
-    await worker.terminate();
+    //await scheduler.terminate();
   
     // Procesa el texto extraído para obtener los datos de la tabla
   
     // ... Aquí puedes aplicar algoritmos de segmentación y procesamiento para identificar las columnas y filas
   
     // Retorna los datos de la tabla en un formato adecuado
-    return tableData;
-  }
+    //return tableData;
+  //}
+
+
+
 
   extractTableDataFromImageData(imageData: ImageData): any[] {
     const tableData: any[] = [];
