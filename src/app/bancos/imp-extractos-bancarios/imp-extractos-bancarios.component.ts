@@ -24,7 +24,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
-    
+
   }
 
   ngOnInit() {
@@ -92,7 +92,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
       const ws = wb.Sheets[wsname];
 
       /* guarda la info */
-      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["codificacion","signoSaldo","importe"],range: 4, rawNumbers:false }));
+      this.data = <any>(XLSX.utils.sheet_to_json(ws,{ header: ["fecha","importe","referencia","descripcion"],range: 1, rawNumbers:false }));
       
             
       console.log(this.data);

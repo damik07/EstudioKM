@@ -65,16 +65,16 @@
     <thead>
       <tr>
         <th>Fecha</th>
-        <th>Concepto</th>
-        <th>Importe 1</th>
-        <th>Importe 2</th>
+        <th>Descripción</th>
+        <th>Referencia</th>
+        <th>Importe</th>
       </tr>
     </thead>
     <tbody id="tablaBody">
       <tr *ngFor="let item of data">
-        <td>{{ item.codificacion }}</td>
-        <td>{{ item.descCuenta }}</td>
-        <td>{{ item.importe }}</td>
+        <td>{{ item.fecha }}</td>
+        <td>{{ item.descripcion }}</td>
+        <td>{{ item.referencia }}</td>
         <td>{{ item.importe }}</td>
       </tr>
     </tbody>
