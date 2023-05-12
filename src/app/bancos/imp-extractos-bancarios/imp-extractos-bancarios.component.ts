@@ -3,6 +3,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import { PDFDocumentProxy } from 'pdfjs-dist';
+import { createWorker } from 'tesseract.js';
 
 @Component({
   selector: 'app-imp-extractos-bancarios',

@@ -30,6 +30,7 @@
     "pdfjs-dist": "^3.6.172",
     "perfect-scrollbar": "^1.5.5",
     "rxjs": "^7.8.0",
+    "tesseract.js": "^4.0.5",
     "tslib": "^2.5.0",
     "xlsx": "^0.18.5",
     "zone.js": "^0.12.0"
