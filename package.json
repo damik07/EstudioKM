@@ -27,7 +27,7 @@
     "jquery": "^3.6.4",
     "ngx-bootstrap": "^10.3.0",
     "ngx-file-drop": "^15.0.0",
-    "pdfjs-dist": "^2.16.105",
+    "pdfjs-dist": "^3.6.172",
     "perfect-scrollbar": "^1.5.5",
     "rxjs": "^7.8.0",
     "tesseract.js": "^4.0.5",
