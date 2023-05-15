@@ -2,8 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
-import { PDFDocumentProxy } from 'pdfjs-dist';
-import { createWorker, createScheduler, Worker } from 'tesseract.js';
+import * as pdfjsLib from 'pdfjs-dist';
+
+interface Movimiento {
+  fecha: string;
+  descripción: string;
+  monto: number;
+}
 
 @Component({
   selector: 'app-imp-extractos-bancarios',
@@ -23,6 +28,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
+  extractedText: any;
 
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
@@ -30,6 +36,10 @@ export class ImpExtractosBancariosComponent implements OnInit {
   }
 
   ngOnInit() {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.js'; // Ruta al archivo pdf.worker.js
+
+    // También puedes cargar el archivo worker desde una URL externa
+    // pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
   }
 
 
@@ -109,73 +119,60 @@ export class ImpExtractosBancariosComponent implements OnInit {
       reader.readAsBinaryString(file);
 
     } else if(this.formato === "2"){
-      const fileReader = new FileReader();
+      //const pdfUrl = 'ruta/al/archivo.pdf'; cambié pdfUrl por file en la siguiente linea
 
-      fileReader.onload = (e: any) => {
-        const typedArray = new Uint8Array(e.target.result);
-        const loadingTask = (window as any).pdfjsLib.getDocument(typedArray);
+      pdfjsLib.getDocument(file).promise.then((pdf) => {
+        const totalPages = pdf.numPages;
+        const textPromises = [];
 
-        loadingTask.promise.then((pdf: PDFDocumentProxy) => {
-          // Obtener la primera página del PDF
-          pdf.getPage(1).then((page) => {
-            const viewport = page.getViewport({ scale: 1 });
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
+        for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+          textPromises.push(this.extractPageText(pdf, pageNumber));
+        }
 
-            // Establecer el tamaño del canvas
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            const renderContext = {
-              canvasContext: context,
-              viewport: viewport,
-            };
-
-            // Renderizar la página en el canvas
-            page.render(renderContext).promise.then(() => {
-              // Leer los datos de la tabla del canvas
-              const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-              const tableData = this.extractTableDataFromImageData(imageData);
-
-              // Utilizar los datos de la tabla como desees
-              console.log(tableData);
-            });
-          });
+        Promise.all(textPromises).then((texts) => {
+          this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
         });
-      };
-
-      fileReader.readAsArrayBuffer(file);
-
-      
-
-
+      });
     }
 
     
   }
 
   
-  //async extractTableDataFromPDF(file: File): Promise<any[]> {
-    //const worker: Worker = createWorker();
-    //const scheduler = createScheduler();
+  extractPageText(pdf: any, pageNumber: number): Promise<Movimiento[]> {
+    return new Promise<Movimiento[]>((resolve, reject) => {
+      pdf.getPage(pageNumber).then((page) => {
+        page.getTextContent().then((textContent) => {
+          const pageText = textContent.items.map((item) => item.str).join(' ');
   
-    //await worker.load();
-   // await worker.loadLanguage('eng');
-   // await worker.initialize('eng');
+          // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
+          const regex = /(\d{2}\/\d{2}\/\d{4})\s+(.+?)\s+([\d,]+(?:\.\d{1,2})?)/g;
+          const matches = pageText.matchAll(regex);
   
-    //await scheduler.addWorker(worker);
+          const movimientos: Movimiento[] = [];
   
-    //const { data: { text } } = await scheduler.addJob('recognize', file);
-    
-    //await scheduler.terminate();
+          for (const match of matches) {
+            const fecha = match[1];
+            const descripción = match[2];
+            const monto = parseFloat(match[3].replace(',', '.'));
   
-    // Procesa el texto extraído para obtener los datos de la tabla
+            const movimiento: Movimiento = {
+              fecha,
+              descripción,
+              monto
+            };
   
-    // ... Aquí puedes aplicar algoritmos de segmentación y procesamiento para identificar las columnas y filas
+            movimientos.push(movimiento);
+          }
   
-    // Retorna los datos de la tabla en un formato adecuado
-    //return tableData;
-  //}
+          resolve(movimientos);
+        });
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  }
+  
 
 
 
