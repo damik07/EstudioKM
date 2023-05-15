@@ -39,7 +39,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.js'; // Ruta al archivo pdf.worker.js
 
     // También puedes cargar el archivo worker desde una URL externa
-    //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.8.335/pdf.worker.min.js';
+    //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js';
   }
 
 
