@@ -3,14 +3,10 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import * as pdfjsLib from 'pdfjs-dist';
-import * as pdf2json from 'pdf2json';
 
 
-interface Movimiento {
-  fecha: string;
-  descripción: string;
-  monto: number;
-}
+
+
 
 @Component({
   selector: 'app-imp-extractos-bancarios',
@@ -38,7 +34,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
   }
 
   ngOnInit() {
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.js'; // Ruta al archivo pdf.worker.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/pdf.worker.js'; // Ruta al archivo pdf.worker.js
 
     // También puedes cargar el archivo worker desde una URL externa
     //pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js';
@@ -120,108 +116,60 @@ export class ImpExtractosBancariosComponent implements OnInit {
       
         reader.readAsBinaryString(file);
 
-      } else if(this.formato === "2"){
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          /* lee el archivo */
-          const arrayBuffer = e.target.result;
-          const uint8Array = new Uint8Array(arrayBuffer);
-
-          const pdfParser = new pdf2json();
-          pdfParser.on('pdfParser_dataError', (error) => {
-            console.error(error);
+      } else if (this.formato === "2") {
+        const pdfUrl = URL.createObjectURL(file);
+    
+        pdfjsLib.getDocument(pdfUrl).promise.then((pdf) => {
+          const totalPages = pdf.numPages;
+          const textPromises = [];
+    
+          for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+            textPromises.push(this.extractPageText(pdf, pageNumber));
+          }
+    
+          Promise.all(textPromises).then((texts) => {
+            this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
           });
-          pdfParser.on('pdfParser_dataReady', (pdfData) => {
-            const pages = pdfData.formImage.Pages;
-            const textPromises = [];
-
-            for (let i = 0; i < pages.length; i++) {
-              textPromises.push(this.extractPageText(pages[i]));
+        });
+      }
+    }
+    
+    extractPageText(pdf, pageNumber) {
+      return new Promise((resolve, reject) => {
+        pdf.getPage(pageNumber).then((page) => {
+          page.getTextContent().then((textContent) => {
+            const pageText = textContent.items.map((item) => item.str).join(' ');
+    
+            // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
+            const regex = /(\d{2}\/\d{2}\/\d{4})\s+(.+?)\s+([\d,]+(?:\.\d{1,2})?)/g;
+            const matches = pageText.matchAll(regex);
+    
+            const movimientos = [];
+    
+            for (const match of matches) {
+              const fecha = match[1];
+              const descripción = match[2];
+              const monto = parseFloat(match[3].replace(',', '.'));
+    
+              const movimiento = {
+                fecha,
+                descripción,
+                monto
+              };
+    
+              movimientos.push(movimiento);
             }
-
-            Promise.all(textPromises).then((texts) => {
-              this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
-            });
+    
+            resolve(movimientos);
           });
-
-          pdfParser.parseBuffer(uint8Array);
-        };
-
-        reader.readAsArrayBuffer(file);
+        }).catch((error) => {
+          reject(error);
+        });
+      });
     }
 
-    
-  }
-
-
-  extractPageText(page) {
-    return new Promise((resolve) => {
-      const pageText = page.Texts.map((text) => {
-        return decodeURIComponent(text.R[0].T);
-      }).join(' ');
   
-      // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
-      const regex = /(\d{2}\/\d{2}\/\d{4})\s+(.+?)\s+([\d,]+(?:\.\d{1,2})?)/g;
-      const matches = pageText.matchAll(regex);
   
-      const movimientos = [];
-  
-      for (const match of matches) {
-        const fecha = match[1];
-        const descripción = match[2];
-        const monto = parseFloat(match[3].replace(',', '.'));
-  
-        const movimiento = {
-          fecha,
-          descripción,
-          monto
-        };
-  
-        movimientos.push(movimiento);
-      }
-  
-      resolve(movimientos);
-    });
-  }
-
-  
-  extractPageText2(pdf: any, pageNumber: number): Promise<Movimiento[]> {
-    return new Promise<Movimiento[]>((resolve, reject) => {
-      pdf.getPage(pageNumber).then((page) => {
-        page.getTextContent().then((textContent) => {
-          const pageText = textContent.items.map((item) => item.str).join(' ');
-  
-          // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
-          const regex = /(\d{2}\/\d{2}\/\d{4})\s+(.+?)\s+([\d,]+(?:\.\d{1,2})?)/g;
-          const matches = pageText.matchAll(regex);
-  
-          const movimientos: Movimiento[] = [];
-  
-          for (const match of matches) {
-            const fecha = match[1];
-            const descripción = match[2];
-            const monto = parseFloat(match[3].replace(',', '.'));
-  
-            const movimiento: Movimiento = {
-              fecha,
-              descripción,
-              monto
-            };
-  
-            movimientos.push(movimiento);
-          }
-  
-          resolve(movimientos);
-        });
-      }).catch((error) => {
-        reject(error);
-      });
-    });
-  }
-  
-
-
-
 
   extractTableDataFromImageData(imageData: ImageData): any[] {
     const tableData: any[] = [];
