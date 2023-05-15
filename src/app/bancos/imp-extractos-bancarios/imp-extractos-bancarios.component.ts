@@ -119,9 +119,9 @@ export class ImpExtractosBancariosComponent implements OnInit {
       reader.readAsBinaryString(file);
 
     } else if(this.formato === "2"){
-      //const pdfUrl = 'ruta/al/archivo.pdf'; cambié pdfUrl por file en la siguiente linea
+      const pdfUrl = URL.createObjectURL(file);
 
-      pdfjsLib.getDocument(file).promise.then((pdf) => {
+      pdfjsLib.getDocument(pdfUrl).promise.then((pdf) => {
         const totalPages = pdf.numPages;
         const textPromises = [];
 
