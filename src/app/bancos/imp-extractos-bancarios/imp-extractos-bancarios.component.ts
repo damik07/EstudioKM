@@ -3,7 +3,6 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import * as pdfjsLib from 'pdfjs-dist';
-import { FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 
 
 @Component({
@@ -140,6 +139,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
               this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
             });
           });
+
+          console.log(this.extractedText)
         };
 
         reader.readAsArrayBuffer(file);
