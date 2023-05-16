@@ -124,7 +124,10 @@ export class ImpExtractosBancariosComponent implements OnInit {
         reader.readAsBinaryString(file);
 
       } else if (this.formato === "2") {
-        console.log(this.uploader.queue[0]);
+        const algo = this.uploader.addToQueue([file]);
+        console.log(algo);
+        console.log(this.uploader.queue.length);
+  
         if (this.uploader.queue.length > 0) {
           const fileItem = this.uploader.queue[0];
           
