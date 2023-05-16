@@ -13,7 +13,7 @@ import { FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 })
 export class ImpExtractosBancariosComponent implements OnInit {
 
-  public uploader: FileUploader;
+  
   public files: NgxFileDropEntry[] = [];
   data?:any[];
   cuenta?:any[];
@@ -30,11 +30,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
 
-    this.uploader = new FileUploader({
-      url: 'https://estudiokym.stackblitz.io/',
-      allowedMimeType: ['application/pdf'],
-      autoUpload: false
-    });
+    
 
   }
 
@@ -124,47 +120,35 @@ export class ImpExtractosBancariosComponent implements OnInit {
         reader.readAsBinaryString(file);
 
       } else if (this.formato === "2") {
-        this.uploader.addToQueue([file]);
 
-        if (this.uploader.queue.length > 0) {
-          const fileItem = this.uploader.queue[0];
-          console.log(fileItem);
-          fileItem.onSuccess = (response: string, status: number, headers: ParsedResponseHeaders) => {
-            const fileReader = new FileReader();
-            fileReader.onload = (e: any) => {
-              const arrayBuffer = e.target.result;
-              const pdfData = new Uint8Array(arrayBuffer);
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          /* lee el archivo */
+          const arrayBuffer = e.target.result;
+          const pdfData = new Uint8Array(arrayBuffer);
 
-              /* lee el archivo PDF */
-              pdfjsLib.getDocument({ data: pdfData }).promise.then((pdf) => {
-                const totalPages = pdf.numPages;
-                const textPromises = [];
+          /* lee el archivo PDF */
+          pdfjsLib.getDocument({ data: pdfData }).promise.then((pdf) => {
+            const totalPages = pdf.numPages;
+            const textPromises = [];
 
-                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-                  textPromises.push(this.extractPageText(pdf, pageNumber));
-                }
+            for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+              textPromises.push(this.extractPageText(pdf, pageNumber));
+            }
 
-                Promise.all(textPromises).then((texts) => {
-                  this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
-                  console.log(this.extractedText); // Verificar el texto extraído
-                });
-              });
-            };
+            Promise.all(textPromises).then((texts) => {
+              this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
+            });
+          });
+        };
 
-            fileReader.readAsArrayBuffer(fileItem._file);
-          };
-
-          fileItem.onError = (response: string, status: number, headers: ParsedResponseHeaders) => {
-            console.error("Error al cargar el archivo.");
-          };
-
-          fileItem.upload();
-        } else {
-          // Manejar el caso cuando no se ha agregado ningún archivo a la cola de carga
-          console.error("No se ha seleccionado ningún archivo.");
-        }
-
+        reader.readAsArrayBuffer(file);
       }
+              
+          
+        
+
+      
     }
     
     extractPageText(pdf, pageNumber) {
