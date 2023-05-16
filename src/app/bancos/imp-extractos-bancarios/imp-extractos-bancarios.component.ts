@@ -24,19 +24,19 @@ export class ImpExtractosBancariosComponent implements OnInit {
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
-  extractedText: any;
+  extractedText: any[];
 
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
 
-    
+  
 
   }
 
   ngOnInit() {
     //pdfjsLib.GlobalWorkerOptions.workerSrc = 'pdf.worker.js'; // Ruta al archivo pdf.worker.js
     //pdfjsLib.GlobalWorkerOptions.workerSrc = '/#/assets/pdf.worker.js'; // Ruta al archivo pdf.worker.js
-
+    
     
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.worker.min.js';
   }
@@ -136,11 +136,12 @@ export class ImpExtractosBancariosComponent implements OnInit {
             }
 
             Promise.all(textPromises).then((texts) => {
-              this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
+              this.extractedText = [].concat(...texts); // Unir el texto de todas las páginas
             });
+            console.log(this.extractedText);
           });
 
-          console.log(this.extractedText)
+          
         };
 
         reader.readAsArrayBuffer(file);
@@ -157,11 +158,11 @@ export class ImpExtractosBancariosComponent implements OnInit {
         pdf.getPage(pageNumber).then((page) => {
           page.getTextContent().then((textContent) => {
             const pageText = textContent.items.map((item) => item.str).join(' ');
-    
+            console.log(pageText);
             // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
-            const regex = /(\d{2}\/\d{2}\/\d{4})\s+(.+?)\s+([\d,]+(?:\.\d{1,2})?)/g;
-            const matches = pageText.matchAll(regex);
-    
+            const regex = /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+)\s+([\d.,]+)/g;
+            const matches = Array.from(pageText.matchAll(regex));
+            //console.log(matches);
             const movimientos = [];
     
             for (const match of matches) {
@@ -176,9 +177,11 @@ export class ImpExtractosBancariosComponent implements OnInit {
               };
     
               movimientos.push(movimiento);
+             
             }
     
             resolve(movimientos);
+            console.log(movimientos);
           });
         }).catch((error) => {
           reject(error);
