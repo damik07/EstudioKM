@@ -3,7 +3,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import * as pdfjsLib from 'pdfjs-dist';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader, ParsedResponseHeaders } from 'ng2-file-upload';
 
 
 @Component({
@@ -124,40 +124,46 @@ export class ImpExtractosBancariosComponent implements OnInit {
         reader.readAsBinaryString(file);
 
       } else if (this.formato === "2") {
-        const algo = this.uploader.addToQueue([file]);
-        console.log(algo);
-        console.log(this.uploader.queue.length);
-  
+        this.uploader.addToQueue([file]);
+
         if (this.uploader.queue.length > 0) {
           const fileItem = this.uploader.queue[0];
-          
-          const file = fileItem._file;
-          const fileReader = new FileReader();
-          fileReader.onload = (e: any) => {
-            const arrayBuffer = e.target.result;
-            const pdfData = new Uint8Array(arrayBuffer);
-      
-            /* lee el archivo PDF */
-            pdfjsLib.getDocument({ data: pdfData }).promise.then((pdf) => {
-              const totalPages = pdf.numPages;
-              const textPromises = [];
-      
-              for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-                textPromises.push(this.extractPageText(pdf, pageNumber));
-              }
-      
-              Promise.all(textPromises).then((texts) => {
-                this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
+          console.log(fileItem);
+          fileItem.onSuccess = (response: string, status: number, headers: ParsedResponseHeaders) => {
+            const fileReader = new FileReader();
+            fileReader.onload = (e: any) => {
+              const arrayBuffer = e.target.result;
+              const pdfData = new Uint8Array(arrayBuffer);
+
+              /* lee el archivo PDF */
+              pdfjsLib.getDocument({ data: pdfData }).promise.then((pdf) => {
+                const totalPages = pdf.numPages;
+                const textPromises = [];
+
+                for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                  textPromises.push(this.extractPageText(pdf, pageNumber));
+                }
+
+                Promise.all(textPromises).then((texts) => {
+                  this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
+                  console.log(this.extractedText); // Verificar el texto extraído
+                });
               });
-            });
+            };
+
+            fileReader.readAsArrayBuffer(fileItem._file);
           };
-      
-          fileReader.readAsArrayBuffer(file);
-        }
-        else {
+
+          fileItem.onError = (response: string, status: number, headers: ParsedResponseHeaders) => {
+            console.error("Error al cargar el archivo.");
+          };
+
+          fileItem.upload();
+        } else {
           // Manejar el caso cuando no se ha agregado ningún archivo a la cola de carga
           console.error("No se ha seleccionado ningún archivo.");
         }
+
       }
     }
     
