@@ -25,6 +25,7 @@
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
     "jquery": "^3.6.4",
+    "ng2-file-upload": "^4.0.0",
     "ngx-bootstrap": "^10.3.0",
     "ngx-file-drop": "^15.0.0",
     "pdf2json": "^3.0.3",

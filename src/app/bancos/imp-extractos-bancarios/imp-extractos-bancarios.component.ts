@@ -3,9 +3,7 @@ import { NgxFileDropEntry } from 'ngx-file-drop';
 import { CuentasContablesService } from '../../servicios/serviciosContables/cuentas-contables.service';
 import * as XLSX from 'xlsx';
 import * as pdfjsLib from 'pdfjs-dist';
-
-
-
+import { FileUploader } from 'ng2-file-upload';
 
 
 @Component({
@@ -15,6 +13,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 })
 export class ImpExtractosBancariosComponent implements OnInit {
 
+  public uploader: FileUploader;
   public files: NgxFileDropEntry[] = [];
   data?:any[];
   cuenta?:any[];
@@ -30,6 +29,12 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
+
+    this.uploader = new FileUploader({
+      url: 'https://estudiokym.stackblitz.io/',
+      allowedMimeType: ['application/pdf'],
+      autoUpload: false
+    });
 
   }
 
@@ -118,20 +123,35 @@ export class ImpExtractosBancariosComponent implements OnInit {
         reader.readAsBinaryString(file);
 
       } else if (this.formato === "2") {
-        const pdfUrl = URL.createObjectURL(file);
-    
-        pdfjsLib.getDocument(pdfUrl).promise.then((pdf) => {
-          const totalPages = pdf.numPages;
-          const textPromises = [];
-    
-          for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
-            textPromises.push(this.extractPageText(pdf, pageNumber));
-          }
-    
-          Promise.all(textPromises).then((texts) => {
-            this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
-          });
-        });
+        if (this.uploader.queue.length > 0) {
+          const fileItem = this.uploader.queue[0];
+          const file = fileItem._file;
+          const fileReader = new FileReader();
+          fileReader.onload = (e: any) => {
+            const arrayBuffer = e.target.result;
+            const pdfData = new Uint8Array(arrayBuffer);
+      
+            /* lee el archivo PDF */
+            pdfjsLib.getDocument({ data: pdfData }).promise.then((pdf) => {
+              const totalPages = pdf.numPages;
+              const textPromises = [];
+      
+              for (let pageNumber = 1; pageNumber <= totalPages; pageNumber++) {
+                textPromises.push(this.extractPageText(pdf, pageNumber));
+              }
+      
+              Promise.all(textPromises).then((texts) => {
+                this.extractedText = texts.join('\n\n'); // Unir el texto de todas las páginas
+              });
+            });
+          };
+      
+          fileReader.readAsArrayBuffer(file);
+        }
+        else {
+          // Manejar el caso cuando no se ha agregado ningún archivo a la cola de carga
+          console.error("No se ha seleccionado ningún archivo.");
+        }
       }
     }
     
