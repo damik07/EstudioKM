@@ -83,6 +83,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
         // Era un directorio (se agregan directorios vacíos, de lo contrario solo archivos)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
         console.log(droppedFile.relativePath, fileEntry);
+        console.log('Archivo no agregado a la cola de carga');
       }
     }
   }
@@ -123,8 +124,10 @@ export class ImpExtractosBancariosComponent implements OnInit {
         reader.readAsBinaryString(file);
 
       } else if (this.formato === "2") {
+        console.log(this.uploader.queue[0]);
         if (this.uploader.queue.length > 0) {
           const fileItem = this.uploader.queue[0];
+          
           const file = fileItem._file;
           const fileReader = new FileReader();
           fileReader.onload = (e: any) => {
