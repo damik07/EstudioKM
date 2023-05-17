@@ -160,7 +160,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
             const pageText = textContent.items.map((item) => item.str).join(' ');
             console.log(pageText);
             // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
-            const regex = /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+)\s+([\d.,]+)/g;
+            const regex = /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)/g;
             const matches = Array.from(pageText.matchAll(regex));
             //console.log(matches);
             const movimientos = [];
