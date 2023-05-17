@@ -164,13 +164,21 @@ export class ImpExtractosBancariosComponent implements OnInit {
             const matches = Array.from(pageText.matchAll(regex));
             //console.log(matches);
             const movimientos = [];
+            let saldoAnterior = 0; // Saldo del movimiento anterior
     
             for (const match of matches) {
               const fecha = match[1];
               const descripcion = match[2];
               const monto1 = match[3].replace('.', '');
-              const importe = parseFloat(monto1.replace(',', '.'));
-              const saldo = match[4].replace('.', '');
+              let importe = parseFloat(monto1.replace(',', '.'));
+              const saldo1 = match[4].replace('.', '');
+              const saldo = parseFloat(saldo1.replace(',', '.'));
+
+              if (saldoAnterior > saldo) {
+                importe *= -1; // Multiplicar el importe por -1
+              }
+            
+              saldoAnterior = saldo; // Actualizar el saldo del movimiento anterior
     
               const movimiento = {
                 fecha,
