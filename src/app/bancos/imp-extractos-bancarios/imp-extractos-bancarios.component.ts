@@ -166,7 +166,13 @@ export class ImpExtractosBancariosComponent implements OnInit {
             const movimientos = [];
             let saldoAnterior = 0; // Saldo del movimiento anterior
             const regexSaldoInicial = /Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/;
-            
+
+            const match = regexSaldoInicial.exec(pageText);
+
+            if (match) {
+              const saldo2 = parseFloat(match[1].replace('.', '').replace(',', '.'));
+              console.log(saldo2); // Mostrar el importe numérico extraído
+            }
     
             for (const match of matches) {
               const fecha = match[1];
