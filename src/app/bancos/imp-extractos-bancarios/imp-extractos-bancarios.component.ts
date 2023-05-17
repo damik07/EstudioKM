@@ -171,7 +171,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
             if (match) {
               const saldo2 = parseFloat(match[1].replace('.', '').replace(',', '.'));
-              console.log(saldo2); // Mostrar el importe numérico extraído
+              saldoAnterior = saldo2;
             }
     
             for (const match of matches) {
