@@ -168,7 +168,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
             for (const match of matches) {
               const fecha = match[1];
               const descripción = match[2];
-              const monto = parseFloat(match[3].replace(',', '.'));
+              const monto1 = match[3].replace('.', '');
+              const monto = parseFloat(monto1.replace(',', '.'));
     
               const movimiento = {
                 fecha,
