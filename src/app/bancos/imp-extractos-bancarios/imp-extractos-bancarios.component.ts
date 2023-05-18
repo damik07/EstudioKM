@@ -36,7 +36,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
     {
       "nombreBanco": "Banco Galicia",
       "valor": "4",
-      "regex": /(\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g,
+      "regex": /(\d{2}\-\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g,
       "regexSaldoInicial": /SALDO INICIAL\s+([\d.]+(?:,\d{2})?)/
     }
     
@@ -223,7 +223,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
             }
     
             resolve(movimientos);
-            console.log(saldoAnterior);
+            console.log(movimientos);
           });
         }).catch((error) => {
           reject(error);
