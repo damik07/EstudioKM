@@ -182,17 +182,21 @@ export class ImpExtractosBancariosComponent implements OnInit {
             const matches = Array.from(pageText.matchAll(regexB.regex));
             
             const movimientos = [];
-            let saldoAnterior = 0; // Saldo del movimiento anterior
-            const regexSaldoInicial = /Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/;
+            let saldoAnterior = 0;
+            const regexSaldoInicial = /Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/; //regex para BERSA
             const regexSaldoInicial1 = regexB.regexSaldoInicial;
-            console.log(regexB.regexSaldoInicial);
 
             const match = regexSaldoInicial1.exec(pageText);
+            
 
             if (match) {
               const saldo2 = parseFloat(match[1].replace('.', '').replace(',', '.'));
               saldoAnterior = saldo2;
+              console.log(saldoAnterior);
             }
+
+            
+
             for (const match of matches) {
               const fecha = match[1];
               const descripcion = match[2];
@@ -219,7 +223,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
             }
     
             resolve(movimientos);
-            console.log(movimientos);
+            console.log(saldoAnterior);
           });
         }).catch((error) => {
           reject(error);
