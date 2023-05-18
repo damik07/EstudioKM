@@ -24,7 +24,24 @@ export class ImpExtractosBancariosComponent implements OnInit {
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
-  extractedText: any[];
+  
+  regexBancarios?:any=[
+
+    {
+      "nombreBanco": "Banco de Entre Ríos",
+      "valor": 1,
+      "regex": "/(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g",
+      "regexSaldoInicial": "/Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/"
+    },
+    {
+      "nombreBanco": "Banco Galicia",
+      "valor": 4,
+      "regex": "/(\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g",
+      "regexSaldoInicial": "/SALDO INICIAL\s+([\d.]+(?:,\d{2})?)/"
+    }
+    
+  ];
+
 
   constructor(private cuentas:CuentasContablesService) {
     this.cuenta = cuentas.cuentasContables;
@@ -161,6 +178,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
             console.log(pageText);
             // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
             const regex = /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g; //regex para BERSA
+            const regexB = this.regexBancarios.find((r) => r.valor === this.modelo);
+            console.log(regexB);
             const matches = Array.from(pageText.matchAll(regex));
             
             const movimientos = [];
