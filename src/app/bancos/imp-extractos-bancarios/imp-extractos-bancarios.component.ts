@@ -29,15 +29,15 @@ export class ImpExtractosBancariosComponent implements OnInit {
 
     {
       "nombreBanco": "Banco de Entre Ríos",
-      "valor": 1,
-      "regex": "/(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g",
-      "regexSaldoInicial": "/Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/"
+      "valor": "1",
+      "regex": /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g,
+      "regexSaldoInicial": /Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/
     },
     {
       "nombreBanco": "Banco Galicia",
-      "valor": 4,
-      "regex": "/(\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g",
-      "regexSaldoInicial": "/SALDO INICIAL\s+([\d.]+(?:,\d{2})?)/"
+      "valor": "4",
+      "regex": /(\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g,
+      "regexSaldoInicial": /SALDO INICIAL\s+([\d.]+(?:,\d{2})?)/
     }
     
   ];
@@ -178,21 +178,21 @@ export class ImpExtractosBancariosComponent implements OnInit {
             console.log(pageText);
             // Aquí puedes realizar la manipulación de texto y extraer los datos de la tabla
             const regex = /(\d{2}\/\d{2}\/\d{2})\s+([\w\s.]+(?:\s[\w\s.]+)*)\s+([\d.]+(?:,\d{2})?)\s+([\d.]+(?:,\d{2})?)/g; //regex para BERSA
-            const regexB = this.regexBancarios.find((r) => r.valor === this.modelo);
-            console.log(regexB);
-            const matches = Array.from(pageText.matchAll(regex));
+            const regexB = this.regexBancarios.find((r) => r.valor === this.modelo);            
+            const matches = Array.from(pageText.matchAll(regexB.regex));
             
             const movimientos = [];
             let saldoAnterior = 0; // Saldo del movimiento anterior
             const regexSaldoInicial = /Saldo del periodo anterior\s+([\d.]+(?:,\d{2})?)/;
+            const regexSaldoInicial1 = regexB.regexSaldoInicial;
+            console.log(regexB.regexSaldoInicial);
 
-            const match = regexSaldoInicial.exec(pageText);
+            const match = regexSaldoInicial1.exec(pageText);
 
             if (match) {
               const saldo2 = parseFloat(match[1].replace('.', '').replace(',', '.'));
               saldoAnterior = saldo2;
             }
-    
             for (const match of matches) {
               const fecha = match[1];
               const descripcion = match[2];
