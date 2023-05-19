@@ -36,11 +36,7 @@ export class ImpExtractosBancariosComponent implements OnInit {
     {
       "nombreBanco": "Banco Galicia",
       "valor": "4",
-      "regex": /(\d{2}-\d{2})\s+([^\d]+)\s+([^\s]+)\s+([\d.,]+)\s/g,
-      ///(?<!SALDO\sINICIAL)\s+(\d{2}-\d{2})\s+([^\d]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)/g
-      ///(\d{2}-\d{2})\s+((?!SALDO INICIAL)[^\d]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)/g
-      ///(\d{2}-\d{2})\s+([^\d]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)/g
-      ///(\d{2}-\d{2})\s+([^\d]+)\s+([\d.,]+)\s+([\d.,]+)/g
+      "regex": /(\d{2}-\d{2})\s+([^\d]+)\s+(?!SALDO\sINICIAL)[^\w]+([^\s]+)\s+([\d.,]+)\s/g,
       "regexSaldoInicial": /SALDO INICIAL\s+([\d.]+(?:,\d{2})?)/
     }
     
