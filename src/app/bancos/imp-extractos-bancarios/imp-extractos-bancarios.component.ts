@@ -21,6 +21,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
   formato: any;
   modelo: any;
   selecCuenta: any;
+  movimientosBancarios?:any[] = [];
+  fechaDeInicio: string;
   asientos?:any[] = [];
   totalDebe:any = 0
   totalHaber:any = 0
@@ -285,6 +287,33 @@ export class ImpExtractosBancariosComponent implements OnInit {
   }
 
   guardar(){
+    if (this.selecCuenta) {
+      const tabla = document.getElementById('importFactCompras');
+      const filas = tabla.getElementsByTagName('tr');
+      for (let i = 1; i < filas.length; i++) {
+          const celdas = filas[i].getElementsByTagName('td');
+          const objetoDeFila = {
+            fechaMov: celdas[0].innerHTML,
+            descMov: celdas[1].innerHTML,
+            referencia: celdas[2].innerHTML,
+            importeMov: celdas[3].innerHTML,
+            cuenta: celdas[4].querySelector('select').value,
+            fecha_imputacion: this.fechaDeInicio,
+            fecha_carga: new Date()
+
+          };
+          this.movimientosBancarios.push(objetoDeFila);
+
+
+          
+
+          console.log(this.movimientosBancarios);
+          
+
+      }
+    } else {
+      alert("Debe seleccionar fecha de imputación");
+    }
 
   }
 

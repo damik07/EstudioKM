@@ -49,6 +49,15 @@
       </select>
     </div>
 
+    <div class="row" >
+      <div class="col-3">
+        <label for="startDate1" class="col2 col-form-label">Seleccionar mes imputación</label>
+      </div>
+      <div class="col-3">
+        <input class="form-control" type="month" name="startDate1" id="startDate1" [(ngModel)]="fechaDeInicio">
+      </div>
+    </div>
+
   </div>
   <hr>
   <ngx-file-drop dropZoneLabel="Suelte archivos aquí" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
@@ -70,6 +79,7 @@
           <th>Descripción</th>
           <th>Referencia</th>
           <th>Importe</th>
+          <th id="ocultar">Cuenta</th>
         </tr>
       </thead>
       <tbody id="tablaBody">
@@ -78,6 +88,10 @@
           <td>{{ item.descripcion }}</td>
           <td>{{ item.referencia }}</td>
           <td>{{ item.importe.toFixed(2) }}</td>
+          <td id="ocultar"><select class="form-select" aria-label="Default select example">
+          <option *ngFor="let c of cuenta">{{ c.nombreCuenta }}</option>
+            
+          </select></td>
         </tr>
       </tbody>
     </table>
