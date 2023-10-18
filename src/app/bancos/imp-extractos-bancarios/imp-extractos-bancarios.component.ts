@@ -287,8 +287,9 @@ export class ImpExtractosBancariosComponent implements OnInit {
   }
 
   guardar(){
+    
     if (this.selecCuenta) {
-      const tabla = document.getElementById('importFactCompras');
+      const tabla = document.getElementById('movBancarios');
       const filas = tabla.getElementsByTagName('tr');
       for (let i = 1; i < filas.length; i++) {
           const celdas = filas[i].getElementsByTagName('td');
@@ -297,7 +298,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
             descMov: celdas[1].innerHTML,
             referencia: celdas[2].innerHTML,
             importeMov: celdas[3].innerHTML,
-            cuenta: celdas[4].querySelector('select').value,
+            cuenta_imp: celdas[4].querySelector('select').value,
+            cuenta_banco: this.selecCuenta,
             fecha_imputacion: this.fechaDeInicio,
             fecha_carga: new Date(),
             conciliado: false
@@ -306,12 +308,9 @@ export class ImpExtractosBancariosComponent implements OnInit {
           this.movimientosBancarios.push(objetoDeFila);
 
 
-          
-
-          console.log(this.movimientosBancarios);
-          
-
       }
+
+      console.log(this.movimientosBancarios);
     } else {
       alert("Debe seleccionar fecha de imputación");
     }
