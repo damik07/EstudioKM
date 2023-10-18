@@ -299,7 +299,8 @@ export class ImpExtractosBancariosComponent implements OnInit {
             importeMov: celdas[3].innerHTML,
             cuenta: celdas[4].querySelector('select').value,
             fecha_imputacion: this.fechaDeInicio,
-            fecha_carga: new Date()
+            fecha_carga: new Date(),
+            conciliado: false
 
           };
           this.movimientosBancarios.push(objetoDeFila);
