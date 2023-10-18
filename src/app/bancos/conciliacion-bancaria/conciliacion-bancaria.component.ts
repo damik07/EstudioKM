@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FacturasVentasService } from 'src/app/servicios/serviciosContables/facturas-ventas.service';
+import { FacturasVentasService } from '../../servicios/serviciosContables/facturas-ventas.service';
 
 @Component({
   selector: 'app-conciliacion-bancaria',
