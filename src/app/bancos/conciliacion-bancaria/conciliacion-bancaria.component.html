@@ -1,3 +1,25 @@
-<p>
-conciliacion-bancaria works!fsdas
-</p>
+<h4>Seleccionar fecha de imputación</h4>
+<form (ngSubmit)="filterData1(f.value)" #f="ngForm">
+  <div>
+    <div class="row">
+      <div class="col-2">
+        <label for="startDate1" class="form-label">Fecha inicio</label>
+        <input class="form-control" type="month" name="startDate1" id="startDate1" ngModel>
+
+      </div>
+      <div class="col-2">
+
+        <label for="endDate1" class="form-label">Fecha fin</label>
+        <input class="form-control" type="month" name="endDate1" id="endDate1" ngModel>
+      </div>
+
+      <div class="col-2">
+        <button type="submit" class="btn btn-primary mb-3">Filtrar</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>
+<hr>
