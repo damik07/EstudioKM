@@ -25,13 +25,14 @@ import { AsientoDiarioComponent } from './asientos/asiento-diario/asiento-diario
 import { ImportarAsientosComponent } from './asientos/importar-asientos/importar-asientos.component';
 import { ConciliacionBancariaComponent } from './bancos/conciliacion-bancaria/conciliacion-bancaria.component';
 import { ImpExtractosBancariosComponent } from './bancos/imp-extractos-bancarios/imp-extractos-bancarios.component';
+import { VerComprasComponent } from './compras/ver-compras/ver-compras.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent, VerRubrosComponent, VerPlanCuentasComponent, ImportarVentasComponent, VerVentasComponent, AsientoDiarioComponent, ImportarAsientosComponent, ConciliacionBancariaComponent, ImpExtractosBancariosComponent
+    SidebarComponent, CargaFacturasCompraComponent, LoginComponent, CuentaContableComponent, RubroComponent, NavbarComponent, VerCuentasComponent, VerRubrosComponent, VerPlanCuentasComponent, ImportarVentasComponent, VerVentasComponent, AsientoDiarioComponent, ImportarAsientosComponent, ConciliacionBancariaComponent, ImpExtractosBancariosComponent, VerComprasComponent
   ],
   imports: [
     FormsModule,
