@@ -5,6 +5,7 @@ import { ImportarAsientosComponent } from './asientos/importar-asientos/importar
 import { ConciliacionBancariaComponent } from './bancos/conciliacion-bancaria/conciliacion-bancaria.component';
 import { ImpExtractosBancariosComponent } from './bancos/imp-extractos-bancarios/imp-extractos-bancarios.component';
 import { CargaFacturasCompraComponent } from './compras/carga-facturas-compra/carga-facturas-compra.component';
+import { VerComprasComponent } from './compras/ver-compras/ver-compras.component';
 import { LoginComponent } from './login/login/login.component';
 import { CuentaContableComponent } from './plan-cuentas/cuenta-contable/cuenta-contable.component';
 import { RubroComponent } from './plan-cuentas/rubro/rubro.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'importarAsientos', component:ImportarAsientosComponent},
   {path:'conciliacionBancaria', component:ConciliacionBancariaComponent},
   {path:'impExtractos', component:ImpExtractosBancariosComponent},
+  {path:'verCompras', component:VerComprasComponent},
   
   {path:'cuentaContable', component:CuentaContableComponent},
   {path:'login', component:LoginComponent, //canActivate:[GuardGuard]

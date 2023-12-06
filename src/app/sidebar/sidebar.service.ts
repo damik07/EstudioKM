@@ -31,7 +31,8 @@ export class SidebarService {
           }
         },
         {
-          title: 'Dashboard 2'
+          title: 'Ver Compras',
+          url: 'verCompras'
         },
         {
           title: 'Dashboard 3'
